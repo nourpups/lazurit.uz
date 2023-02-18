@@ -65,17 +65,6 @@
         }
     });
 
-    /*------ Timer active ----*/
-    $('#timer-1-active').syotimer({
-        year: 2021,
-        month: 12,
-        day: 31,
-        hour: 23,
-        minute: 59,
-        layout: 'hms',
-        periodic: false,
-        periodUnit: 'd'
-    });
 
     // Product slider active 1
     var sliderActiveTwo = new Swiper('.product-slider-active-1', {
@@ -342,10 +331,7 @@
     /*---------------------
         Select active
     --------------------- */
-    $('.select-two-active').select2();
-    $(window).on('resize', function(){
-        $('.select-two-active').select2()
-    });
+
 
     /*--- checkout toggle function ----*/
     $('.checkout-click1').on('click', function(e) {
@@ -383,8 +369,6 @@
         $(this).siblings( '.payment-box' ).slideToggle(900);
     });
 
-    // Instantiate EasyZoom instances
-    var $easyzoom = $('.easyzoom').easyZoom();
 
     /*----------------------------------------
 		Product details small img slider 1

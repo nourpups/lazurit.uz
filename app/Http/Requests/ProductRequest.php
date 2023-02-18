@@ -31,17 +31,21 @@ class ProductRequest extends FormRequest
         ];
 
         foreach(config('translatable.locales') as $locale) {
-            $rules[$locale . '.name'] = ['required','min:4','unique:products,name'];
+            $rules[$locale . '.name'] = ['required','min:3','unique:product_translations,name'];
             $rules[$locale . '.description'] = 'required';
         }
         if($this->route()->named('product.edit'))
         {
-            $excepted_id = $this->route()->parameter('id');
+            $product = $this->route()->parameter('product');
+            $excepted_id = $product['id'];
+            $excepted_column = 'product_id';
             foreach (config('translatable.locales') as $locale) {
-                $rules[$locale . '.name'] = ['required', 'min:4', Rule::unique('products', 'name')->ignore($excepted_id)];
-                $rules['image'] = 'image|max:1024';
+                $rules[$locale . '.name'] = ['required', 'min:3', Rule::unique('product_translations', 'name')->ignore($excepted_id, $excepted_column)];
             }
+            $rules['image'] = 'image|max:1024';
+
         }
+
         return $rules;
     }
 }

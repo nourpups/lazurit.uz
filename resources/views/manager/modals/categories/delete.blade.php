@@ -22,6 +22,10 @@
                             Name: <h4> {{ $cat->name }} </h4>
 
                         </div>
+                        <div class="w-75">
+                            Image:
+                            <img class="img-fluid options-item" src="{{ asset('storage/'.$cat->image) }}" alt="">
+                        </div>
                       </div>
                     </div>
                 </div>

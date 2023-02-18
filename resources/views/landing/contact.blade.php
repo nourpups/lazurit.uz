@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="map pt-120" data-aos="fade-up" data-aos-delay="200">
-                        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aa918209a947a214ecbe62d0b562d50a7c12377d5e88082aced85571ab9e90e35&amp;source=constructor" width="900" height="570" frameborder="0"></iframe>
+                        <iframe title="Location of Our Outlet Lazurit" src="https://yandex.ru/map-widget/v1/?um=constructor%3Aa918209a947a214ecbe62d0b562d50a7c12377d5e88082aced85571ab9e90e35&amp;source=constructor" width="900" height="570" frameborder="0"></iframe>
                     </div>
                 </div>
             </div>

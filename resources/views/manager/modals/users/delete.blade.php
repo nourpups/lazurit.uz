@@ -1,7 +1,7 @@
 <!-- Pop Out Modal -->
 <div class="modal fade" id="modal-popout-delete{{$user->id}}" tabindex="-1" aria-labelledby="modal-popout" style="display: none;"
     aria-hidden="true">
-    <form action="{{ route('user.delete', $user->id) }}" method="post">
+    <form action="{{ route('user.delete', $user) }}" method="post">
         @csrf
         @method('DELETE')
     <div class="modal-dialog modal-dialog-popout" role="document">

@@ -41,9 +41,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/magnific-popup.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/swiper.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/jquery-ui.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/nice-select.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/select2.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/easyzoom.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/slinky.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
 </head>
@@ -104,11 +102,14 @@
                                                 class="pe-7s-user"></i></a>
                                     @endguest
                                     @auth
-                                        <a title="{{__('Logout')}}" href="{{ route('logout') }}"><i class="fa fa-sign-out"></i></a>
+                                        <a title="{{__('Logout')}}" href="{{ route('logout') }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg>
+                                        </a>
                                     @endauth
                                 </div>
                                 <div class="header-action-style header-action-cart">
-                                    <a class="cart-active" href="#"><i
+                                    <a class="cart-active" href="#">
+                                        <i
                                             class="pe-7s-shopbag"></i>
                                             @if (!empty($cart))
                                                 <span class="product-count bg-black">{{$cart->quantity()}}</span>
@@ -170,10 +171,10 @@
                         @foreach ($cart->products as $product)
                             <li>
                                 <div class="cart-img">
-                                    <a href="#"><img src="{{asset('storage/'.$product->image)}}" alt="{{$product->name}}"></a>
+                                    <a href="{{route('product', $product->id)}}"><img src="{{asset('storage/'.$product->image)}}" alt="{{$product->name}}"></a>
                                 </div>
                                 <div class="cart-title">
-                                    <h4><a href="#">{{$product->name}}</a></h4>
+                                    <h4><a href="{{route('product', $product->id)}}">{{$product->name}}</a></h4>
                                     <span> {{$product->pivot->count}} × ${{$product->price}}</span>
                                 </div>
                                 <div class="cart-delete">
@@ -204,6 +205,7 @@
     @endif
     </div>
 </div>
+<!--  Alerts -->
 <div class="container">
     @if (session('success'))
     <div class="alert alert-success text-center fade show" role="alert">
@@ -223,7 +225,6 @@
         session()->forget('login')
     @endphp
     @endif
-
 </div>
         @yield('content')
 
@@ -235,7 +236,7 @@
                             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                                 <div class="footer-widget footer-about mb-40">
                                     <div class="footer-logo">
-                                        <a href="index.html"><img src="{{ asset('assets/images/logo/logo.png') }}" alt="logo"></a>
+                                        <a href="{{route('home')}}"><img src="{{ asset('assets/images/logo/logo.png') }}" alt="logo"></a>
                                     </div>
                                     <p>a feel of luxury</p>
                                     {{-- <div class="payment-img">
@@ -466,7 +467,7 @@
         </div>
     </div>
     <!-- All JS is here -->
-    <script src="{{ asset('assets/js/vendor/modernizr-3.11.2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/modernizr-3.11.2.min.js') }}"></script>d
     <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery-migrate-3.3.2.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/popper.min.js') }}"></script>
@@ -475,21 +476,18 @@
     <script src="{{ asset('assets/js/plugins/scrollup.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/aos.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/magnific-popup.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/jquery.syotimer.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/swiper.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/imagesloaded.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery-ui.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery-ui-touch-punch.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/jquery.nice-select.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/waypoints.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/counterup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/counterup.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/select2.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/easyzoom.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/slinky.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/ajax-mail.js') }}"></script>
     <!-- Main JS -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    @yield('js')
 <script>
        $(document).ready(function() {
         setTimeout(function() {
@@ -531,9 +529,11 @@
           var append=url.indexOf("?")==-1?"?":"&";
           var finalURL=url+append+$("#search").serialize();
 
-          $.post(finalURL,{'_token': '{{ csrf_token() }}'},function(data){
-            $("#search_result").html(data);
-          });
+          $.post(finalURL,
+                {'_token': '{{ csrf_token() }}'},
+                function(data) {
+                    $("#search_result").html(data);
+                });
           return false;
         })
 

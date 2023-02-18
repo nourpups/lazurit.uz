@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
 
         $store = request()->all();
@@ -30,7 +30,7 @@ class ProductController extends Controller
         unlink(storage_path('app/public/').$file_name);
         return redirect()->back()->with('fail', 'Can\'t create product ' . $product_name);
   }
-  public function edit( Request $request, Product $product)
+  public function edit( ProductRequest $request, Product $product)
   {
 
     $update = request()->all();
@@ -51,10 +51,10 @@ class ProductController extends Controller
       {
         unlink($old_logo_path);
       }
-      return redirect()->back()->with('success', 'Product ' . request('name') . ' succesfully updated');
+      return redirect()->back()->with('success', 'Product ' . $product->name . ' succesfully updated');
     }
     unlink(storage_path('app/public/').$file_name);
-    return redirect()->back()->with('fail', 'Can\'t update product ' . request('name'));
+    return redirect()->back()->with('fail', 'Can\'t update product ' . $product->name);
   }
 
   public function delete(Product $product)

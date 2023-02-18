@@ -32,12 +32,14 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('get.logout');
 // SEARCH ROUTES *************************************************************************
 Route::post('/search', [SearchController::class, 'search'])->name('search');
 // CART ROUTES *************************************************************************
+Route::controller(CartController::class)->group(function() {
+    Route::get('/cart', 'cart')->name('cart');
+    Route::get('/cart/add/{id}',  'add')->name('add_to_cart');
+    Route::get('/cart/edit_count/{product_id}/{status}',  'edit_count')->name('cart.edit_count');
+    Route::delete('/cart/delete/{product_id}',  'delete')->name('cart.delete');
+    Route::get('/cart/confirm',  'confirm')->name('cart.confirm');
+});
 
-Route::get('/cart', [CartController::class, 'cart'])->name('cart');
-Route::get('/cart/add/{id}', [CartController::class, 'add'])->name('add_to_cart');
-Route::get('/cart/edit_count/{product_id}/{status}', [CartController::class, 'edit_count'])->name('cart.edit_count');
-Route::delete('/cart/delete/{product_id}', [CartController::class, 'delete'])->name('cart.delete');
-Route::get('/cart/confirm', [CartController::class, 'confirm'])->name('cart.confirm');
 
 //  FRONT END ROUTES ****************************************************************************
 
@@ -68,7 +70,7 @@ Route::group(
             Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
             Route::put('/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
             Route::delete('/category/delete/{category}', [CategoryController::class, 'delete'])->name('category.delete');
-            Route::delete('/user/{id}', [UserController::class, 'delete'])->name('user.delete');
+            Route::delete('/user/{user}', [UserController::class, 'delete'])->name('user.delete');
         });
     });
 

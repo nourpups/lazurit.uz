@@ -116,7 +116,7 @@
                 <h1 class="font-montserrat" data-aos="fade-up" data-aos-delay="400">{{__('Celebrate all the love')}}</h1>
                 <p data-aos="fade-up" data-aos-delay="600">{{__('We have the perfect gift for everyone you cherish')}} </p>
                 <div class="btn-style-3 btn-hover" data-aos="fade-up" data-aos-delay="800">
-                    <a class="btn border-radius-none" href="product-details.html">{{__('Show Gifts')}}</a>
+                    <a class="btn border-radius-none" href="{{route('catalog', 'Necklaces')}}">{{__('Show Gifts')}}</a>
                 </div>
             </div>
         </div>

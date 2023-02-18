@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $store = request()->all();
-        $category_name = $request[app()->getLocale()];
+        $category_name = $request[app()->getLocale()]['name'];
 
     if($request->hasFile('image'))
     {
@@ -28,16 +28,15 @@ class CategoryController extends Controller
 
     if(Category::create($store))
     {
-      return redirect()->back()->with('success', 'category ' . $category_name . ' succesfully created');
+      return redirect()->back()->with('success', 'Category ' . $category_name . ' succesfully created');
     }
     unlink(storage_path('app/public/').$image_breadcrumb_file_name);
     unlink(storage_path('app/public/').$image_file_name);
-    return redirect()->back()->with('fail', 'Can\'t create category ' . $category_name);
+    return redirect()->back()->with('fail', 'Can\'t create Category ' . $category_name);
   }
   public function edit(Request $request, Category $category)
   {
         $update = request()->all();
-
     $image_old_file_name = null;
     if($request->hasFile('image'))
     {

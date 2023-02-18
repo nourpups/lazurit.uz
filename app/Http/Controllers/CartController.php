@@ -11,31 +11,28 @@ class CartController extends Controller
 {
     public function cart()
     {
-        $order_id = session('order_id');
-        $isCartEmpty = OrderProduct::where('order_id', session('order_id'))->count() == 0;
+        $is_cart_empty = OrderProduct::where('order_id', session('order_id'))->count() == 0;
 
-        if($isCartEmpty)
+        if($is_cart_empty)
         {
             return view('catalog.cart')
             ->with('no_items', 'empty cart');
         }
 
-        $order = Order::find($order_id);
-
+        $order = Order::find($this->get_order_id());
         return view('catalog.cart')
         ->with('order', $order);
     }
     public function add($product_id)
     {
-        $order_id = session('order_id');
-            if(is_null($order_id))
+            if(is_null($this->get_order_id()))
             {
                 $order = Order::create([]);
                 session(['order_id' => $order->id]);
             }
             else
             {
-                $order = Order::find($order_id);
+                $order = Order::find($this->get_order_id());
             }
 
         if($order->products->contains($product_id))
@@ -47,7 +44,6 @@ class CartController extends Controller
         else
         {
             $order->products()->attach($product_id);
-
         }
 
         return redirect()->back()->with('success', __('Product added to cart successfully'));
@@ -55,8 +51,7 @@ class CartController extends Controller
     public function edit_count($product_id, $status)
     {
 
-        $order_id = session('order_id');
-        $order = Order::find($order_id);
+        $order = Order::find($this->get_order_id());
 
         if($status == 'inc')
         {
@@ -68,6 +63,7 @@ class CartController extends Controller
         if($status == 'dec')
         {
             $pivot_table = $order->products()->where('product_id', $product_id)->first()->pivot;
+
             if($pivot_table->count == 1)
             {
                 $order->products()->detach($product_id);
@@ -78,12 +74,13 @@ class CartController extends Controller
                 $pivot_table->update();
             }
         }
+
         return redirect()->back();
     }
     public function confirm(Request $request)
     {
-        $order_id = session('order_id');
-        $order = Order::find($order_id);
+
+        $order = Order::find($this->get_order_id());
 
         if($order->status == 0 )
         {
@@ -103,10 +100,11 @@ class CartController extends Controller
     }
     public function delete($product_id)
     {
-        $order_id = session('order_id');
-        $order = Order::find($order_id);
+
+        $order = Order::find($this->get_order_id());
         $order->products()->detach($product_id);
 
     return redirect()->back()->with('warning', __('You have removed the product from the cart'));
     }
+
 }

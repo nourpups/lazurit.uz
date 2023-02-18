@@ -36,6 +36,15 @@
                                 </div>
                             @enderror
                         </div>
+                        <div class="form-floating mb-4">
+                            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{old('image')}}" placeholder="Category Image">
+                            <label class="form-label">Category Image</label>
+                            @error('image')
+                            <div id="val-password-error" class="invalid-feedback animated fadeIn">
+                                {{$message}}
+                            </div>
+                        @enderror
+                        </div>
                         <button type="submit" class="btn btn-alt-primary">
                             Done
                         </button>

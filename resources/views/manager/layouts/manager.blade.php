@@ -304,10 +304,10 @@
               <span class="smini-visible fw-bold tracking-wide fs-lg">
                 c<span class="text-primary">b</span>
               </span>
-              <a class=" fw-bold tracking-wide mx-auto" href="index.html">
+              <a class=" fw-bold tracking-wide mx-auto" href="#">
                 <span class="smini-hidden">
                   <i class="far fa-gem text-primary"></i>
-                  <span class="fs-4 text-dual">glos</span><span class="fs-4 text-primary">sy</span>
+                  <span class="fs-4 text-dual">La</span><span class="fs-4 text-primary">zurit</span>
                 </span>
               </a>
             </div>
@@ -435,11 +435,8 @@
       <footer id="page-footer">
         <div class="content py-3">
           <div class="row fs-sm">
-            <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-end">
-              Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold" href="" target="_blank">nour</a>
-            </div>
-            <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-start">
-              <a class="fw-semibold" href="" target="_blank">Codebase 5.1</a> &copy; <span data-toggle="year-copy"></span>
+            <div class="col-sm-6 offset-sm-6 order-sm-2 py-1 text-center text-sm-end">
+              Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold" href="https://t.me/nourcantfly" target="_blank">nour</a>
             </div>
           </div>
         </div>

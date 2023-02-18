@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-  public function delete($id)
+  public function delete(User $user)
   {
-   $user = User::find($id)->delete();
+   $user->delete();
     if($user)
     {
         return redirect()->back()->with('fail', 'Can\'t delete user');

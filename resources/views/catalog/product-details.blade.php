@@ -24,7 +24,7 @@
                     <div class="product-details-img-wrap" data-aos="fade-up" data-aos-delay="200">
                         <div class="easyzoom-style">
                             <div class="easyzoom">
-                                <a href="{{asset('storage/'.$product->image)}}">
+                                <a href="#">
                                     <img src="{{asset('storage/'.$product->image)}}" alt="{{$product->name}}">
                                 </a>
                             </div>
