@@ -7,17 +7,15 @@
     <title>@yield('title')</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description"
-        content="Urdan Minimal eCommerce Bootstrap 5 Template is a stunning eCommerce website template that is the best choice for any online store.">
+        content="Еще в 2010 году, создавая бренд «Lazurit» мы отчетливо представляли, что хотим предложить нашим клиентам новую концепцию ювелирного бренд, новый формат, новый образец ювелирного магазина для взыскательных людей, ценящих свое время, желания, потребности и индивидуальностья">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="profile" href="https://gmpg.org/xfn/11">
-    <link rel="canonical" href="https://htmldemo.hasthemes.com/urdan/index.html" />
 
     <!-- Open Graph (OG) meta tags are snippets of code that control how URLs are displayed when shared on social media  -->
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Urdan - Minimal eCommerce HTML Template" />
+    <meta property="og:title" content="Lazurit - Jewelry Brand" />
     <meta property="og:url" content="" />
-    <meta property="og:site_name" content="Urdan - Minimal eCommerce HTML Template" />
+    <meta property="og:site_name" content="Lazurit - a feel of luxury" />
     <!-- For the og:image content, replace the # with a link of an image -->
     <meta property="og:image" content="#" />
     <meta property="og:description"
@@ -35,13 +33,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/vendor/pe-icon-7-stroke.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/vendor/themify-icons.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/vendor/font-awesome.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/aos.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/magnific-popup.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/swiper.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/jquery-ui.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/select2.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/slinky.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
 </head>
@@ -55,7 +50,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-6 col-6">
                             <div class="logo">
-                                <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo/logo.png') }}" alt="logo"></a>
+                                <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo/lazurit.webp') }}" alt="logo"></a>
                             </div>
                         </div>
                         <div class="col-lg-6 d-none d-lg-block d-flex justify-content-center">
@@ -102,17 +97,18 @@
                                                 class="pe-7s-user"></i></a>
                                     @endguest
                                     @auth
-                                        <a title="{{__('Logout')}}" href="{{ route('logout') }}">
+                                        <a title="{{__('Logout')}}" href="{{ route('get.logout') }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg>
                                         </a>
                                     @endauth
                                 </div>
                                 <div class="header-action-style header-action-cart">
                                     <a class="cart-active" href="#">
-                                        <i
-                                            class="pe-7s-shopbag"></i>
+                                        <i class="pe-7s-shopbag"></i>
                                             @if (!empty($cart))
+                                                @if($cart->products->count() > 0)
                                                 <span class="product-count bg-black">{{$cart->quantity()}}</span>
+                                                @endif
                                             @endif
                                     </a>
                                 </div>
@@ -164,7 +160,7 @@
     <div class="sidebar-cart-all">
         <a class="cart-close" href="#"><i class="pe-7s-close"></i></a>
 @if(!empty($cart))
-        @if ($cart->quantity() != 0)
+        @if ($cart->products->count() > 0)
         <div class="cart-content">
                 <h3>{{__('Cart')}}</h3>
                 <ul>
@@ -195,13 +191,10 @@
                 <div class="cart-btn btn-hover">
                     <a class="theme-color" href="{{route('cart')}}">{{__('View Cart')}}</a>
                 </div>
-                <div class="checkout-btn btn-hover">
-                    <a class="theme-color" href="{{route('cart.confirm')}}">{{__('Confirm Order')}}</a>
-                </div>
             </div>
+            @else
+            <i>Ваша корзина пуста.</i>
         @endif
-        @else
-        <i>Ваша корзина пуста.</i>
     @endif
     </div>
 </div>
@@ -221,9 +214,6 @@
     <div class="alert alert-success text-center fade show" role="alert">
         {{ session('login') }}
     </div>
-    @php
-        session()->forget('login')
-    @endphp
     @endif
 </div>
         @yield('content')
@@ -281,7 +271,7 @@
                 </div>
             </div>
         </footer>
-        <!-- Product Modal start -->
+        <!-- Login Register modal for Confirm Order start -->
         <div class="modal fade quickview-modal-style" id="confirm_order" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -316,11 +306,12 @@
                                                                     value="{{ old('login') }}"
                                                                     placeholder="{{ __('Phone') }} {{__('or')}} {{__('Name')}}"
                                                                     required
-                                                                    autofocus>
-                                                                <input id="password" name="password" type="password"
+                                                                    autocomplete="use   rname">
+                                                                <input name="password" type="password"
                                                                     class="@error('password') is-invalid @enderror"
                                                                     placeholder="{{ __('Password') }}"
-                                                                    required>
+                                                                    required
+                                                                    autocomplete="current-password">
                                                                 <div class="button-box btn-hover">
                                                                     <button>{{__('Login')}}</button>
                                                                 </div>
@@ -337,18 +328,24 @@
                                                                 <input type="text" name="name"
                                                                     class="@error('name') is-invalid @enderror"
                                                                     value="{{ old('name') }}"
-                                                                    placeholder="{{ __('Name') }}" required
-                                                                    autofocus>
+                                                                    placeholder="{{ __('Name') }}"
+                                                                    required
+                                                                    autocomplete="username">
                                                                 <input type="text" name="phone"
                                                                     class="@error('phone') is-invalid @enderror"
                                                                     value="{{ old('phone') }}"
-                                                                    placeholder="{{ __('Phone') }}" required>
+                                                                    placeholder="{{ __('Phone') }}"
+                                                                    required
+                                                                    autocomplete="username">
                                                                 <input type="password" name="password"
                                                                     class="@error('password') is-invalid @enderror"
-                                                                    placeholder="{{ __('Password') }}" required>
+                                                                    placeholder="{{ __('Password') }}"
+                                                                    required
+                                                                    autocomplete="new-password">
                                                                 <input type="password" name="password_confirmation"
                                                                     placeholder="{{ __('Confirm password') }}"
-                                                                    required>
+                                                                    required
+                                                                    autocomplete="new-password">
                                                                 <div class="button-box btn-hover">
                                                                     <button>{{__('Register')}}</button>
                                                                 </div>
@@ -467,9 +464,8 @@
         </div>
     </div>
     <!-- All JS is here -->
-    <script src="{{ asset('assets/js/vendor/modernizr-3.11.2.min.js') }}"></script>d
+    <script src="{{ asset('assets/js/vendor/modernizr-3.11.2.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/jquery-migrate-3.3.2.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/wow.js') }}"></script>
@@ -477,13 +473,9 @@
     <script src="{{ asset('assets/js/plugins/aos.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/magnific-popup.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/swiper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery-ui.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/jquery-ui-touch-punch.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/waypoints.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/counterup.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/counterup.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/slinky.min.js') }}"></script>
     <!-- Main JS -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
@@ -539,6 +531,49 @@
 
       });
 </script>
+{{-- <script>
+    $("#login_form").submit(function(e){
+     e.preventDefault();
+
+    var all = $(this).serialize();
+
+    $.ajax({
+        url:  $(this).attr('action'),
+        type: "POST",
+        data: all,
+        beforeSend:function(){
+            $(document).find('span.error-text').text('');
+        },
+        //validate form with ajax. This will be communicating with your LoginController
+        success: function(data){
+            if (data.status==0) {
+                $.each(data.error, function(prefix, val){
+                    $('span.'+prefix+'_error').text(val[0]);
+                });
+            }
+           // redirect the user to [another page] if the
+            //    login cred are correct. Remember this is
+            //    communicating with the LoginController which we
+            //    are yet to create
+            if(data == 1){
+                window.location.replace(
+                 '{{route("home")}}'
+                );
+            }else if(data == 2){
+             // Show the user authentication error if the
+            //    login cred are invalid. Remember this is
+            //    communicating with the LoginController which we
+            //    are yet to create
+                $("#show_error").hide().html("Invalid login details");
+            }
+
+        }
+        })
+
+    });
+
+</script> --}}
+
 </body>
 
 </html>

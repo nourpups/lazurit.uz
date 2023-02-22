@@ -15,26 +15,33 @@ class FrontController extends Controller
         $categories = Category::WithTranslation()
         ->translatedIn(app()->getLocale())
         ->get();
-            
+
         return view('home')->with('categories', $categories);
     }
     public function catalog(Request $request, $category_name)
     {
+        $category = Category::whereTranslation('name', $category_name)->first();
 
-            $category = Category::whereTranslation('name', $category_name)->first();
+        if(is_null($request['sort']))
+        {
             $products = Product::where('category_id', $category->id)->paginate('16');
-        if(request('sort') == 'price_asc')
-        {
-            $products = Product::where('category_id', $category->id)->orderBy('price', 'asc')->paginate('16');
         }
-        if(request('sort') == 'price_desc')
+        else
         {
-            $products = Product::where('category_id', $category->id)->orderBy('price', 'desc')->paginate('16');
+            if($request['sort'] == 'name_asc')
+            {
+                $products = Product::where('category_id', $category->id)->orderByTranslation('name', 'asc')->paginate('16');
+            }
+            if($request['sort'] == 'name_desc')
+            {
+                $products = Product::where('category_id', $category->id)->orderByTranslation('name', 'desc')->paginate('16');
+            }
+            if($request['sort'] == 'relevance')
+            {
+                $products = Product::where('category_id', $category->id)->paginate('16');
+            }
         }
-        if(request('sort') == 'relevance')
-        {
-            //there is nothing cause of the first $products is the relevance filtered
-        }
+
         return view('catalog.catalog')
             ->with('category_name', $category->name)
             ->with('products', $products);

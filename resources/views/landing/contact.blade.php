@@ -27,7 +27,7 @@
                             <h3>Lazurit Service & CO</h3>
                         </div>
                         <div class="contact-us-info">
-                            <p>{{__('Bunyodkor 15/1 street, Chilonzor district, Tashkent')}}</p>
+                            <p>{{__('Bunyodkor 15/1 street')}}, {{('Chilonzor district, Tashkent')}}</p>
                             <p>{{__('Orientation')}} : Bunyodkor "Oltin Markazi"</p>
                             <span>{{__('Telephone Enquiry')}} : <a href="tel:+998900977020">+998900977020</a></span>
                         </div>

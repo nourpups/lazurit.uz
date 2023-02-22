@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
-use App\Http\Livewire\ProductsPaginate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,21 +23,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // AUTH ROUTES *************************************************************************
-Auth::routes([
-    'reset' => false,
-    'verify' => false,
-    'confirm' => false,
-]);
-Route::get('/logout', [LoginController::class, 'logout'])->name('get.logout');
+Route::controller(LoginController::class)->group(function(){
+    Route::get('/login', 'login_form')->name('login');
+    Route::post('/login', 'login')->name('login.post');
+    Route::get('/logout', 'logout')->name('get.logout');
+});
+Route::controller(RegisterController::class)->group(function(){
+    Route::get('/register', 'register_form')->name('register');
+    Route::post('/register', 'register');
+});
 // SEARCH ROUTES *************************************************************************
 Route::post('/search', [SearchController::class, 'search'])->name('search');
 // CART ROUTES *************************************************************************
 Route::controller(CartController::class)->group(function() {
     Route::get('/cart', 'cart')->name('cart');
-    Route::get('/cart/add/{id}',  'add')->name('add_to_cart');
-    Route::get('/cart/edit_count/{product_id}/{status}',  'edit_count')->name('cart.edit_count');
-    Route::delete('/cart/delete/{product_id}',  'delete')->name('cart.delete');
-    Route::get('/cart/confirm',  'confirm')->name('cart.confirm');
+    Route::get('/cart/add/{id}', 'add')->name('add_to_cart');
+    Route::get('/cart/edit_count/{product_id}/{status}', 'edit_count')->name('cart.edit_count');
+    Route::delete('/cart/delete/{product_id}', 'delete')->name('cart.delete');
+    Route::get('/cart/confirm', 'confirm')->name('cart.confirm');
 });
 
 

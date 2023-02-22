@@ -17,7 +17,7 @@
         </div>
     </div>
 </div>
-<div class="shop-area pt-100 pb-100">
+<div class="shop-area pb-100">
     <div class="container">
         <div class="row flex-row-reverse">
             <div class="col-12">
@@ -34,21 +34,16 @@
                                     <option {{app('request')->input('sort') == 'relevance' ? 'selected': ''}} value="relevance">
                                         {{__('Relevance')}}
                                     </option>
-                                    <option {{app('request')->input('sort') == 'price_asc' ? 'selected': ''}} value="price_asc">
-                                        {{__('Price (lower first)')}}
+                                    <option {{app('request')->input('sort') == 'name_asc' ? 'selected': ''}} value="name_asc">
+                                        {{__('Name (A-Z)')}}
                                     </option>
-                                    <option {{app('request')->input('sort') == 'price_desc' ? 'selected': ''}} value="price_desc">
-                                        {{__('Price (highest first)')}}
+                                    <option {{app('request')->input('sort') == 'name_desc' ? 'selected': ''}} value="name_desc">
+                                        {{__('Name (Z-A)')}}
                                     </option>
                                 </select>
                             </div>
-
-                            {{-- <div class="shop-view-mode nav">
-                                <a class="active" href="#shop-1" data-bs-toggle="tab"><i class=" ti-layout-grid3 "></i> </a>
-                                {{-- <a href="#shop-2" data-bs-toggle="tab" class=""><i class=" ti-view-list-alt "></i></a>
-                            </div> --}}
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
                 <div class="shop-bottom-area">
                     <div class="tab-content jump">

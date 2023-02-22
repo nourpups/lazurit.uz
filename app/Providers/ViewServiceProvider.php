@@ -36,7 +36,7 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('categories', Category::WithTranslation()
             ->translatedIn(app()->getLocale())
             ->get())->with('cart', $cart);
-
+        
         });
     }
 }

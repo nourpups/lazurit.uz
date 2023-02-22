@@ -32,8 +32,8 @@
     "Brands": "Брэнды",
     "results": "результатов",
     "Relevance": "по Актуальности",
-    "Price (lower first)": "Цена (сначала по дешевле)",
-    "Price (highest first)": "Цена (сначала по дороже)",
+    "Name (A-Z)": "Название (А-Я)",
+    "Name (Z-A)": "Название (Я-А)",
     "Go to Home": "Главная страница",
     "Related Products": "Похожие изделия",
     "Weight": "Вес",
@@ -83,7 +83,7 @@
     "Product added to cart successfully": "Товар успешно добавлен в корзину",
     "Your Order has been successfully confirmed, We will contact You soon": "Ваш Заказ был успешно подтвержден, Мы свяжемся с Вами в ближайшее время",
     "You have removed the product from the cart": "Вы удалили товар из корзины",
-    "Please login or register first, to confirm your order": "Пожалуйста, сначала войдите в систему или зарегистрируйтесь, чтобы подтвердить свой заказ"
-
+    "Please login or register first, to confirm your order": "Пожалуйста, сначала войдите в систему или зарегистрируйтесь, чтобы подтвердить свой заказ",
+    "You have logged out": "Вы успешно вышли из аккаунта"
 
 }
