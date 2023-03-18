@@ -21,8 +21,8 @@ class ManagerController extends Controller
         $products = Product::latest()->paginate('16');
         $categories = Category::get();
         return view('manager.products')
-        ->with('products', $products)
-        ->with('categories', $categories);
+            ->with('products', $products)
+            ->with('categories', $categories);
     }
     public function categories()
     {

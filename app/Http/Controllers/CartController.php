@@ -19,20 +19,20 @@ class CartController extends Controller
             ->with('no_items', 'empty cart');
         }
 
-        $order = Order::find($this->get_order_id());
+        $order = Order::find($this->order_id);
         return view('catalog.cart')
         ->with('order', $order);
     }
     public function add($product_id)
     {
-            if(is_null($this->get_order_id()))
+            if(is_null($this->order_id))
             {
                 $order = Order::create([]);
                 session(['order_id' => $order->id]);
             }
             else
             {
-                $order = Order::find($this->get_order_id());
+                $order = Order::find($this->order_id);
             }
 
         if($order->products->contains($product_id))
@@ -51,7 +51,7 @@ class CartController extends Controller
     public function edit_count($product_id, $status)
     {
 
-        $order = Order::find($this->get_order_id());
+        $order = Order::find($this->order_id);
 
         if($status == 'inc')
         {
@@ -80,7 +80,7 @@ class CartController extends Controller
     public function confirm(Request $request)
     {
 
-        $order = Order::find($this->get_order_id());
+        $order = Order::find($this->order_id);
 
         if($order->status == 0 )
         {
@@ -101,7 +101,7 @@ class CartController extends Controller
     public function delete($product_id)
     {
 
-        $order = Order::find($this->get_order_id());
+        $order = Order::find($this->order_id);
         $order->products()->detach($product_id);
 
     return redirect()->back()->with('warning', __('You have removed the product from the cart'));

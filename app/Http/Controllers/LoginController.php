@@ -69,6 +69,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
@@ -80,56 +82,53 @@ class LoginController extends Controller
     }
     public function login(Request $request)
     {
+
         // checking is login phone or name
         $login_type = is_numeric($request['login']) ? 'phone' : 'name';
         $request->merge([ $login_type => $request['login'] ]);
-
-        // validating
+        // validating rules
         $rules = [
             $login_type => 'required|alpha|min:4|max:20',
             'password' => 'required|min:6|max:20',
         ];
         if($login_type == 'phone')
         {
-            $rules[$login_type] =  ['required', 'regex:/^[+](99890|99891|99893|99894|99895|99897|99898|99899|99888|99833)[0-9]{7}/'];
+            $rules['phone'] =  ['required', 'regex:/^[+](99890|99891|99893|99894|99895|99897|99898|99899|99888|99833)[0-9]{7}/'];
         }
 
-        $request->validate($rules);
+             $validator = Validator::make($request->all(), $rules);
 
-        // attempting to check is credentials valid
-        $credentials = $request->only($login_type, 'password');
+             $errors = $validator->errors()->toArray();
+               // перезаписываю имя ключа полей phone и name на login чтобы выводились ошибки во view, так как там name равен login. Взгляни на 86 строку, по сути я вернул назад то что делал там
+             if(isset($errors[$login_type]))
+             {
+                $errors['login'] = $errors[$login_type];
+                unset($errors[$login_type]);
+             }
 
-        if(auth()->attempt($credentials))
-        {
-            $url_previous = session('url_previous');
-            session()->forget('url_previous');
-            // if credentials valid return with success
-            return redirect($url_previous)->with('success', __('You have logged in succesfully!'));
-        }
-        // if credentials aren't valid return failed message
-        throw ValidationException::withMessages([
-            $login_type => [__('auth.failed')],
-        ]);
-           if(!$validator->passes()){
+           // validate all requests and it sends output to your login.blade.php
+           if($validator->fails()){
               return response()->json([
-                 'status'=>0,
-                 'error'=>$validator->errors()->toArray()
+                 'status'=> false,
+                 'errors'=> $errors
               ]);
             }
 
-           $user_cred = $request->only('email', 'password');
+           $user_cred = $request->only($login_type, 'password');
             if (Auth::attempt($user_cred)) {
-
-                 //if user is logged in and the role is user
-                if(Auth()->user()->role=='user'){
-                   return response()->json([ [1] ]);
-                }
-
-            }else{
-                 //if user isn't logged in
-                    return response()->json([ [2] ]);
+                session()->flash('login', __('You have logged in succesfully'));
+                return response()->json([
+                'status' => true,
+                ]);
             }
-            return redirect("/");
+
+            return response()->json([
+                'status' => false,
+                'errors' =>[
+                    'login' =>  [__('auth.failed')]
+                ]
+            ]);
+
 
     }
 

@@ -8,14 +8,14 @@
         <div class="slider-active swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <div class="intro-section slider-height-1 slider-content-center bg-img single-animation-wrap slider-bg-color-1 slider-overly" style="background-image:url({{asset('assets/images/slider/home-banner.avif')}})">
+                    <div class="intro-section slider-height-1 slider-content-center bg-img single-animation-wrap slider-bg-color-1 slider-overly" style="background-image:url({{asset('assets/images/slider/home-banner-5.avif')}})">
                         <div class="container">
                             <div class="row align-items-center">
                                 <div class="col-lg-5 col-md-6 col-12">
                                     <div class="slider-content-1 slider-animated-1 ms-lg-5 ms-md-4">
                                         <h1 class="animated">{{__('Ignite Your Dreams')}}</h1>
                                         <div class="slider-btn btn-hover">
-                                            <a href="{{route('catalog', 'Rings')}}" class="btn animated">
+                                            <a href="{{route('catalog', 'Bracelets')}}" class="btn animated">
                                                 {{__('Show Catalog')}} <i class=" ti-arrow-right "></i>
                                             </a>
                                         </div>

@@ -11,6 +11,8 @@
     "Contact Us": "Связаться с нами",
     "Cart": "Корзина",
     "Adding": "Добавление",
+    "Our Location": "Наше местоположение",
+
 
     "View Cart": "Посмотреть корзину",
     "Confirm Order": "Оформить Заказ",
@@ -41,11 +43,11 @@
     "gr": "гр",
     "Description": "Описание",
     "Add to Cart": "Добавить в корзину",
+    "Your cart is empty": "Ваша корзина пуста",
     "Phone": "Номер телефона",
     "or": "или",
     "Name": "Имя",
     "Password": "Пароль",
-    "Confirm password": "Подтвердите пароль",
 
 
     "Our Outlet Address": "Адрес нашей торговой точки",

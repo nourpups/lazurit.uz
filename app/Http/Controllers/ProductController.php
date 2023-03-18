@@ -9,20 +9,17 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
 
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
-
         $store = request()->all();
         $product_name = $request[app()->getLocale()]['name'];
 
         if($request->hasFile('image'))
         {
-        $ext = $request->file('image')->getClientOriginalExtension();
-        $file_name = str_replace(' ', '_', $product_name) . '_image_' . time() . '.' . $ext;
-        $store['image'] = $request->file('image')->storeAs('products/image', $file_name, 'public');
-
+            $ext = $request->file('image')->getClientOriginalExtension();
+            $file_name = str_replace(' ', '_', $product_name) . '_image_' . time() . '.' . $ext;
+            $store['image'] = $request->file('image')->storeAs('products/image', $file_name, 'public');
         }
-
         if(Product::create($store))
         {
         return redirect()->back()->with('success', 'Product ' . $product_name . ' succesfully created');

@@ -32,11 +32,11 @@ class ViewServiceProvider extends ServiceProvider
         view()->composer('layouts.front', function ($view){
 
             $cart = Order::find(session('order_id'));
+            $categories = Category::WithTranslation()
+                ->translatedIn(app()->getLocale())
+                ->get();
+            $view->with('categories', $categories)->with('cart', $cart);
 
-            $view->with('categories', Category::WithTranslation()
-            ->translatedIn(app()->getLocale())
-            ->get())->with('cart', $cart);
-        
         });
     }
 }

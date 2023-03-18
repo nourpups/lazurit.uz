@@ -45,12 +45,6 @@
                             <div class="single-product-cart btn-hover">
                                 <a href="{{route('add_to_cart', $product->id)}}">{{__('Add to Cart')}}</a>
                             </div>
-                            {{-- <div class="single-product-wishlist">
-                                <a title="Wishlist" href="wishlist.html"><i class="pe-7s-like"></i></a>
-                            </div>
-                            <div class="single-product-compare">
-                                <a title="Compare" href="#"><i class="pe-7s-shuffle"></i></a>
-                            </div> --}}
                         </div>
                         <div class="product-details-meta">
                             <ul>
@@ -60,11 +54,6 @@
                                         <li><a href="#">{{$product->category->name}}</a></li>
                                     </ul>
                                 </li>
-                                {{-- <li><span class="title">Tags:</span>
-                                    <ul class="tag">
-                                        <li><a href="#">Furniture</a></li>
-                                    </ul>
-                                </li> --}}
                             </ul>
                         </div>
                         <div class="social-icon-style-4">
@@ -123,11 +112,7 @@
                 <h2>{{__('Related Products')}}</h2>
             </div>
             <div class="related-product-active swiper-container">
-                <i>
-                    Slider
-                </i>
-                <div class="swiper-wrapper">
-
+                 <div class="swiper-wrapper pt-md-5">
                     @foreach($related_products as $related_product)
                     <div class="swiper-slide">
                         <div class="product-wrap" data-aos="fade-up" data-aos-delay="200">

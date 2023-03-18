@@ -18,17 +18,19 @@
                         <div id="lg1" class="tab-pane active">
                             <div class="login-form-container">
                                 <div class="login-register-form">
-                                    <div id="errors-list"></div>
-                                    <form method="POST" action="{{ route('login') }}"id="login_form">
+                                    <div id="error-list">
+
+                                    </div>
+                                    <form method="POST" action="{{ route('login') }}"id="auth_form">
                                         @csrf
-                                        <input type="text" name="login" class="@error('login') is-invalid @enderror" value="{{ old('login') }}" placeholder="{{ __('Phone')}} {{__('or')}} {{ __('Name') }}" autofocus autocomplete="username">
+                                        <input type="text" name="login" value="{{ old('login') }}" placeholder="{{ __('Phone')}} {{__('or')}} {{ __('Name') }}" autofocus autocomplete="username">
                                         @error('name')
                                         {{$message}}
                                         @enderror
                                         @error('phone')
                                         {{$message}}
                                         @enderror
-                                        <input id="password" name="password" type="password" class="@error('password') is-invalid @enderror" placeholder="{{ __('Password') }}" autocomplete="current-password">
+                                        <input id="password" name="password" type="password"  placeholder="{{ __('Password') }}" autocomplete="current-password">
                                         @error('password')
                                         {{$message}}
                                         @enderror
@@ -46,40 +48,4 @@
         </div>
     </div>
 </div>
-@endsection
-@section('js')
-    <script type="text/javascript">
-      $(function() {
-        $(document).on("submit", "#login_form", function() {
-          var e = this;
-
-          $(this).find("[type='submit']").html("Logging in...");
-
-          $.ajax({
-              url: $(this).attr('action'),
-              data: $(this).serialize(),
-              type: "POST",
-              dataType: 'json',
-              success: function (data) {
-                console.log(data)
-                $(e).find("[type='submit']").html("Login");
-
-                if (data.status) {
-                    window.location = data.redirect;
-                }else{
-
-                    $(".alert").remove();
-                    $.each(data.errors, function (key, val) {
-                        $("#errors-list").append("<div class='alert alert-danger'>" + val + "</div>");
-                    });
-                }
-
-              }
-          });
-
-          return false;
-      });
-
-    });
-    </script>
 @endsection

@@ -58,13 +58,14 @@
         },
     });
 
-    /*------ ScrollUp -------- */
+    // /*------ ScrollUp -------- */
     $.scrollUp({
         scrollText: '<i class=" ti-arrow-up "></i>',
         easingType: 'linear',
         scrollSpeed: 900,
         animation: 'fade'
     });
+    $('#scrollUp')
     /*-------------------------------
 	   Header Search Toggle
     -----------------------------------*/

@@ -153,14 +153,13 @@
                     </div>
                 </div>
             </div>
-
         </header>
         <!-- mini cart start -->
         <div class="sidebar-cart-active">
     <div class="sidebar-cart-all">
         <a class="cart-close" href="#"><i class="pe-7s-close"></i></a>
 @if(!empty($cart))
-        @if ($cart->products->count() > 0)
+        @if ($cart->products->count() > 0 )
         <div class="cart-content">
                 <h3>{{__('Cart')}}</h3>
                 <ul>
@@ -193,8 +192,10 @@
                 </div>
             </div>
             @else
-            <i>Ваша корзина пуста.</i>
-        @endif
+            <i>{{__('Your cart is empty')}}.</i>
+            @endif
+            @else
+            <i>{{__('Your cart is empty')}}.</i>
     @endif
     </div>
 </div>
@@ -226,7 +227,7 @@
                             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                                 <div class="footer-widget footer-about mb-40">
                                     <div class="footer-logo">
-                                        <a href="{{route('home')}}"><img src="{{ asset('assets/images/logo/logo.png') }}" alt="logo"></a>
+                                        <a href="{{route('home')}}"><img src="{{ asset('assets/images/logo/lazurit.webp') }}" alt="logo"></a>
                                     </div>
                                     <p>a feel of luxury</p>
                                     {{-- <div class="payment-img">
@@ -299,18 +300,14 @@
                                                     <div class="login-form-container">
                                                         <div class="login-register-form">
 
-                                                            <form method="POST" action="{{ route('login') }}">
+                                                            <form method="POST" action="{{ route('login') }}" id="auth_form">
                                                                 @csrf
                                                                 <input type="text" name="login"
-                                                                    class="@error('login') is-invalid @enderror"
                                                                     value="{{ old('login') }}"
                                                                     placeholder="{{ __('Phone') }} {{__('or')}} {{__('Name')}}"
-                                                                    required
-                                                                    autocomplete="use   rname">
+                                                                    autocomplete="username">
                                                                 <input name="password" type="password"
-                                                                    class="@error('password') is-invalid @enderror"
                                                                     placeholder="{{ __('Password') }}"
-                                                                    required
                                                                     autocomplete="current-password">
                                                                 <div class="button-box btn-hover">
                                                                     <button>{{__('Login')}}</button>
@@ -323,28 +320,18 @@
                                                 <div id="lg2" class="tab-pane">
                                                     <div class="login-form-container">
                                                         <div class="login-register-form">
-                                                            <form method="POST" action="{{ route('register') }}">
+                                                            <form method="POST" action="{{ route('register') }}" id="auth_form">
                                                                 @csrf
                                                                 <input type="text" name="name"
-                                                                    class="@error('name') is-invalid @enderror"
                                                                     value="{{ old('name') }}"
                                                                     placeholder="{{ __('Name') }}"
-                                                                    required
                                                                     autocomplete="username">
                                                                 <input type="text" name="phone"
-                                                                    class="@error('phone') is-invalid @enderror"
                                                                     value="{{ old('phone') }}"
                                                                     placeholder="{{ __('Phone') }}"
-                                                                    required
                                                                     autocomplete="username">
                                                                 <input type="password" name="password"
-                                                                    class="@error('password') is-invalid @enderror"
                                                                     placeholder="{{ __('Password') }}"
-                                                                    required
-                                                                    autocomplete="new-password">
-                                                                <input type="password" name="password_confirmation"
-                                                                    placeholder="{{ __('Confirm password') }}"
-                                                                    required
                                                                     autocomplete="new-password">
                                                                 <div class="button-box btn-hover">
                                                                     <button>{{__('Register')}}</button>
@@ -368,9 +355,6 @@
         <div class="off-canvas-active">
             <a class="off-canvas-close"><i class=" ti-close "></i></a>
             <div class="off-canvas-wrap">
-                {{-- <div class="welcome-text off-canvas-margin-padding">
-                    <p>Default Welcome Msg! </p>
-                </div> --}}
                 <div class="mobile-menu-wrap off-canvas-margin-padding-2">
                     <div id="mobile-menu" class="slinky-mobile-menu text-left">
                         <ul>
@@ -394,72 +378,8 @@
                             </li>
 
                         </ul>
-                        {{-- <ul>
-                            <li>
-                                <a href="#">HOME</a>
-                                <ul>
-                                    <li><a href="index.html">Home version 1 </a></li>
-                                    <li><a href="index-2.html">Home version 2</a></li>
-                                    <li><a href="index-3.html">Home version 3</a></li>
-                                    <li><a href="index-4.html">Home version 4</a></li>
-                                    <li><a href="index-5.html">Home version 5</a></li>
-                                    <li><a href="index-6.html">Home version 6</a></li>
-                                    <li><a href="index-7.html">Home version 7</a></li>
-                                    <li><a href="index-8.html">Home version 8</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">SHOP</a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Shop Layout</a>
-                                        <ul>
-                                            <li><a href="shop.html">Standard Style</a></li>
-                                            <li><a href="shop-sidebar.html">Shop Grid Sidebar</a></li>
-                                            <li><a href="shop-list.html">Shop List Style</a></li>
-                                            <li><a href="shop-list-sidebar.html">Shop List Sidebar</a></li>
-                                            <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                            <li><a href="shop-location.html">Store Location</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="about-us.html">ABOUT US</a>
-                            </li>
-                            <li>
-                                <a href="contact-us.html">CONTACT US</a>
-                            </li>
-                        </ul>--}}
                     </div>
                 </div>
-                {{--<div class="language-currency-wrap language-currency-wrap-modify">
-                    <div class="currency-wrap border-style">
-                        <a class="currency-active" href="#">$ Dollar (US) <i class=" ti-angle-down "></i></a>
-                        <div class="currency-dropdown">
-                            <ul>
-                                <li><a href="#">Taka (BDT) </a></li>
-                                <li><a href="#">Riyal (SAR) </a></li>
-                                <li><a href="#">Rupee (INR) </a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="language-wrap">
-                        <a class="language-active" href="#"><img
-                                src="{{ asset('assets/images/icon-img/flag.png') }}" alt=""> English <i
-                                class=" ti-angle-down "></i></a>
-                        <div class="language-dropdown">
-                            <ul>
-                                <li><a href="#"><img src="{{ asset('assets/images/icon-img/flag.png') }}"
-                                            alt="">English </a></li>
-                                <li><a href="#"><img src="{{ asset('assets/images/icon-img/spanish.png') }}"
-                                            alt="">Spanish</a></li>
-                                <li><a href="#"><img src="{{ asset('assets/images/icon-img/arabic.png') }}"
-                                            alt="">Arabic </a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>--}}
             </div>
         </div>
     </div>
@@ -480,7 +400,7 @@
     <!-- Main JS -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
     @yield('js')
-<script>
+<script  type="text/javascript">
        $(document).ready(function() {
         setTimeout(function() {
             $(".alert").alert('close');
@@ -493,25 +413,26 @@
 
         });
     });
-
-    $('#search_box').on('keyup', '#search', function() {
-        var search_query = $(this).val();
-        if(search_query.length >= 2)
-        {
-            $.ajax({
-                method: 'POST',
-                url: "{{ route('search') }}",
-                data: {
-                    '_token': '{{ csrf_token() }}',
-                    search: search_query,
-                },
-                success: function(res) {
-                    $('#search_result').html(res);
-                }
-            });
-        } else {
-            $('#search_result').html('');
-        }
+    $(function() {
+        $('#search_box').on('keyup', '#search', function() {
+            var search_query = $(this).val();
+            if(search_query.length >= 2)
+            {
+                $.ajax({
+                    method: 'POST',
+                    url: "{{ route('search') }}",
+                    data: {
+                        '_token': '{{ csrf_token() }}',
+                        search: search_query,
+                    },
+                    success: function(res) {
+                        $('#search_result').html(res);
+                    }
+                });
+            } else {
+                $('#search_result').html('');
+            }
+        })
     });
     $(function() {
         $(document).on("click","#pagination a",function(){
@@ -530,50 +451,40 @@
         })
 
       });
-</script>
-{{-- <script>
-    $("#login_form").submit(function(e){
-     e.preventDefault();
+    $(function() {
 
-    var all = $(this).serialize();
-
-    $.ajax({
-        url:  $(this).attr('action'),
-        type: "POST",
-        data: all,
-        beforeSend:function(){
-            $(document).find('span.error-text').text('');
-        },
-        //validate form with ajax. This will be communicating with your LoginController
-        success: function(data){
-            if (data.status==0) {
-                $.each(data.error, function(prefix, val){
-                    $('span.'+prefix+'_error').text(val[0]);
-                });
+        $(document).on("submit", "#auth_form", function() {
+            var e = this;
+            let default_name = $(this).find("[type='submit']").html();
+            let current_location = ''+location
+            let previous_url = '{{url()->previous()}}';
+            if(current_location.indexOf('cart') != -1) {
+                previous_url = '{{route("cart")}}'
             }
-           // redirect the user to [another page] if the
-            //    login cred are correct. Remember this is
-            //    communicating with the LoginController which we
-            //    are yet to create
-            if(data == 1){
-                window.location.replace(
-                 '{{route("home")}}'
-                );
-            }else if(data == 2){
-             // Show the user authentication error if the
-            //    login cred are invalid. Remember this is
-            //    communicating with the LoginController which we
-            //    are yet to create
-                $("#show_error").hide().html("Invalid login details");
-            }
+          $(this).find("[type='submit']").html("Logging in...");
+          $(this).find(".text-danger").remove();
+          $.ajax({
+              url: $(this).attr('action'),
+              data: $(this).serialize(),
+              type: "POST",
+              dataType: 'json',
+              success: function (data) {
+                $(e).find("[type='submit']").html(default_name);
 
-        }
-        })
+                if (data.status) {
+                    window.location = previous_url;
+                }
+                    $.each(data.errors,function(field_name,error){
+                        $(document).find('[name='+field_name+']').addClass('is-invalid').before('<span class="text-strong text-danger">' +error+ '</span>')
+                    })
+                }
+          });
+
+          return false;
+      });
 
     });
-
-</script> --}}
-
+</script>
 </body>
 
 </html>
