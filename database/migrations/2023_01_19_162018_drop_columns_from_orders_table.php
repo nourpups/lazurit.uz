@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->dropColumn('firstname');
+            $table->dropColumn('lastname');
             $table->dropColumn('phone');
         });
     }
@@ -27,8 +28,9 @@ return new class extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->tinyInteger('firstname')->nullable()->after('user_id');
-            $table->tinyInteger('phone')->nullable()->after('firstname');
+            $table->string('firstname')->nullable()->after('user_id');
+            $table->string('lastname')->nullable()->after('firstname');
+            $table->string('phone')->nullable()->after('lastname');
         });
     }
 };

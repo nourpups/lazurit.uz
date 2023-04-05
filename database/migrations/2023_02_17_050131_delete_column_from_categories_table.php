@@ -1,4 +1,4 @@
-$product_name = $request[app()->getLocale()]['name'];<?php
+<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

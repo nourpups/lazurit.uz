@@ -3,30 +3,30 @@
     // Hero slider active
     var sliderActive = new Swiper('.slider-active', {
         loop: true,
-        speed: 750,
+        speed: 550,
         effect: 'fade',
         slidesPerView: 1,
         navigation: {
-            nextEl: '.home-slider-next , .home-slider-next2 , .home-slider-next3',
-            prevEl: '.home-slider-prev , .home-slider-prev2 , .home-slider-prev3',
+            nextEl: '.home-slider-next2',
+            prevEl: '.home-slider-prev2',
         }
     });
     // Brand logo active
     var sliderActiveThree = new Swiper('.brand-logo-active', {
         loop: true,
-        spaceBetween: 20,
+        spaceBetween: 10,
         breakpoints: {
             320: {
-                slidesPerView: 5
+                slidesPerView: 4.2
             },
             576: {
-                slidesPerView: 4
+                slidesPerView: 4.2
             },
             768: {
-                slidesPerView: 5
+                slidesPerView: 5.2
             },
             992: {
-                slidesPerView: 6
+                slidesPerView: 6.2
             }
         },
     });
@@ -34,26 +34,22 @@
     // Related product active
     var sliderActiveFive = new Swiper('.related-product-active', {
         loop: true,
-        spaceBetween: 30,
-        navigation: {
-            nextEl: '.related-product-next-1',
-            prevEl: '.related-product-prev-1',
-        },
+        spaceBetween: 10,
         breakpoints: {
             320: {
-                slidesPerView: 2
+                slidesPerView: 2.2
             },
             479: {
-                slidesPerView: 3
+                slidesPerView: 3.2
             },
             576: {
-                slidesPerView: 3
+                slidesPerView: 3.2
             },
             768: {
-                slidesPerView: 4
+                slidesPerView: 4.2
             },
             992: {
-                slidesPerView: 5
+                slidesPerView: 5.2
             }
         },
     });

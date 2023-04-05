@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- Dynamic Table Full -->
-    <div class="block block-rounded" style="margin:  4rem 0 0 0">
+    <div class="block block-rounded">
         <div class="block-header block-header-default">
             <h3 class="block-title">
                 Products table
@@ -20,11 +20,11 @@
                 <thead>
                     <tr>
                         <th class="text-center">ID</th>
-                        <th>NAME</th>
+                        <th style="width: 12%;">NAME</th>
                         <th class="d-none d-sm-table-cell">DESCRIPTION</th>
-                        <th class="d-none d-sm-table-cell">PRICE</th>
+                        <th class="d-none d-sm-table-cell" style="width: 12%;">PRICE</th>
                         <th class="d-none d-sm-table-cell" style="width: 25%;">IMAGE</th>
-                        <th class="text-center" style="width: 15%;">ACTIONS</th>
+                        <th class="text-center" style="width: 13%;">ACTIONS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,15 +34,14 @@
                             <td class="text-center">{{ $product->id }}</td>
                             <td class="fw-semibold">{{ $product->name }}</td>
                             <td class="d-none d-sm-table-cell">{{ $product->description }}</td>
-                            <td class="fw-semibold">${{ $product->price }}</td>
+                            <td class="fw-semibold">{{ number_format($product->price,0,'',' ')}} sum</td>
                             <td class="text-center">
                                 <img class="img-fluid options-item" src="{{ asset('storage/'.$product->image) }}" alt="">
                             </td>
                             <td class="d-none d-sm-table-cell">
 
-                                <button type="button" class="btn btn-alt-primary mb-2 w-100" data-bs-toggle="modal"
-                                    data-bs-target="#modal-popout-edit{{ $product->id }}"> <i class="fa fa-pen"></i> Edit
-                                </button>
+                                <a class="btn btn-alt-primary mb-2 w-100" href="{{ route('product.edit', $product) }}"> <i class="fa fa-pen"></i> Edit
+                                </a>
 
                                 <button type="button" class="btn btn-danger mb-2 w-100" data-bs-toggle="modal"
                                     data-bs-target="#modal-popout-delete{{ $product->id }}"><i class="fa fa-trash"></i> Delete
@@ -62,10 +61,16 @@
 @endsection
 
 @section('modals')
-@include('manager.modals.products.store', ['categories' => $categories])
+  @include('manager.modals.products.store', ['categories' => $categories])
 
-@foreach ($products as $product)
-    @include('manager.modals.products.edit',['product' => $product])
-    @include('manager.modals.products.delete',['product' => $product])
-@endforeach
+  @foreach ($products as $product)
+      {{-- @include('manager.modals.products.edit',['product' => $product]) --}}
+      @include('manager.modals.products.delete',['product' => $product])
+  @endforeach
+
+@endsection
+@section('js')
+<script>
+
+</script>
 @endsection

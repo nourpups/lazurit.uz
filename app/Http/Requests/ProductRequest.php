@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Contracts\Validation\Validator;
 
 class ProductRequest extends FormRequest
 {
@@ -24,28 +26,39 @@ class ProductRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
-            'category_id' => 'required',
-            'image' => 'required|image|max:1024',
-            'price' => 'required|numeric',
-        ];
+      $id = $this->product->id ?? false;
 
-        foreach(config('translatable.locales') as $locale) {
-            $rules[$locale . '.name'] = ['required','min:3','unique:product_translations,name'];
-            $rules[$locale . '.description'] = 'required';
-        }
-        if($this->route()->named('product.edit'))
-        {
-            $product = $this->route()->parameter('product');
-            $excepted_id = $product['id'];
-            $excepted_column = 'product_id';
-            foreach (config('translatable.locales') as $locale) {
-                $rules[$locale . '.name'] = ['required', 'min:3', Rule::unique('product_translations', 'name')->ignore($excepted_id, $excepted_column)];
-            }
-            $rules['image'] = 'image|max:1024';
+      $rules = [
+          'category_id' => 'required',
+          'image' => ($id ? "" : "required").'|image|max:1024',
+          'price' => 'required|numeric',
+      ];
 
-        }
+      $excepted_col = 'product_id';
+      foreach(config('translatable.locales') as $locale) {
+        $rules[$locale . '.name'] = 'required|min:3|unique:product_translations,name'.($id ? ",$id,$excepted_col" : "");
+        $rules[$locale . '.description'] = 'required';
+      }
 
-        return $rules;
+      return $rules;
     }
+//     protected function failedValidation(Validator $validator)
+//  {
+//     if($this->wantsJson())
+//     {
+//         $response = response()->json([
+//             'status' => 400,
+//             'errors' => $validator->errors()//$validator->errors()
+//         ]);
+//     }else{
+//         $response = redirect()
+//             ->route('guest.login')
+//             ->with('message', 'Ops! Some errors occurred')
+//             ->withErrors($validator);
+//     }
+
+//     throw (new ValidationException($validator, $response))
+//         ->errorBag($this->errorBag)
+//         ->redirectTo($this->getRedirectUrl());
+// }
 }

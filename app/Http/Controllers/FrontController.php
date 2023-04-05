@@ -50,7 +50,7 @@ class FrontController extends Controller
     {
         $related_products = Product::WithTranslation()
         ->translatedIn(app()->getLocale())
-        ->where('id', '!=', $product->id)
+        ->where('id', '<>', $product->id)
         ->where('category_id', $product->category->id)
         ->limit(6)
         ->get();

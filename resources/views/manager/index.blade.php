@@ -1,0 +1,228 @@
+@extends('manager.layouts.manager')
+
+@section('content')
+  <div class="container py-3">
+    <div class="block-rounded bg-gd-default block text-white">
+      <div class="block-content">
+        <div class="py-3 text-center">
+          <h1 class="h2 fw-bold mb-2">Dashboard</h1>
+          <h2 class="h5 fw-medium">Analytics</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Row #1 -->
+      <div class="col-6 col-xl-3">
+        <a class="block-rounded bg-gd-emerald block shadow-none" href="{{ route('products') }}">
+          <div class="block-content block-content-full d-flex align-items-center justify-content-between">
+            <div class="me-1">
+              <p class="fs-lg fw-semibold mb-0 text-white">
+                {{ $products_count }} Products
+              </p>
+              <p class="fs-sm text-uppercase fw-semibold text-white-75 mb-0">
+                Total Products
+              </p>
+            </div>
+            <div class="p-3">
+              <i class="fa fa-2x fa-gem text-white-75"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-xl-3">
+        <a class="block-rounded bg-gd-cherry block shadow-none" href="{{ route('categories') }}">
+          <div class="block-content block-content-full d-flex align-items-center justify-content-between">
+            <div class="me-1">
+              <p class="fs-lg fw-semibold mb-0 text-white">
+                {{ $categories->count() }} Categories
+              </p>
+              <p class="fs-sm text-uppercase fw-semibold text-white-75 mb-0">
+                Total Categories
+              </p>
+            </div>
+            <div class="p-3">
+              <i class="fa fa-2x fa-list-alt text-white-75"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-xl-3">
+        <a class="block-rounded bg-black-90 block shadow-none" href="{{ route('orders') }}">
+          <div class="block-content block-content-full d-flex align-items-center justify-content-between">
+            <div class="me-1">
+              <p class="fs-lg fw-semibold mb-0 text-white">
+                {{ $orders_count }} Orders
+              </p>
+              <p class="fs-sm text-uppercase fw-semibold text-white-75 mb-0">
+                Total Orders
+              </p>
+            </div>
+            <div class="p-3">
+              <i class="fa fa-2x fa-pencil-square text-white-75"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-xl-3">
+        <a class="block-rounded bg-gd-dusk block shadow-none" href="{{ route('users') }}">
+          <div class="block-content block-content-full d-flex align-items-center justify-content-between">
+            <div class="me-1">
+              <p class="fs-lg fw-semibold mb-0 text-white">
+                {{ $users_count }} Users
+              </p>
+              <p class="fs-sm text-uppercase fw-semibold text-white-75 mb-0">
+                Total Users
+              </p>
+            </div>
+            <div class="p-3">
+              <i class="fa fa-2x fa-user text-white-75"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+      <!-- END Row #1 -->
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="block-rounded bg-gd-emerald block text-white">
+          <div class="block-content">
+            <div class="py-3 text-center">
+              <h1 class="h2 fw-bold mb-2">Products</h1>
+              <h2 class="h5 fw-medium">Total Products: {{ $products_count }}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          @foreach ($categories as $category)
+            <div class="col-6 col-md-4 col-xl-3">
+              <a class="block-rounded bg-image block text-center"
+                style="background-image: url({{ asset("storage/$category->image") }}); " href="javascript:void(0)">
+                <div class="block-content text-white"
+                  style="backdrop-filter: blur(2px); background-color: rgb(0 0 0 / 30%)">
+
+                  <span class="fs-2">
+                    {{ $category->products()->count() }}
+                  </span>
+                  <p>{{ $category->name }}</p>
+
+                </div>
+              </a>
+            </div>
+          @endforeach
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="block-rounded bg-gd-dusk block text-white">
+          <div class="block-content">
+            <div class="py-3 text-center">
+              <h1 class="h2 fw-bold mb-2">Users</h1>
+              <h2 class="h5 fw-medium">Total Users: {{ $users_count }}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <a class="block-rounded block" href="javascript:void(0)">
+              <div class="block-content block-content-full d-flex justify-content-between align-items-center" style="background-color: #0284c7">
+                <div class="me-1">
+									<p class="fs-lg fw-semibold mb-0 text-white">
+										{{ $customers_count }}
+									</p>
+									<p class="fs-sm text-uppercase fw-semibold text-white mb-0">
+										Total Customers
+									</p>
+                </div>
+                <div class="p-3">
+									<i class="fa fa-2x fa-user text-white-75"></i>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-6">
+            <a class="block-rounded block" href="javascript:void(0)">
+              <div class="block-content block-content-full d-flex justify-content-between align-items-center" style="background-color: #8f55f2">
+                <div class="me-1">
+									<p class="fs-lg fw-semibold mb-0 text-white">
+										{{ $admins_count }}
+									</p>
+									<p class="fs-sm text-uppercase fw-semibold text-white mb-0">
+										Total Admins
+									</p>
+                </div>
+                <div class="p-3">
+									<i class="fa fa-2x fa-user-shield text-white-75"></i>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="block-rounded bg-black-90 block text-white">
+      <div class="block-content">
+        <div class="py-3 text-center">
+          <h1 class="h2 fw-bold mb-2">Orders</h1>
+          <h2 class="h5 fw-medium">Total Orders: {{ $orders_count }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <!-- Row #1 -->
+      <div class="col-6 col-xl-3">
+        <a class="block-rounded bg-black-50 block shadow-none" href="javascript:void(0)">
+          <div class="block-content block-content-full d-flex align-items-center justify-content-between">
+            <div class="me-1">
+              <p class="fs-lg fw-semibold mb-0 text-white">
+                {{ $today_orders }} Orders
+              </p>
+              <p class="fs-sm text-uppercase fw-semibold text-white-75 mb-0">
+                Today Orders
+              </p>
+            </div>
+            <div class="p-3">
+              <i class="fa fa-2x fa-gem text-white-75"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-xl-3">
+        <a class="block-rounded bg-black-75 block shadow-none" href="javascript:void(0)">
+          <div class="block-content block-content-full d-flex align-items-center justify-content-between">
+            <div class="me-1">
+              <p class="fs-lg fw-semibold mb-0 text-white">
+                {{ $this_week_orders }} Orders
+              </p>
+              <p class="fs-sm text-uppercase fw-semibold text-white-75 mb-0">
+                This Week Orders
+              </p>
+            </div>
+            <div class="p-3">
+              <i class="fa fa-2x fa-gem text-white-75"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-xl-3">
+        <a class="block-rounded block bg-black shadow-none" href="javascript:void(0)">
+          <div class="block-content block-content-full d-flex align-items-center justify-content-between">
+            <div class="me-1">
+              <p class="fs-lg fw-semibold mb-0 text-white">
+                {{ $this_month_orders }} Orders
+              </p>
+              <p class="fs-sm text-uppercase fw-semibold text-white-75 mb-0">
+                This Month Orders
+              </p>
+            </div>
+            <div class="p-3">
+              <i class="fa fa-2x fa-gem text-white-75"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+
+
+  </div>
+@endsection

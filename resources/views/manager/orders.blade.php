@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- Dynamic Table Full -->
-    <div class="block block-rounded" style="margin:  4rem 0 0 0">
+    <div class="block block-rounded" >
         <div class="block-header block-header-default">
             <h3 class="block-title">
                 Orders table
@@ -29,7 +29,7 @@
                             <td class="text-center">{{ $order->id }}</td>
                             <td class="fw-semibold text-uppercase">{{ $order->user->name }}</td>
                             <td class="d-none d-sm-table-cell">{{ $order->user->phone }}</td>
-                            <td class="">${{ $order->total_sum() }}</td>
+                            <td class="">{{ number_format($order->total_sum(),0,'',' ')}} sum</td>
                             <td class="fw-semibold">
                                 {{$order->created_at->timezone('Asia/Tashkent')->format('H:i d/m/Y')}}
                             </td>

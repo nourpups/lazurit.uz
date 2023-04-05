@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- Dynamic Table Full -->
-    <div class="block block-rounded" style="margin:  4rem 0 0 0">
+    <div class="block block-rounded">
         <div class="block-header block-header-default">
             <h3 class="block-title">
                 Categories table
@@ -35,9 +35,8 @@
                             </td>
                             <td class="d-none d-sm-table-cell">
 
-                                <button type="button" class="btn btn-alt-primary mb-2 w-100" data-bs-toggle="modal"
-                                    data-bs-target="#modal-popout-edit{{ $cat->id }}"> <i class="fa fa-pen"></i> Edit
-                                </button>
+                              <a class="btn btn-alt-primary mb-2 w-100" href="{{ route('category.edit', $cat) }}"> <i class="fa fa-pen"></i> Edit
+                              </a>
 
                                 <button type="button" class="btn btn-danger mb-2 w-100" data-bs-toggle="modal"
                                     data-bs-target="#modal-popout-delete{{ $cat->id }}"><i class="fa fa-trash"></i> Delete
@@ -60,7 +59,6 @@
 @include('manager.modals.categories.store', ['categories' => $categories])
 
 @foreach ($categories as $cat)
-    @include('manager.modals.categories.edit',['cat' => $cat])
     @include('manager.modals.categories.delete',['cat' => $cat])
 @endforeach
 @endsection

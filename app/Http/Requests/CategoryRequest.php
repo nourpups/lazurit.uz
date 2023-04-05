@@ -24,23 +24,16 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        // не заудь добавить mimes:webp
-        $rules = [
-            'image' => 'required|image|max:1024',
-        ];
+      $id = $this->category->id ?? false;
 
-        foreach(config('translatable.locales') as $locale)
-        {
-            $rules[$locale . '.name'] = ['required','min:3','unique:category_translations,name'];
-        }
-        if($this->route()->named('category.edit'))
-        {
-            $category = $this->route()->parameter('product');
-            $excepted_id = $category['id'];
-            foreach (config('translatable.locales') as $locale) {
-                $rules[$locale . '.name'] = ['required', 'min:3', Rule::unique('category_translations', 'name')->ignore($excepted_id, 'category_id')];
-            }
-        }
-        return $rules;
+      $rules = [ 'image' => ($id ? "" : "required").'|image|max:1024' ];
+
+      $excepted_col = 'category_id';
+      foreach(config('translatable.locales') as $locale)
+      {
+        $rules[$locale . '.name'] = ['required','min:3','unique:category_translations,name'.($id ? ",$id,$excepted_col" : "")];
+      }
+
+      return $rules;
     }
 }

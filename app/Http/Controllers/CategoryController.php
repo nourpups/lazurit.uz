@@ -12,12 +12,9 @@ class CategoryController extends Controller {
         $store = request()->all();
         $category_name = $request[app()->getLocale()]['name'];
 
-        if($request->hasFile('image'))
-        {
         $ext = $request->file('image')->getClientOriginalExtension();
         $image_file_name = str_replace(' ', '_', $category_name) . '_image_' . time() . '.' . $ext;
         $store['image'] = $request->file('image')->storeAs('categories/image', $image_file_name, 'public');
-        }
 
         if(Category::create($store))
         {
@@ -25,11 +22,16 @@ class CategoryController extends Controller {
         }
 
         unlink(storage_path('app/public/').$image_file_name);
-        return redirect()->back()->with('fail', 'Can\'t create Category ' . $category_name);
+        return redirect(session('previous_page'))->with('fail', 'Can\'t create Category ' . $category_name);
   }
-  public function edit(Request $request, Category $category)
+  public function edit(Category $category)
+  {
+    return view('manager.forms.categories.edit')->with('cat', $category);
+  }
+  public function update(CategoryRequest $request, Category $category)
   {
     $update = request()->all();
+
     $image_old_file_name = null;
 
     if($request->hasFile('image'))
@@ -48,11 +50,11 @@ class CategoryController extends Controller {
             unlink($image_old_logo_path);
         }
 
-        return redirect()->back()->with('success', 'category ' . $category->name . ' succesfully updated');
+        return redirect(session('previous_page'))->with('success', 'category ' . $category->name . ' succesfully updated');
     }
     unlink(storage_path('app/public/').$image_file_name);
 
-    return redirect()->back()->with('fail', 'Can\'t update category ' . $category->name);
+    return redirect(session('previous_page'))->with('fail', 'Can\'t update category ' . $category->name);
     }
 
     public function delete(Category $category)
@@ -61,9 +63,9 @@ class CategoryController extends Controller {
 
     if($category)
     {
-        return redirect()->back()->with('success', 'category succesfully deleted');
+        return redirect(session('previous_page'))->with('success', 'category succesfully deleted');
     }
-    return redirect()->back()->with('fail', 'Can\'t delete Category');
+    return redirect(session('previous_page'))->with('fail', 'Can\'t delete Category');
   }
 }
 

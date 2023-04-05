@@ -4,10 +4,10 @@
     Version: 1.1
 
 -----------------------------------------------------------------------------------
-    
+
     CSS INDEX
     ===================
-	
+
     01. Template default CSS
     02. Header style
     03. Slider style
@@ -4755,38 +4755,6 @@ textarea {
         .product-details-content.quickview-content h2 {
           padding-right: 0px; } }
 
-.product-details-small-img-wrap {
-  position: relative; }
-
-.product-details-vertical-wrap {
-  display: flex;
-  align-items: center; }
-  .product-details-vertical-wrap .product-details-small-img-wrap {
-    position: relative;
-    width: 85px;
-    margin-right: 15px; }
-    .product-details-vertical-wrap .product-details-small-img-wrap .product-details-small-img-slider-1 {
-      height: 420px; }
-      @media only screen and (min-width: 992px) and (max-width: 1199px) {
-        .product-details-vertical-wrap .product-details-small-img-wrap .product-details-small-img-slider-1 {
-          height: 300px; } }
-      @media only screen and (max-width: 767px) {
-        .product-details-vertical-wrap .product-details-small-img-wrap .product-details-small-img-slider-1 {
-          height: 190px; } }
-      @media only screen and (min-width: 576px) and (max-width: 767px) {
-        .product-details-vertical-wrap .product-details-small-img-wrap .product-details-small-img-slider-1 {
-          height: 420px; } }
-  .product-details-vertical-wrap .product-details-big-img-slider-1 {
-    width: calc(100% - 100px); }
-
-.pd-small-img-style .swiper-slide-thumb-active .product-details-small-img img {
-  opacity: 1; }
-.pd-small-img-style .product-details-small-img img {
-  width: 100%;
-  opacity: .5;
-  cursor: pointer; }
-.pd-small-img-style.pd-small-img-style-modify {
-  margin: 20px 30px 0; }
 
 .pd-nav-style {
   position: absolute;
