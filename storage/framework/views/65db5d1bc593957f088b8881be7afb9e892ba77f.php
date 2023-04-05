@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('title', __('Jewelry brand «Lazurit» - jewelry made of precious metals and stones')); ?>
 
 <?php $__env->startSection('meta_tags'); ?>
