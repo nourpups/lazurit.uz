@@ -58,14 +58,16 @@ class CartController extends Controller
     $product = $order->products()->where('product_id', $product_id)->first();
 
     if ($status == 'inc') {
-      $count = $product->pivot->count++;
-      $count++;
+      $count = --$product->pivot->count;
       $product->pivot->amount = $product->price * $count;
       $product->pivot->save();
     }
     // dd($product);
     if ($status == 'dec') {
-      if ($product->pivot->count == 1) {
+      
+      $last_product = $product->pivot->count == 1;
+
+      if ($last_product) {
 
         $order->products()->detach($product_id);
 
@@ -79,8 +81,7 @@ class CartController extends Controller
         ]);
 
       } else {
-        $count = $product->pivot->count--;
-        $count--;
+        $count = --$product->pivot->count;
         $product->pivot->amount = $product->price * $count;
         $product->pivot->save();
       }
@@ -118,8 +119,9 @@ class CartController extends Controller
 
     $order->products()->detach($product_id);
 
-    $count = Order::find($this->order_id())->products()->count();
-    $total = Order::find($this->order_id())->total_sum();
+    $order = Order::find($this->order_id());
+    $count = $order->products()->count();
+    $total = $order->total_sum();
 
     return response()->json([
       'count' => $count,

@@ -158,7 +158,7 @@
           let total = res.total
           let count = res.count
           let amount = res.amount
-
+console.log(res)
           if (total == 0) {
             $('.cart-area').remove()
             empty_cart = `<div class="w-100 d-flex justify-content-center align-items-end"

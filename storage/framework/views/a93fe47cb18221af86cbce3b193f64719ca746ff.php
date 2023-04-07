@@ -78,7 +78,7 @@
             <div class="col-lg-3 col-md-6 col-6">
               <div class="header-action-wrap">
                 <div class="header-action-style header-search-1">
-                  <a class="search-toggle" href="#">
+                  <a class="search-toggle" href="javascript:void(0)">
                     <i class="pe-7s-search s-open"></i>
                   </a>
                 </div>
@@ -155,7 +155,7 @@
       <div class="sidebar-cart-all">
         <a class="cart-close" href="javascript:void(0)"><i class="pe-7s-close"></i></a>
         <?php if(!empty($cart)): ?>
-          <?php if($cart->products->count() > 0): ?>
+          <?php if($cart->products->isNotEmpty()): ?>
             <div class="cart-content">
               <h3><?php echo e(__('Cart')); ?></h3>
               <ul>
@@ -430,7 +430,7 @@
           $('#subtotal').html(res.total.toLocaleString() + ' sum')
           $('#total').html(res.total.toLocaleString() + ' sum')
           $('#product_' + product_id).remove()
-          if(current_page.indexOf("cart") == -1) {
+          if (current_page.indexOf("cart") == -1) {
             $('.cart-content').html('<i>Your cart is empty</i>')
           }
           if (res.count == 0) {
