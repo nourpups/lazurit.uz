@@ -74,7 +74,7 @@
   <div class="banner-area section-padding-2 py-3">
     <div class="container-fluid">
 
-      @include('components.home_categories_list', $categories)
+      @include('partials.home_categories_list', $categories)
     </div>
   </div>
 

@@ -11,4 +11,4 @@
     </div>
   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </div>
-<?php /**PATH C:\OSPanel\domains\lazurit.uz\resources\views/components/home_categories_list.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\OSPanel\domains\lazurit.uz\resources\views/partials/home_categories_list.blade.php ENDPATH**/ ?>

@@ -14,4 +14,4 @@
         </div>
     </div>
 </div>
-<?php /**PATH C:\OSPanel\domains\lazurit.uz\resources\views/components/card.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\OSPanel\domains\lazurit\resources\views/partials/card.blade.php ENDPATH**/ ?>

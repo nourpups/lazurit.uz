@@ -36,13 +36,13 @@
       <a class="btn btn-dark mb-4" href="<?php echo e(route('home')); ?>"><?php echo e(__('Go to Home')); ?></a>
     </div>
   <?php else: ?>
-    <div class="cart-area pt-5 pb-100">
+    <div class="cart-area pb-100 pt-3">
       <div class="container">
         <div class="row">
           <div class="col-12">
             <div class="cart-table-content">
               <div class="table-content table-responsive">
-                <table>
+                    <table>
                   <thead>
                     <tr>
                       <th class="width-thumbnail"></th>
@@ -55,7 +55,7 @@
                   </thead>
                   <tbody>
                     <?php $__currentLoopData = $order->products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                      <tr id="cart_product_<?php echo e($product->id); ?>">
+                      <tr class="product_<?php echo e($product->id); ?>">
                         <td class="product-thumbnail">
                           <a href="<?php echo e(route('product', $product->id)); ?>"><img src="<?php echo e('storage/' . $product->image); ?>"
                               alt="<?php echo e($product->name); ?>"></a>
@@ -65,15 +65,17 @@
                           <a href="<?php echo e(route('catalog', $product->category->name)); ?>"
                             class="text-muted"><?php echo e($product->category->name); ?></a>
                         </td>
-                        <td class="product-cart-price"><span
-                            class="amount"><?php echo e(number_format($product->price, 0, '', ' ')); ?> sum</span></td>
+                        <td class="product-cart-price">
+                          <span class="amount"><?php echo e(number_format($product->price, 0, '', ' ')); ?> sum
+                          </span>
+                        </td>
                         <td class="cart-quality">
                           <div class="product-quality">
 
                             <div class="dec qtybutton" onclick="edit_count(<?php echo e($product->id); ?>, 'dec')">-</div>
 
-                            <input disabled class="cart-plus-minus-box input-text qty text"
-                              id="count_<?php echo e($product->id); ?>" value="<?php echo e($product->pivot->count); ?>">
+                            <input disabled class="cart-plus-minus-box input-text qty text count_<?php echo e($product->id); ?>"
+                              value="<?php echo e($product->count); ?>">
 
                             <div class="inc qtybutton" onclick="edit_count(<?php echo e($product->id); ?>, 'inc')">+</div>
 
@@ -81,13 +83,15 @@
                         </td>
                         <td class="product-total">
                           <span
-                            id="amount_<?php echo e($product->id); ?>"><?php echo e(number_format($product->price_for_count(), 0, '', ' ')); ?>
+                            class="amount_<?php echo e($product->id); ?>"><?php echo e(number_format($product->price_for_count(), 0, '', ' ')); ?>
 
-                            sum</span>
+                            sum
+                          </span>
                         </td>
                         <td class="product-remove">
-                          <button class="btn btn-outline-dark" onclick="delete_product(<?php echo e($product->id); ?>)"> <i
-                              class="ti-trash"></i></button>
+                          <button class="btn btn-outline-dark" onclick="delete_product(<?php echo e($product->id); ?>)">
+                            <i class="ti-trash"></i>
+                          </button>
                         </td>
                       </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -108,12 +112,14 @@
                 <div class="grand-total-wrap">
                   <div class="grand-total-content">
                     <h3>
-											<?php echo e(__('Subtotal')); ?> <span id="sub-total"><?php echo e(number_format($order->total_sum(), 0, '', ' ')); ?> sum</span>
-										</h3>
+                      <?php echo e(__('Subtotal')); ?> <span class="subtotal"><?php echo e(number_format($order->total_sum(), 0, '', ' ')); ?>
+
+                        sum</span>
+                    </h3>
                     <div class="grand-shipping">
                     </div>
                     <div class="grand-total">
-                      <h4><?php echo e(__('Total')); ?> <span id="total"><?php echo e(number_format($order->total_sum(), 0, '', ' ')); ?>
+                      <h4><?php echo e(__('Total')); ?> <span class="total"><?php echo e(number_format($order->total_sum(), 0, '', ' ')); ?>
 
                           sum </span>
                       </h4>
@@ -121,8 +127,8 @@
                   </div>
                   <div class="grand-total-btn btn-hover">
                     <?php if(auth()->guard()->guest()): ?>
-                      <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
-                        data-bs-target="#confirm_order"><?php echo e(__('Proceed to checkout')); ?></button>
+                      <a class="btn btn-outline-dark" data-bs-toggle="modal"
+                        data-bs-target="#confirm_order"><?php echo e(__('Proceed to checkout')); ?></a>
                     <?php endif; ?>
                     <?php if(auth()->guard()->check()): ?>
                       <a href="<?php echo e(route('cart.confirm', $order)); ?>"
@@ -158,7 +164,7 @@
           let total = res.total
           let count = res.count
           let amount = res.amount
-console.log(res)
+          console.log(res)
           if (total == 0) {
             $('.cart-area').remove()
             empty_cart = `<div class="w-100 d-flex justify-content-center align-items-end"
@@ -169,13 +175,13 @@ console.log(res)
             $('.breadcrumb-area').after(empty_cart)
           }
           if (deleted) {
-            $('tr#cart_product_'+ id).html('')
+            $('.product_' + id).html('')
           } else {
-            $('#count_' + id).val(count)
-            $('#amount_' + id).html(amount.toLocaleString() + ' sum')
+            $('.count_' + id).val(count)
+            $('.amount_' + id).html(amount.toLocaleString() + ' sum')
           }
-          $('#total').html(total.toLocaleString() + ' sum')
-          $('#sub-total').html(total.toLocaleString() + ' sum')
+          $('.total').html(total.toLocaleString() + ' sum')
+          $('.subtotal').html(total.toLocaleString() + ' sum')
         }
       })
     }

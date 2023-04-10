@@ -14,7 +14,6 @@ class Category extends Model implements TranslatableContract
     public $translatedAttributes = ['name'];
     protected $fillable = [
         'image',
-        'image_breadcrumb',
     ];
     public function products()
     {

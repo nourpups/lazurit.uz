@@ -38,7 +38,7 @@
       <a class="btn btn-dark mb-4" href="{{ route('home') }}">{{ __('Go to Home') }}</a>
     </div>
   @else
-    <div class="cart-area pt-5 pb-100">
+    <div class="cart-area pb-100 pt-3">
       <div class="container">
         <div class="row">
           <div class="col-12">
@@ -57,7 +57,7 @@
                   </thead>
                   <tbody>
                     @foreach ($order->products as $product)
-                      <tr id="cart_product_{{ $product->id }}">
+                      <tr class="product_{{ $product->id }}">
                         <td class="product-thumbnail">
                           <a href="{{ route('product', $product->id) }}"><img src="{{ 'storage/' . $product->image }}"
                               alt="{{ $product->name }}"></a>
@@ -67,15 +67,17 @@
                           <a href="{{ route('catalog', $product->category->name) }}"
                             class="text-muted">{{ $product->category->name }}</a>
                         </td>
-                        <td class="product-cart-price"><span
-                            class="amount">{{ number_format($product->price, 0, '', ' ') }} sum</span></td>
+                        <td class="product-cart-price">
+                          <span class="amount">{{ number_format($product->price, 0, '', ' ') }} sum
+                          </span>
+                        </td>
                         <td class="cart-quality">
                           <div class="product-quality">
 
                             <div class="dec qtybutton" onclick="edit_count({{ $product->id }}, 'dec')">-</div>
 
-                            <input disabled class="cart-plus-minus-box input-text qty text"
-                              id="count_{{ $product->id }}" value="{{ $product->pivot->count }}">
+                            <input disabled class="cart-plus-minus-box input-text qty text count_{{ $product->id }}"
+                              value="{{ $product->count }}">
 
                             <div class="inc qtybutton" onclick="edit_count({{ $product->id }}, 'inc')">+</div>
 
@@ -83,12 +85,14 @@
                         </td>
                         <td class="product-total">
                           <span
-                            id="amount_{{ $product->id }}">{{ number_format($product->price_for_count(), 0, '', ' ') }}
-                            sum</span>
+                            class="amount_{{ $product->id }}">{{ number_format($product->price_for_count(), 0, '', ' ') }}
+                            sum
+                          </span>
                         </td>
                         <td class="product-remove">
-                          <button class="btn btn-outline-dark" onclick="delete_product({{ $product->id }})"> <i
-                              class="ti-trash"></i></button>
+                          <button class="btn btn-outline-dark" onclick="delete_product({{ $product->id }})">
+                            <i class="ti-trash"></i>
+                          </button>
                         </td>
                       </tr>
                     @endforeach
@@ -109,20 +113,21 @@
                 <div class="grand-total-wrap">
                   <div class="grand-total-content">
                     <h3>
-											{{ __('Subtotal') }} <span id="sub-total">{{ number_format($order->total_sum(), 0, '', ' ') }} sum</span>
-										</h3>
+                      {{ __('Subtotal') }} <span class="subtotal">{{ number_format($order->total_sum(), 0, '', ' ') }}
+                        sum</span>
+                    </h3>
                     <div class="grand-shipping">
                     </div>
                     <div class="grand-total">
-                      <h4>{{ __('Total') }} <span id="total">{{ number_format($order->total_sum(), 0, '', ' ') }}
+                      <h4>{{ __('Total') }} <span class="total">{{ number_format($order->total_sum(), 0, '', ' ') }}
                           sum </span>
                       </h4>
                     </div>
                   </div>
                   <div class="grand-total-btn btn-hover">
                     @guest
-                      <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
-                        data-bs-target="#confirm_order">{{ __('Proceed to checkout') }}</button>
+                      <a class="btn btn-outline-dark" data-bs-toggle="modal"
+                        data-bs-target="#confirm_order">{{ __('Proceed to checkout') }}</a>
                     @endguest
                     @auth
                       <a href="{{ route('cart.confirm', $order) }}"
@@ -153,12 +158,14 @@
           status: status
         },
         success: function(res) {
+          let flash = res.flash
           let id = res.id
           let deleted = res.deleted
           let total = res.total
           let count = res.count
           let amount = res.amount
-console.log(res)
+
+
           if (total == 0) {
             $('.cart-area').remove()
             empty_cart = `<div class="w-100 d-flex justify-content-center align-items-end"
@@ -169,13 +176,16 @@ console.log(res)
             $('.breadcrumb-area').after(empty_cart)
           }
           if (deleted) {
-            $('tr#cart_product_'+ id).html('')
+            $('.product_' + id).remove()
           } else {
-            $('#count_' + id).val(count)
-            $('#amount_' + id).html(amount.toLocaleString() + ' sum')
+            $('.count_' + id).val(count)
+            $('.amount_' + id).html(amount.toLocaleString() + ' sum')
           }
-          $('#total').html(total.toLocaleString() + ' sum')
-          $('#sub-total').html(total.toLocaleString() + ' sum')
+          $('.flashs').html(flash)
+
+          $('.product-count').html(count)
+          $('.total').html(total.toLocaleString() + ' sum')
+          $('.subtotal').html(total.toLocaleString() + ' sum')
         }
       })
     }

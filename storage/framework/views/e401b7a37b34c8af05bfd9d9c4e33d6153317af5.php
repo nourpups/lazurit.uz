@@ -9,4 +9,4 @@
   </a>
   <?php endif; ?>
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-<?php /**PATH C:\OSPanel\domains\lazurit.uz\resources\views/layouts/partials/locales.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\OSPanel\domains\lazurit.uz\resources\views/partials/locales.blade.php ENDPATH**/ ?>

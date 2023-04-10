@@ -12,9 +12,9 @@ class UserController extends Controller
    $user->delete();
     if($user)
     {
-        return redirect()->back()->with('fail', 'Can\'t delete user');
+      return redirect()->back()->with('success', 'user succesfully deleted');
     }
-        return redirect()->back()->with('success', 'user succesfully deleted');
+    return redirect()->back()->with('fail', 'Can\'t delete user');
   }
   public function make_admin(User $user)
   {

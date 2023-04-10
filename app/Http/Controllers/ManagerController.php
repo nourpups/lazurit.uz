@@ -52,7 +52,7 @@ class ManagerController extends Controller
     public function products()
     {
       session()->put('previous_page', url()->full());
-        $products = Product::latest()->paginate('2');
+        $products = Product::latest()->paginate('16');
         $categories = Category::get();
         return view('manager.products')
             ->with('products', $products)

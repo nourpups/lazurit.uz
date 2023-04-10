@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title', __('Jewelry brand «Lazurit» - jewelry made of precious metals and stones')); ?>
 
 <?php $__env->startSection('meta_tags'); ?>
@@ -74,7 +72,7 @@
   <div class="banner-area section-padding-2 py-3">
     <div class="container-fluid">
 
-      <?php echo $__env->make('components.home_categories_list', $categories, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+      <?php echo $__env->make('partials.home_categories_list', $categories, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </div>
   </div>
 

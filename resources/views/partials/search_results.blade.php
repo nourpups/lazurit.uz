@@ -7,7 +7,7 @@
 
     <div class="col-sm-6 col-lg-6 col-12 p-1">
         <a href="{{route('product', $item->id)}}">
-            <div class="search-product-box d-flex">
+            <div class="search-product-box d-flex"+>
                 <div class="search-image">
                     <img src="{{asset('storage/'.$item->image)}}" alt="{{$item->name}}">
                 </div>

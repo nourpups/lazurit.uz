@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title', __('Cart') . ' | ' . __('Jewelry brand «Lazurit» - jewelry made of precious metals and stones')); ?>
 
 <?php $__env->startSection('meta_tags'); ?>
@@ -59,7 +57,7 @@
             </div>
             <div class="product-details-action-wrap">
               <div class="single-product-cart btn-hover">
-                <a href="<?php echo e(route('add_to_cart', [$product])); ?>"><?php echo e(__('Add to Cart')); ?></a>
+                <a href="<?php echo e(route('add_to_cart', $product)); ?>"><?php echo e(__('Add to Cart')); ?></a>
               </div>
             </div>
             <div class="product-details-meta">
@@ -79,13 +77,12 @@
               <?php echo e($product->description); ?>
 
             </h5>
-            
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="related-product-area pb-5">
+  <div class="related-product-area pt-5 pb-5">
     <div class="container">
       <div class="section-title-2 st-border-center text-center" data-aos="fade-up" data-aos-delay="200">
         <h2><?php echo e(__('Related Products')); ?></h2>

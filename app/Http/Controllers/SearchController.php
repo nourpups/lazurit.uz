@@ -12,7 +12,7 @@ class SearchController extends Controller
     {
         $result = Product::whereTranslationLike('name', '%' . request('search') . '%')->paginate(3);
 
-            return view('components.search_results', ['search_result'=> $result])->render();
+            return view('partials.search_results', ['search_result'=> $result])->render();
 
     }
 }

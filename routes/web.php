@@ -26,7 +26,7 @@ Route::get('/search', [SearchController::class, 'search'])->name('search');
 // CART ROUTES *************************************************************************
 Route::controller(CartController::class)->group(function () {
   Route::get('/cart', 'cart')->name('cart');
-  Route::get('/cart/add/{product_id}', 'add')->name('add_to_cart');
+  Route::get('/cart/add/{product}', 'add')->name('add_to_cart');
   Route::get('/cart/edit_count', 'edit_count')->name('cart.edit_count');
   Route::delete('/delete', 'delete')->name('cart.delete');
   Route::get('/cart/confirm', 'confirm')->name('cart.confirm');
@@ -49,6 +49,7 @@ Route::group(
     'middleware' => 'auth',
     'prefix' => 'manager'
   ],
+  
   function () {
     Route::group(['middleware' => 'is_admin'], function () {
       Route::get('/', [ManagerController::class, 'index'])->name('index');

@@ -433,7 +433,7 @@
           <!-- END Toggle Sidebar -->
           <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="layout"
             data-action="dark_mode_toggle"><i class="fa fa-moon"></i> <i class="fa fa-sun"></i></button>
-          @include('layouts.partials.locales')
+          @include('partials.locales')
         </div>
         <!-- END Left Section -->
       </div>

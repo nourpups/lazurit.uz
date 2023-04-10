@@ -32,12 +32,13 @@
 </head>
 
 <body>
-
   <div class="main-wrapper main-wrapper-2">
     <header class="header-area header-responsive-padding header-height-2 section-padding-2">
       <div class="header-bottom sticky-bar">
         <div class="container-fluid">
           <div class="row align-items-center">
+            @include('partials.flashs')
+            <div class="flashs"></div>
             <div class="col-lg-3 col-md-6 col-6">
               <div class="logo">
                 <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo/lazurit.webp') }}"
@@ -56,7 +57,7 @@
                       <ul class="mega-menu-style mega-menu-mrg-1">
                         <li>
                           <ul>
-                            @include('layouts.partials.header_nav', $categories)
+                            @include('partials.header_nav', $categories)
                           </ul>
                         </li>
                       </ul>
@@ -67,10 +68,6 @@
                     <li>
                       <a class="text-uppercase" href="{{ route('contact') }}">{{ __('Contact') }}</a>
                     </li>
-                    <li>
-                      @include('layouts.partials.locales')
-                    </li>
-
                   </ul>
                 </nav>
               </div>
@@ -160,7 +157,7 @@
               <h3>{{ __('Cart') }}</h3>
               <ul>
                 @foreach ($cart->products as $product)
-                  <li id="product_{{ $product->id }}">
+                  <li class="product_{{ $product->id }}">
                     <div class="cart-img">
                       <a href="{{ route('product', $product->id) }}"><img
                           src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"></a>
@@ -168,8 +165,7 @@
                     <div class="cart-title">
                       <h4><a href="{{ route('product', $product->id) }}">{{ $product->name }}</a>
                       </h4>
-                      <span> {{ $product->pivot->count }} ×
-                        {{ number_format($product->price, 0, '', ' ') }} sum</span>
+                      <span> {{ $product->count }} × {{ number_format($product->price, 0, '', ' ') }} sum</span>
                     </div>
                     <div class="cart-delete">
                       <button onclick="delete_product({{ $product->id }})" class="btn cart-delete-btn">×</button>
@@ -180,7 +176,7 @@
 
               </ul>
               <div class="cart-total">
-                <h4 id="subtotal">{{ __('Subtotal') }} : <span>{{ number_format($cart->total_sum(), 0, '', ' ') }}
+                <h4>{{ __('Subtotal') }} : <span class="subtotal">{{ number_format($cart->total_sum(), 0, '', ' ') }}
                     sum</span></h4>
               </div>
               <div class="cart-btn btn-hover">
@@ -194,24 +190,6 @@
           <i>{{ __('Your cart is empty') }}.</i>
         @endif
       </div>
-    </div>
-    <!--  Alerts -->
-    <div class="container">
-      @if (session('success'))
-        <div class="alert alert-success fade show text-center" role="alert">
-          {{ session('success') }}
-        </div>
-      @endif
-      @if (session('warning'))
-        <div class="alert alert-warning fade show text-center" role="alert">
-          {{ session('warning') }}
-        </div>
-      @endif
-      @if (session('login'))
-        <div class="alert alert-success fade show text-center" role="alert">
-          {{ session('login') }}
-        </div>
-      @endif
     </div>
     @yield('content')
 
@@ -242,7 +220,12 @@
                 </div>
               </div>
               <div class="col-lg-2 col-md-6 col-sm-6 col-6">
-                @include('layouts.partials.footer_nav', $categories)
+                <div class="footer-widget footer-list mb-40">
+                  <h3 class="footer-title">{{__('Catalog')}}</h3>
+                  <ul>
+                    @include('partials.footer_nav', $categories)
+                  </ul>
+                </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="footer-widget footer-widget-margin-2 footer-address mb-40">
@@ -363,7 +346,7 @@
               <li>
                 <a class="text-uppercase" href="javascript:void(0)">{{ __('Catalog') }}</a>
                 <ul>
-                  @include('layouts.partials.header_nav', $categories)
+                  @include('partials.header_nav', $categories)
                 </ul>
               </li>
               <li>
@@ -373,7 +356,7 @@
                 <a class="text-uppercase" href="{{ route('contact') }}">{{ __('Contact') }}</a>
               </li>
               <li>
-                @include('layouts.partials.locales')
+                @include('partials.locales')
               </li>
 
             </ul>
@@ -401,19 +384,18 @@
   @yield('js')
   <script>
     $(document).ready(function() {
-      setTimeout(function() {
+      setTimeout(() => {
         $(".alert").alert('close');
       }, 6000);
     });
 
     $(document).ready(function() {
-      $('#sort_catalog').on('change', function() {
+      $('#sort_catalog').on('change', () => {
         document.forms['sort_form'].submit();
       });
     });
 
     function delete_product(product_id) {
-
       let current_page = window.location.href;
 
       $.ajax({
@@ -424,13 +406,20 @@
           product_id: product_id,
         },
         success: function(res) {
-          $('#subtotal').html(res.total.toLocaleString() + ' sum')
-          $('#total').html(res.total.toLocaleString() + ' sum')
-          $('#product_' + product_id).remove()
-          if (current_page.indexOf("cart") == -1) {
-            $('.cart-content').html('<i>Your cart is empty</i>')
-          }
+          let total = res.total.toLocaleString()
+
+          $('.product-count').html(res.count)
+          $('.subtotal').html(total + ' sum')
+          $('.total').html(total + ' sum')
+          $('.product_' + product_id).remove()
+          $('.flashs').html(res.flash)
+            setTimeout(() => {
+              $(".alert").alert('close')
+            }, 4000)
           if (res.count == 0) {
+
+            $('.cart-content').html('<i>Your cart is empty.</i>')
+
             $('.cart-area').remove()
             empty_cart = `<div class="w-100 d-flex justify-content-center align-items-end"
                     style="background: url({{ asset('assets/images/cart/empty-cart.png') }}) center no-repeat; height:75vh">

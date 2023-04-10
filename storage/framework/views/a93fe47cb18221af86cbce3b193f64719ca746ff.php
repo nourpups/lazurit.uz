@@ -32,12 +32,13 @@
 </head>
 
 <body>
-
   <div class="main-wrapper main-wrapper-2">
     <header class="header-area header-responsive-padding header-height-2 section-padding-2">
       <div class="header-bottom sticky-bar">
         <div class="container-fluid">
           <div class="row align-items-center">
+            <?php echo $__env->make('partials.flashs', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+            <div class="flashs"></div>
             <div class="col-lg-3 col-md-6 col-6">
               <div class="logo">
                 <a href="<?php echo e(route('home')); ?>"><img src="<?php echo e(asset('assets/images/logo/lazurit.webp')); ?>"
@@ -56,7 +57,7 @@
                       <ul class="mega-menu-style mega-menu-mrg-1">
                         <li>
                           <ul>
-                            <?php echo $__env->make('layouts.partials.header_nav', $categories, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                            <?php echo $__env->make('partials.header_nav', $categories, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                           </ul>
                         </li>
                       </ul>
@@ -67,10 +68,6 @@
                     <li>
                       <a class="text-uppercase" href="<?php echo e(route('contact')); ?>"><?php echo e(__('Contact')); ?></a>
                     </li>
-                    <li>
-                      <?php echo $__env->make('layouts.partials.locales', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                    </li>
-
                   </ul>
                 </nav>
               </div>
@@ -160,7 +157,7 @@
               <h3><?php echo e(__('Cart')); ?></h3>
               <ul>
                 <?php $__currentLoopData = $cart->products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  <li id="product_<?php echo e($product->id); ?>">
+                  <li class="product_<?php echo e($product->id); ?>">
                     <div class="cart-img">
                       <a href="<?php echo e(route('product', $product->id)); ?>"><img
                           src="<?php echo e(asset('storage/' . $product->image)); ?>" alt="<?php echo e($product->name); ?>"></a>
@@ -168,8 +165,7 @@
                     <div class="cart-title">
                       <h4><a href="<?php echo e(route('product', $product->id)); ?>"><?php echo e($product->name); ?></a>
                       </h4>
-                      <span> <?php echo e($product->pivot->count); ?> ×
-                        <?php echo e(number_format($product->price, 0, '', ' ')); ?> sum</span>
+                      <span> <?php echo e($product->count); ?> × <?php echo e(number_format($product->price, 0, '', ' ')); ?> sum</span>
                     </div>
                     <div class="cart-delete">
                       <button onclick="delete_product(<?php echo e($product->id); ?>)" class="btn cart-delete-btn">×</button>
@@ -180,7 +176,7 @@
 
               </ul>
               <div class="cart-total">
-                <h4 id="subtotal"><?php echo e(__('Subtotal')); ?> : <span><?php echo e(number_format($cart->total_sum(), 0, '', ' ')); ?>
+                <h4><?php echo e(__('Subtotal')); ?> : <span class="subtotal"><?php echo e(number_format($cart->total_sum(), 0, '', ' ')); ?>
 
                     sum</span></h4>
               </div>
@@ -195,27 +191,6 @@
           <i><?php echo e(__('Your cart is empty')); ?>.</i>
         <?php endif; ?>
       </div>
-    </div>
-    <!--  Alerts -->
-    <div class="container">
-      <?php if(session('success')): ?>
-        <div class="alert alert-success fade show text-center" role="alert">
-          <?php echo e(session('success')); ?>
-
-        </div>
-      <?php endif; ?>
-      <?php if(session('warning')): ?>
-        <div class="alert alert-warning fade show text-center" role="alert">
-          <?php echo e(session('warning')); ?>
-
-        </div>
-      <?php endif; ?>
-      <?php if(session('login')): ?>
-        <div class="alert alert-success fade show text-center" role="alert">
-          <?php echo e(session('login')); ?>
-
-        </div>
-      <?php endif; ?>
     </div>
     <?php echo $__env->yieldContent('content'); ?>
 
@@ -244,7 +219,12 @@
                 </div>
               </div>
               <div class="col-lg-2 col-md-6 col-sm-6 col-6">
-                <?php echo $__env->make('layouts.partials.footer_nav', $categories, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <div class="footer-widget footer-list mb-40">
+                  <h3 class="footer-title"><?php echo e(__('Catalog')); ?></h3>
+                  <ul>
+                    <?php echo $__env->make('partials.footer_nav', $categories, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                  </ul>
+                </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="footer-widget footer-widget-margin-2 footer-address mb-40">
@@ -366,7 +346,7 @@
               <li>
                 <a class="text-uppercase" href="javascript:void(0)"><?php echo e(__('Catalog')); ?></a>
                 <ul>
-                  <?php echo $__env->make('layouts.partials.header_nav', $categories, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                  <?php echo $__env->make('partials.header_nav', $categories, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 </ul>
               </li>
               <li>
@@ -376,7 +356,7 @@
                 <a class="text-uppercase" href="<?php echo e(route('contact')); ?>"><?php echo e(__('Contact')); ?></a>
               </li>
               <li>
-                <?php echo $__env->make('layouts.partials.locales', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <?php echo $__env->make('partials.locales', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
               </li>
 
             </ul>
@@ -404,19 +384,18 @@
   <?php echo $__env->yieldContent('js'); ?>
   <script>
     $(document).ready(function() {
-      setTimeout(function() {
+      setTimeout(() => {
         $(".alert").alert('close');
       }, 6000);
     });
 
     $(document).ready(function() {
-      $('#sort_catalog').on('change', function() {
+      $('#sort_catalog').on('change', () => {
         document.forms['sort_form'].submit();
       });
     });
 
     function delete_product(product_id) {
-
       let current_page = window.location.href;
 
       $.ajax({
@@ -427,13 +406,20 @@
           product_id: product_id,
         },
         success: function(res) {
-          $('#subtotal').html(res.total.toLocaleString() + ' sum')
-          $('#total').html(res.total.toLocaleString() + ' sum')
-          $('#product_' + product_id).remove()
-          if (current_page.indexOf("cart") == -1) {
-            $('.cart-content').html('<i>Your cart is empty</i>')
-          }
+          let total = res.total.toLocaleString()
+
+          $('.product-count').html(res.count)
+          $('.subtotal').html(total + ' sum')
+          $('.total').html(total + ' sum')
+          $('.product_' + product_id).remove()
+          $('.flashs').html(res.flash)
+            setTimeout(() => {
+              $(".alert").alert('close')
+            }, 4000)
           if (res.count == 0) {
+
+            $('.cart-content').html('<i>Your cart is empty.</i>')
+
             $('.cart-area').remove()
             empty_cart = `<div class="w-100 d-flex justify-content-center align-items-end"
                     style="background: url(<?php echo e(asset('assets/images/cart/empty-cart.png')); ?>) center no-repeat; height:75vh">

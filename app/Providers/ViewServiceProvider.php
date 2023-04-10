@@ -11,32 +11,34 @@ use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
 {
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
+  /**
+   * Register services.
+   *
+   * @return void
+   */
+  public function register()
+  {
+    //
+  }
 
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
+  /**
+   * Bootstrap services.
+   *
+   * @return void
+   */
+  public function boot()
+  {
 
-        view()->composer('layouts.front', function ($view){
+    view()->composer('layouts.front', function ($view) {
 
-            $cart = Order::find(session('order_id'));
-            $categories = Category::WithTranslation()
-                ->translatedIn(app()->getLocale())
-                ->get();
-            $view->with('categories', $categories)->with('cart', $cart);
+      $cart = session('order');
 
-        });
-    }
+      $categories = Category::WithTranslation()
+        ->translatedIn(app()->getLocale())
+        ->get();
+
+      $view->with('categories', $categories)->with('cart', $cart);
+
+    });
+  }
 }

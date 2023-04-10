@@ -23,7 +23,7 @@ class Product extends Model implements TranslatableContract
   }
   public function price_for_count()
   {
-    return $this->pivot->count * $this->price;
+    return ($this->pivot->count ?? $this->count) * $this->price;
   }
 
 }

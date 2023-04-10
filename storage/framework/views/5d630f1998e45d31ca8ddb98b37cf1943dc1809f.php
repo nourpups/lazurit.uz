@@ -1,6 +1,3 @@
-
-
-
 <?php $__env->startSection('title', __('Catalog') ." | ". __('Jewelry brand «Lazurit» - jewelry made of precious metals and stones')); ?>
 
 <?php $__env->startSection('meta_tags'); ?>
@@ -68,7 +65,7 @@
                           <div id="shop-1" class="tab-pane active">
                               <div class="row">
                                   <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                      <?php echo $__env->make('components.card', ['product' => $product], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                      <?php echo $__env->make('partials.card', ['product' => $product], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                               </div>
                             <?php echo e($products->WithQueryString()->links('pagination::bootstrap-4')); ?>

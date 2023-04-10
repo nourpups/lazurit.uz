@@ -65,7 +65,7 @@
                           <div id="shop-1" class="tab-pane active">
                               <div class="row">
                                   @foreach ($products as $product)
-                                      @include('components.card', ['product' => $product])
+                                      @include('partials.card', ['product' => $product])
                                   @endforeach
                               </div>
                             {{$products->WithQueryString()->links('pagination::bootstrap-4')}}
