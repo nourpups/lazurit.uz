@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title', 'Categories || glossy.uz'); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -14,7 +12,6 @@
             </button>
         </div>
         <div class="block-content block-content-full">
-            <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                 <thead>
                     <tr>
@@ -57,11 +54,12 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('modals'); ?>
-<?php echo $__env->make('manager.modals.categories.store', ['categories' => $categories], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+  <?php echo $__env->make('manager.modals.categories.store', ['categories' => $categories], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-<?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    <?php echo $__env->make('manager.modals.categories.delete',['cat' => $cat], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+  <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+      <?php echo $__env->make('manager.modals.categories.delete',['cat' => $cat], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 <?php $__env->stopSection(); ?>
+
 
 <?php echo $__env->make('manager.layouts.manager', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OSPanel\domains\lazurit\resources\views/manager/categories.blade.php ENDPATH**/ ?>

@@ -21,7 +21,7 @@ class CheckIsAdmin
         $is_admin = Auth::user()->is_admin();
         if(!$is_admin)
         {
-            return redirect()->route('home')->with('fail', 'You have not Admin privileges');
+            return redirect()->route('home')->with('danger', 'You have not Admin privileges');
         }
 
         return $next($request);

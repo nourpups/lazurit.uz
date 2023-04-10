@@ -26,6 +26,7 @@ class ProductRequest extends FormRequest
      */
     public function rules()
     {
+      
       $id = $this->product->id ?? false;
 
       $rules = [
@@ -42,23 +43,4 @@ class ProductRequest extends FormRequest
 
       return $rules;
     }
-//     protected function failedValidation(Validator $validator)
-//  {
-//     if($this->wantsJson())
-//     {
-//         $response = response()->json([
-//             'status' => 400,
-//             'errors' => $validator->errors()//$validator->errors()
-//         ]);
-//     }else{
-//         $response = redirect()
-//             ->route('guest.login')
-//             ->with('message', 'Ops! Some errors occurred')
-//             ->withErrors($validator);
-//     }
-
-//     throw (new ValidationException($validator, $response))
-//         ->errorBag($this->errorBag)
-//         ->redirectTo($this->getRedirectUrl());
-// }
 }

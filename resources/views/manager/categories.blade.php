@@ -14,7 +14,6 @@
             </button>
         </div>
         <div class="block-content block-content-full">
-            <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                 <thead>
                     <tr>
@@ -56,9 +55,10 @@
 @endsection
 
 @section('modals')
-@include('manager.modals.categories.store', ['categories' => $categories])
+  @include('manager.modals.categories.store', ['categories' => $categories])
 
-@foreach ($categories as $cat)
-    @include('manager.modals.categories.delete',['cat' => $cat])
-@endforeach
+  @foreach ($categories as $cat)
+      @include('manager.modals.categories.delete',['cat' => $cat])
+  @endforeach
 @endsection
+

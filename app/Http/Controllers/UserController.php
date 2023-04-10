@@ -14,7 +14,7 @@ class UserController extends Controller
     {
       return redirect()->back()->with('success', 'user succesfully deleted');
     }
-    return redirect()->back()->with('fail', 'Can\'t delete user');
+    return redirect()->back()->with('danger', 'Can\'t delete user');
   }
   public function make_admin(User $user)
   {
@@ -28,7 +28,7 @@ class UserController extends Controller
     {
       return redirect()->back()->with('success', __('User :user have become admin successfully', ['user'=>$user->name]));
     }
-    return redirect()->back()->with('fail', __('Can\'t make admin user :user', ['user'=>$user->name]));
+    return redirect()->back()->with('danger', __('Can\'t make admin user :user', ['user'=>$user->name]));
   }
 }
 

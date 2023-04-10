@@ -312,19 +312,6 @@
       <!-- END Side Content -->
     </aside>
     <!-- END Side Overlay -->
-
-    <!-- Sidebar -->
-    <!--
-        Helper classes
-
-        Adding .smini-hide to an element will make it invisible (opacity: 0) when the sidebar is in mini mode
-        Adding .smini-show to an element will make it visible (opacity: 1) when the sidebar is in mini mode
-          If you would like to disable the transition, just add the .no-transition along with one of the previous 2 classes
-
-        Adding .smini-hidden to an element will hide it when the sidebar is in mini mode
-        Adding .smini-visible to an element will show it only when the sidebar is in mini mode
-        Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
-      -->
     <nav id="sidebar">
       <!-- Sidebar Content -->
       <div class="sidebar-content">
@@ -346,8 +333,6 @@
 
           <!-- Options -->
           <div>
-            <!-- Close Sidebar, Visible only on mobile screens -->
-            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
             <button type="button" class="btn btn-sm btn-alt-danger d-lg-none" data-toggle="layout"
               data-action="sidebar_close">
               <i class="fa fa-fw fa-times"></i>
@@ -437,25 +422,10 @@
         </div>
         <!-- END Left Section -->
       </div>
-      <?php if(session('success')): ?>
-        <div class="alert alert-success d-flex align-items-center" role="alert">
-          <i class="fa fa-fw fa-check me-2"></i>
-          <p class="mb-0">
-            <?php echo e(session('success')); ?>
-
-          </p>
-        </div>
-      <?php endif; ?>
-      <?php if(session('fail')): ?>
-        <div class="alert alert-danger d-flex align-items-center" role="alert">
-          <i class="fa fa-fw fa-check me-2"></i>
-          <p class="mb-0">
-            <?php echo e(session('fail')); ?>
-
-          </p>
-        </div>
-      <?php endif; ?>
+      <?php echo $__env->make('partials.flashs', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+      <div class="flashs"></div>
       <script>
+
         //script for autoclose alert /\
         //                           ||
         $(document).ready(function() {
@@ -493,7 +463,9 @@
         Core libraries and functionality
         webpack is putting everything together at <?php echo e(asset('manager_assets/_js/main/app.js')); ?>
 
-    -->
+      -->
+      <?php echo $__env->yieldContent('modals'); ?>
+
   <script src="<?php echo e(asset('manager_assets/js/codebase.app.min.js')); ?>"></script>
 
   <!-- Page JS Plugins -->
@@ -502,8 +474,52 @@
   <!-- Page JS Code -->
   <script src="<?php echo e(asset('manager_assets/js/pages/be_pages_dashboard.min.js')); ?>"></script>
 
+  <script>
+    $(document).on("submit", "#store", function() {
+
+      var e = this;
+      let submit_button_default_name = $(this).find("[type='submit']").html();
+      let current_location = '' + location
+      let previous_url = "<?php echo e(session('previous_page')); ?>";
+
+      $(this).find("[type='submit']").html('Creating...');
+      $(this).find(".text-danger").remove();
+      $.ajax({
+        type: 'POST',
+        url: $(this).attr('action'),
+        data: new FormData(this),
+        processData: false,
+        contentType: false,
+        success: function(data) {
+          $('.flashs').html(data.flash)
+          $(e).find("[type='submit']").html(submit_button_default_name);
+
+          if (data.status) window.location = previous_url;
+
+        },
+        error: function(response) {
+
+          errors = response.responseJSON.errors;
+          some = '';
+          $.each(errors, function(field_name, error) {
+            field_name == 'en.name' ? field_name = 'en[name]' : ''
+            field_name == 'en.description' ? field_name = 'en[description]' : ''
+            field_name == 'ru.name' ? field_name = 'ru[name]' : ''
+            field_name == 'ru.description' ? field_name = 'ru[description]' : ''
+
+            $(e).find(`[name="${field_name}"]`).addClass(
+              'is-invalid').after(
+              '<div class="text-strong text-danger">' + error +
+              '</div>')
+            })
+          console.log(some)
+        }
+      });
+
+      return false;
+    });
+  </script>
   <?php echo $__env->yieldContent('js'); ?>
-  <?php echo $__env->yieldContent('modals'); ?>
 </body>
 
 </html>

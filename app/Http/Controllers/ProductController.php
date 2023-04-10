@@ -15,16 +15,30 @@ class ProductController extends Controller
     $store = request()->all();
 
     $product_name = $request[app()->getLocale()]['name'];
-    if (request()->has('image')) {
+
+    if ($store['image']) {
       $ext = $request->file('image')->getClientOriginalExtension();
       $file_name = str_replace(' ', '_', $product_name) . '_image_' . time() . '.' . $ext;
       $store['image'] = $request->file('image')->storeAs('products/image', $file_name, 'public');
     }
+
+
     if (Product::create($store)) {
-      return redirect()->back()->with('success', 'Product ' . $product_name . ' succesfully created');
+      session()->flash('success', "Product $product_name succesfully created");
+
+      return response()->json([
+        'status' => true,
+        'flash' => view('partials.flashs')->render()
+      ]);
     }
+
+    session()->flash('danger', "Can't create Category $product_name");
+
     unlink(storage_path('app/public/') . $file_name);
-    return redirect()->back()->with('fail', 'Can\'t create product ' . $product_name);
+    return response()->json([
+      'status' => true,
+      'flash' => view('partials.flashs')->render()
+    ]);
   }
   public function edit(Product $product)
   {
@@ -55,14 +69,15 @@ class ProductController extends Controller
       return redirect(session('previous_page'))->with('success', 'Product ' . $product->name . ' succesfully updated');
     }
     unlink(storage_path('app/public/') . $file_name);
-    return redirect(session('previous_page'))->with('fail', 'Can\'t update product ' . $product->name);
+    return redirect(session('previous_page'))->with('danger', 'Can\'t update product ' . $product->name);
   }
 
   public function delete(Product $product)
   {
+    $name = $product->name;
     if ($product->delete()) {
-      return redirect()->back()->with('fail', 'Product deleted');
+      return redirect()->back()->with('danger', "Product $name succesfully deleted");
     }
-    return redirect()->back()->with('fail', 'Can\'t delete product');
+    return redirect()->back()->with('danger', 'Can\'t delete product');
   }
 }

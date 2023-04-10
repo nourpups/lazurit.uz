@@ -26,7 +26,9 @@ class CategoryRequest extends FormRequest
     {
       $id = $this->category->id ?? false;
 
-      $rules = [ 'image' => ($id ? "" : "required").'|image|max:1024' ];
+      $rules = [
+        'image' => ($id ? "" : "required").'|image|max:1024'
+      ];
 
       $excepted_col = 'category_id';
       foreach(config('translatable.locales') as $locale)

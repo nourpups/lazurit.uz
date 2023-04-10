@@ -7,23 +7,35 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller {
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $store = request()->all();
         $category_name = $request[app()->getLocale()]['name'];
 
-        $ext = $request->file('image')->getClientOriginalExtension();
-        $image_file_name = str_replace(' ', '_', $category_name) . '_image_' . time() . '.' . $ext;
-        $store['image'] = $request->file('image')->storeAs('categories/image', $image_file_name, 'public');
+        if($store['image'])
+        {
+          $ext = $request->file('image')->getClientOriginalExtension();
+          $file_name = str_replace(' ', '_', $category_name) . '_image_' . time() . '.' . $ext;
+          $store['image'] = $request->file('image')->storeAs('categories/image', $file_name, 'public');
+        }
 
         if(Category::create($store))
         {
-        return redirect()->back()->with('success', 'Category ' . $category_name . ' succesfully created');
-        }
+          session()->flash('success', "Category $category_name succesfully created");
 
-        unlink(storage_path('app/public/').$image_file_name);
-        return redirect(session('previous_page'))->with('fail', 'Can\'t create Category ' . $category_name);
-  }
+          return response()->json([
+            'status' => true,
+            'flash' => view('partials.flashs')->render()
+          ]);
+        }
+        session()->flash('danger', "Can\'t create Category ' . $category_name");
+
+        unlink(storage_path('app/public/') . $file_name);
+        return response()->json([
+          'status' => true,
+          'flash' => view('partials.flashs')->render()
+        ]);
+      }
   public function edit(Category $category)
   {
     return view('manager.forms.categories.edit')->with('cat', $category);
@@ -54,18 +66,18 @@ class CategoryController extends Controller {
     }
     unlink(storage_path('app/public/').$image_file_name);
 
-    return redirect(session('previous_page'))->with('fail', 'Can\'t update category ' . $category->name);
+    return redirect(session('previous_page'))->with('danger', 'Can\'t update category ' . $category->name);
     }
 
     public function delete(Category $category)
     {
-   $category->delete();
-
-    if($category)
+    $name = $category->name;
+    
+    if($category->delete())
     {
-        return redirect(session('previous_page'))->with('success', 'category succesfully deleted');
+        return redirect(session('previous_page'))->with('danger', "Category $name succesfully deleted");
     }
-    return redirect(session('previous_page'))->with('fail', 'Can\'t delete Category');
+    return redirect(session('previous_page'))->with('danger', "Can\'t delete Category");
   }
 }
 
