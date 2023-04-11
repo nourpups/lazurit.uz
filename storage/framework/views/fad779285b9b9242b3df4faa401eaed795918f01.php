@@ -20,15 +20,13 @@
 
   <!-- All CSS is here
 ============================================ -->
-  <link rel="stylesheet" href="<?php echo e(asset('assets/css/vendor/bootstrap.min.css')); ?>" />
-  <link rel="stylesheet" href="<?php echo e(asset('assets/css/vendor/pe-icon-7-stroke.css')); ?>" />
-  <link rel="stylesheet" href="<?php echo e(asset('assets/css/vendor/themify-icons.css')); ?>" />
-  <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/animate.css')); ?>" />
-  <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/aos.css')); ?>" />
-  <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/magnific-popup.css')); ?>" />
-  <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/swiper.min.css')); ?>" />
-  <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/slinky.css')); ?>" />
-  <link rel="stylesheet" href="<?php echo e(asset('assets/css/style.css')); ?>" />
+  
+  
+  
+
+  <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins.min.css')); ?>" />
+  <link rel="stylesheet" href="<?php echo e(asset('assets/css/vendor.min.css')); ?>" />
+  <link rel="stylesheet" href="<?php echo e(asset('assets/css/style.min.css')); ?>" />
 </head>
 
 <body>

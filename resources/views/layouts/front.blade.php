@@ -13,22 +13,21 @@
   @yield('meta_og_tags')
   <meta property="og:image" content="{{ asset('assets/images/logo/lazurit.webp') }}" />
 
-  <!-- CSRF Token -->
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <!-- Add site Favicon -->
   <link rel="icon" href="{{ asset('assets/images/favicon/favicon155x155.png') }}" sizes="155x155" />
 
-  <!-- All CSS is here
-============================================ -->
-  <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}" />
-  <link rel="stylesheet" href="{{ asset('assets/css/vendor/pe-icon-7-stroke.css') }}" />
-  <link rel="stylesheet" href="{{ asset('assets/css/vendor/themify-icons.css') }}" />
+  <!-- All CSS is here -->
+  {{-- <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}" /> --}}
+  {{-- <link rel="stylesheet" href="{{ asset('assets/css/vendor/pe-icon-7-stroke.css') }}" /> --}}
+  {{-- <link rel="stylesheet" href="{{ asset('assets/css/vendor/themify-icons.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/aos.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/magnific-popup.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/swiper.min.css') }}" />
-  <link rel="stylesheet" href="{{ asset('assets/css/plugins/slinky.css') }}" />
-  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/plugins/slinky.css') }}" /> --}}
+
+  <link rel="stylesheet" href="{{ asset('assets/css/plugins.min.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/vendor.min.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}" />
 </head>
 
 <body>
