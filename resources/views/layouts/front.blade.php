@@ -16,17 +16,18 @@
   <link rel="icon" href="{{ asset('assets/images/favicon/favicon155x155.png') }}" sizes="155x155" />
 
   <!-- All CSS is here -->
-  {{-- <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}" /> --}}
-  {{-- <link rel="stylesheet" href="{{ asset('assets/css/vendor/pe-icon-7-stroke.css') }}" /> --}}
-  {{-- <link rel="stylesheet" href="{{ asset('assets/css/vendor/themify-icons.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/vendor/pe-icon-7-stroke.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/vendor/themify-icons.css') }}" />
+
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/aos.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/magnific-popup.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/plugins/swiper.min.css') }}" />
-  <link rel="stylesheet" href="{{ asset('assets/css/plugins/slinky.css') }}" /> --}}
+  <link rel="stylesheet" href="{{ asset('assets/css/plugins/slinky.css') }}" />
 
-  <link rel="stylesheet" href="{{ asset('assets/css/plugins.min.css') }}" />
-  <link rel="stylesheet" href="{{ asset('assets/css/vendor.min.css') }}" />
+  {{-- <link rel="stylesheet" href="{{ asset('assets/css/plugins.min.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/vendor.min.css') }}" /> --}}
   <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}" />
 </head>
 
@@ -369,6 +370,7 @@
   <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
   <script src="{{ asset('assets/js/vendor/popper.min.js') }}"></script>
   <script src="{{ asset('assets/js/vendor/bootstrap.min.js') }}"></script>
+
   <script src="{{ asset('assets/js/plugins/wow.js') }}"></script>
   <script src="{{ asset('assets/js/plugins/scrollup.js') }}"></script>
   <script src="{{ asset('assets/js/plugins/aos.js') }}"></script>
@@ -378,6 +380,7 @@
   <script src="{{ asset('assets/js/plugins/waypoints.min.js') }}"></script>
   <script src="{{ asset('assets/js/plugins/counterup.min.js') }}"></script>
   <script src="{{ asset('assets/js/plugins/slinky.min.js') }}"></script>
+
   <!-- Main JS -->
   <script src="{{ asset('assets/js/main.js') }}"></script>
   @yield('js')

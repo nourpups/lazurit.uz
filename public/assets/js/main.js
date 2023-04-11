@@ -1,7 +1,7 @@
 (function ($) {
     "use strict";
     // Hero slider active
-    var sliderActive = new Swiper('.slider-active', {
+    new Swiper('.slider-active', {
         loop: true,
         speed: 550,
         effect: 'fade',
@@ -11,8 +11,28 @@
             prevEl: '.home-slider-prev2',
         }
     });
+    // Related product active
+    new Swiper('.related-products-active', {
+      loop: true,
+      spaceBetween: 10,
+      breakpoints: {
+          320: {
+              slidesPerView: 3.2
+          },
+          576: {
+              slidesPerView: 4.2
+          },
+          768: {
+              slidesPerView: 5.2
+          },
+          992: {
+              slidesPerView: 5.2
+          }
+      },
+  });
+
     // Brand logo active
-    var sliderActiveThree = new Swiper('.brand-logo-active', {
+    new Swiper('.brand-logo-active', {
         loop: true,
         spaceBetween: 10,
         breakpoints: {
@@ -31,28 +51,6 @@
         },
     });
 
-    // Related product active
-    var sliderActiveFive = new Swiper('.related-product-active', {
-        loop: true,
-        spaceBetween: 10,
-        breakpoints: {
-            320: {
-                slidesPerView: 2.2
-            },
-            479: {
-                slidesPerView: 3.2
-            },
-            576: {
-                slidesPerView: 3.2
-            },
-            768: {
-                slidesPerView: 4.2
-            },
-            992: {
-                slidesPerView: 5.2
-            }
-        },
-    });
 
     // /*------ ScrollUp -------- */
     $.scrollUp({
@@ -123,7 +121,6 @@
 
     /*====== mobile-menu active ======*/
     const slinky = $('#mobile-menu').slinky();
-    const slinky2 = $('#mobile-currency').slinky();
     const slinky3 = $('#mobile-language').slinky();
 
     /*====== off canvas active ======*/

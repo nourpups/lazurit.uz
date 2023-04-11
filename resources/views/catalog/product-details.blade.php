@@ -88,7 +88,7 @@
       <div class="section-title-2 st-border-center text-center" data-aos="fade-up" data-aos-delay="200">
         <h2>{{ __('Related Products') }}</h2>
       </div>
-      <div class="related-product-active swiper-container">
+      <div class="related-products-active swiper-container">
         <div class="swiper-wrapper pt-5">
           @foreach ($related_products as $related_product)
             <div class="swiper-slide">
@@ -101,7 +101,6 @@
                 <div class="product-content">
                   <h3><a href="{{ route('product', $related_product) }}">{{ $related_product->name }}</a></h3>
                   <div class="product-price">
-                    {{-- <span class="old-price">${{ceil($related_product->price*1.2)}}</span> --}}
                     <span class="new-price">{{ number_format($related_product->price, 0, '', ' ') }} sum</span>
                   </div>
                 </div>

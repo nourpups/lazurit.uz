@@ -13,19 +13,20 @@
   <?php echo $__env->yieldContent('meta_og_tags'); ?>
   <meta property="og:image" content="<?php echo e(asset('assets/images/logo/lazurit.webp')); ?>" />
 
-  <!-- CSRF Token -->
-  <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
-  <!-- Add site Favicon -->
   <link rel="icon" href="<?php echo e(asset('assets/images/favicon/favicon155x155.png')); ?>" sizes="155x155" />
 
-  <!-- All CSS is here
-============================================ -->
-  
-  
-  
+  <!-- All CSS is here -->
+  <link rel="stylesheet" href="<?php echo e(asset('assets/css/vendor/bootstrap.min.css')); ?>" />
+  <link rel="stylesheet" href="<?php echo e(asset('assets/css/vendor/pe-icon-7-stroke.css')); ?>" />
+  <link rel="stylesheet" href="<?php echo e(asset('assets/css/vendor/themify-icons.css')); ?>" />
 
-  <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins.min.css')); ?>" />
-  <link rel="stylesheet" href="<?php echo e(asset('assets/css/vendor.min.css')); ?>" />
+  <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/animate.css')); ?>" />
+  <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/aos.css')); ?>" />
+  <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/magnific-popup.css')); ?>" />
+  <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/swiper.min.css')); ?>" />
+  <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/slinky.css')); ?>" />
+
+  
   <link rel="stylesheet" href="<?php echo e(asset('assets/css/style.min.css')); ?>" />
 </head>
 
@@ -368,6 +369,7 @@
   <script src="<?php echo e(asset('assets/js/vendor/jquery-3.6.0.min.js')); ?>"></script>
   <script src="<?php echo e(asset('assets/js/vendor/popper.min.js')); ?>"></script>
   <script src="<?php echo e(asset('assets/js/vendor/bootstrap.min.js')); ?>"></script>
+
   <script src="<?php echo e(asset('assets/js/plugins/wow.js')); ?>"></script>
   <script src="<?php echo e(asset('assets/js/plugins/scrollup.js')); ?>"></script>
   <script src="<?php echo e(asset('assets/js/plugins/aos.js')); ?>"></script>
@@ -377,6 +379,7 @@
   <script src="<?php echo e(asset('assets/js/plugins/waypoints.min.js')); ?>"></script>
   <script src="<?php echo e(asset('assets/js/plugins/counterup.min.js')); ?>"></script>
   <script src="<?php echo e(asset('assets/js/plugins/slinky.min.js')); ?>"></script>
+
   <!-- Main JS -->
   <script src="<?php echo e(asset('assets/js/main.js')); ?>"></script>
   <?php echo $__env->yieldContent('js'); ?>

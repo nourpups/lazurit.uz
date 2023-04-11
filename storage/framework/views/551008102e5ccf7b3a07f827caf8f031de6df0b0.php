@@ -100,7 +100,7 @@
           <div class="swiper-slide">
             <div class="single-brand-logo" data-aos="fade-up" data-aos-delay="200">
               <a href="#"><img src="https://diamant.uz/image/cache/catalog/brands/Cartier-150x150.jpg"
-                  alt=""></a>
+                alt=""></a>
             </div>
           </div>
           <div class="swiper-slide">

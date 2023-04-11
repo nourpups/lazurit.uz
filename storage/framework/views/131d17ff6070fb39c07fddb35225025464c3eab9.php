@@ -87,7 +87,7 @@
       <div class="section-title-2 st-border-center text-center" data-aos="fade-up" data-aos-delay="200">
         <h2><?php echo e(__('Related Products')); ?></h2>
       </div>
-      <div class="related-product-active swiper-container">
+      <div class="related-products-active swiper-container">
         <div class="swiper-wrapper pt-5">
           <?php $__currentLoopData = $related_products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $related_product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="swiper-slide">
@@ -100,7 +100,6 @@
                 <div class="product-content">
                   <h3><a href="<?php echo e(route('product', $related_product)); ?>"><?php echo e($related_product->name); ?></a></h3>
                   <div class="product-price">
-                    
                     <span class="new-price"><?php echo e(number_format($related_product->price, 0, '', ' ')); ?> sum</span>
                   </div>
                 </div>
