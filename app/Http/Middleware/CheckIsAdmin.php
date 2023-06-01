@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckIsAdmin
 {
+
     /**
      * Handle an incoming request.
      *
@@ -18,12 +19,11 @@ class CheckIsAdmin
     public function handle(Request $request, Closure $next)
     {
 
-        $is_admin = Auth::user()->is_admin();
-        if(!$is_admin)
-        {
+        if (!auth()->user()->is_admin) {
             return redirect()->route('home')->with('danger', 'You have not Admin privileges');
         }
 
         return $next($request);
     }
+
 }

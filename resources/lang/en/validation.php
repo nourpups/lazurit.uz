@@ -156,8 +156,7 @@ return [
 
     'custom' => [
         'phone' => [
-            // 'regex' => 'The :attribute must starts with +998XX where XX equals valid mobile operators prefix and must be of 12 digits with no comma, no spaces, no punctuation.',
-            'regex' => 'Invalid mobile number'
+            'regex' => 'The phone should be in the format +998 XX xxx xx xx, where _XX_ is the operator code, _x_ is the your phone number'
         ],
     ],
 

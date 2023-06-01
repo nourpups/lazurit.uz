@@ -7,40 +7,40 @@ use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Contracts\Validation\Validator;
 
-class ProductRequest extends FormRequest
+class ProductRequest extends
+   FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
+   /**
+    * Determine if the user is authorized to make this request.
+    *
+    * @return bool
+    */
+   public function authorize()
+   {
+      return true;
+   }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
-    public function rules()
-    {
-      
+   /**
+    * Get the validation rules that apply to the request.
+    *
+    * @return array<string, mixed>
+    */
+   public function rules()
+   {
       $id = $this->product->id ?? false;
+      $this->offsetSet('price', str_replace(' ', '', request('price')));
 
       $rules = [
-          'category_id' => 'required',
-          'image' => ($id ? "" : "required").'|image|max:1024',
-          'price' => 'required|numeric',
+         'category_id' => 'required',
+         'image' => ($id ? "" : "required") . '|image|max:1024',
+         'price' => 'required|numeric',
       ];
 
       $excepted_col = 'product_id';
-      foreach(config('translatable.locales') as $locale) {
-        $rules[$locale . '.name'] = 'required|min:3|unique:product_translations,name'.($id ? ",$id,$excepted_col" : "");
-        $rules[$locale . '.description'] = 'required';
+      foreach (config('translatable.locales') as $locale) {
+         $rules[$locale . '.name'] = 'required|min:3';
       }
 
       return $rules;
-    }
+   }
 }

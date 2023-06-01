@@ -6,13 +6,15 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class SearchController extends Controller
+class SearchController extends
+   Controller
 {
-    public function search(Request $request)
-    {
-        $result = Product::whereTranslationLike('name', '%' . request('search') . '%')->paginate(3);
+   public function search(Request $request)
+   {
+      $results = Product::whereTranslationLike('name', '%' . request('search') . '%')
+         ->orWhere('art', 'like', '%' . request('search') . '%')
+         ->paginate(8);
 
-            return view('partials.search_results', ['search_result'=> $result])->render();
-
-    }
+      return view('partials.search_results', compact('results'))->render();
+   }
 }

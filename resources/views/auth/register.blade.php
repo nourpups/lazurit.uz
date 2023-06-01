@@ -18,7 +18,7 @@
               <div id="lg2" class="tab-pane active">
                 <div class="login-form-container">
                   <div class="login-register-form">
-                    <form method="POST" action="{{ route('register') }}" id="auth_form">
+                    <form method="POST" class="register" action="{{ route('register') }}" id="auth_form">
                       @csrf
                       <label for="">{{ __('Name') }}</label>
                       <input type="text" name="name" value="{{ old('name') }}" placeholder="{{ __('Jhon Wick') }}"
