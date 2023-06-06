@@ -129,15 +129,15 @@ Route::controller(CartController::class)->group(function (
     // all Route::post to Route::get i vse zarabotaet
     Route::get('/cart',
        'cart')->name('cart')->middleware('cart.empty');
-    Route::post('/cart/add/{product}',
+    Route::get('/cart/add/{product}',
        'add')->name('add_to_cart');
-    Route::post('/cart/edit_count',
+    Route::get('/cart/edit_count',
        'edit_count')->name('cart.edit_count');
     Route::delete('/delete',
        'delete')->name('cart.delete');
-    Route::post('/cart/confirm',
+    Route::get('/cart/confirm',
        'confirm')->name('cart.confirm');
-    Route::post('/cart/empty',
+    Route::get('/cart/empty',
        'empty')->name('cart.empty');
 });
 Route::view('/about',

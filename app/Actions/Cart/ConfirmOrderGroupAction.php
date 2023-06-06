@@ -2,18 +2,21 @@
 
 namespace App\Actions\Cart;
 
+use App\Models\Order;
+
 class ConfirmOrderGroupAction
 {
    public function __construct(
       private ConfirmOrderAction $confirmOrderAction,
-      private SendOrderNotificationAction $sendOrderNotificationAction
+      private SendOrderNotificationGroupAction $sendOrderNotificationGroupAction
    )
    {
    }
 
-   public function __invoke($order, $user_id)
+   public function __invoke($order)
    {
-      ($this->confirmOrderAction)($order, $user_id);
-      ($this->sendOrderNotificationAction)($order->id);
+      ($this->confirmOrderAction)($order);
+      $order->refresh();
+      ($this->sendOrderNotificationGroupAction)($order);
    }
 }

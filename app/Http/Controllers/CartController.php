@@ -47,7 +47,7 @@ class CartController extends
 
    public function confirm(ConfirmOrderGroupAction $confirmOrderGroupAction)
    {
-      $confirmOrderGroupAction($this->order(), auth()->id());
+      $confirmOrderGroupAction($this->order());
 
       return redirect()->route('home')->with(
          'success',

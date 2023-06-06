@@ -146,6 +146,91 @@
    </div>
 
 <?php $__env->stopSection(); ?>
+<?php $__env->startSection('modals'); ?>
+<div class="modal fade quickview-modal-style" id="confirm_order" tabindex="-1" role="dialog">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close"><i
+                  class="ti-close"></i></a>
+         </div>
+         <div class="modal-body">
+            <div class="login-register-area">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-8 col-md-12 offset-lg-2">
+                        <div class="login-register-wrapper">
+                           <div class="login-register-tab-list nav">
+                              <a class="active" data-bs-toggle="tab" href="#lg1">
+                                 <h4 class="h6"> <?php echo e(__('Login')); ?> </h4>
+                              </a>
+                              <a data-bs-toggle="tab" href="#lg2">
+                                 <h4 class="h6"> <?php echo e(__('Register')); ?> </h4>
+                              </a>
+                           </div>
+                           <p class="h-5 mb-3">
+                              <?php echo e(__('Please login or register first, to confirm your order')); ?></p>
+                           <div class="tab-content">
+                              <div id="lg1" class="tab-pane active">
+                                 <div class="login-form-container">
+                                    <div class="login-register-form">
+
+                                       <form method="POST" class="login" action="<?php echo e(route('login')); ?>"
+                                             id="auth_form">
+                                          <?php echo csrf_field(); ?>
+                                          <label for=""><?php echo e(__('Name')); ?> <?php echo e(__('or')); ?>
+
+                                             <?php echo e(__('Phone')); ?></label>
+                                          <input type="text" name="name" value="<?php echo e(old('name')); ?>"
+                                                 placeholder="<?php echo e(__('Jhon Wick')); ?> <?php echo e(__('or')); ?> +998 99 123 45 67"
+                                                 autofocus>
+                                          <label for=""><?php echo e(__('Password')); ?></label>
+                                          <input type="text" name="password"
+                                                 value="<?php echo e(old('password')); ?>"
+                                                 placeholder="<?php echo e(__('jhonny434')); ?>">
+                                          <div class="button-box btn-hover">
+                                             <button type="submit"><?php echo e(__('Login')); ?></button>
+                                          </div>
+                                       </form>
+
+                                    </div>
+                                 </div>
+                              </div>
+                              <div id="lg2" class="tab-pane">
+                                 <div class="login-form-container">
+                                    <div class="login-register-form">
+                                       <form method="POST" class="register"
+                                             action="<?php echo e(route('register')); ?>"
+                                             id="auth_form">
+                                          <?php echo csrf_field(); ?>
+                                          <label for=""><?php echo e(__('Name')); ?></label>
+                                          <input type="text" name="name" value="<?php echo e(old('name')); ?>"
+                                                 placeholder="<?php echo e(__('Jhon Wick')); ?>" autofocus>
+                                          <label for=""><?php echo e(__('Phone')); ?></label>
+                                          <input type="text" name="phone" value="<?php echo e(old('phone')); ?>"
+                                                 placeholder="+998 99 123 45 67">
+                                          <label for=""><?php echo e(__('Password')); ?></label>
+                                          <input type="text" value="<?php echo e(old('login')); ?>"
+                                                 name="password"
+                                                 placeholder="<?php echo e(__('jhonny434')); ?>">
+                                          <div class="button-box btn-hover">
+                                             <button><?php echo e(__('Register')); ?></button>
+                                          </div>
+                                       </form>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
    <script>
       function edit_count(product_id, method) {

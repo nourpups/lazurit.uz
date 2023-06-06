@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Actions\SortCatalogAction;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
+use App\Services\Telegram;
 use Illuminate\Http\Request;
 
 class FrontController extends
@@ -14,7 +16,7 @@ class FrontController extends
     public function home()
     {
         $categories = Category::withTranslation()->translatedIn(app()->getLocale())->latest()->get();
-//        dd($categories);
+
         $bracelets = Category::where('slug', 'braslety')->first();
         $earrings = Category::where('slug', 'sergi')->first();
         $sets = Category::where('slug', 'komplekty')->first();

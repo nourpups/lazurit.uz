@@ -1,12 +1,10 @@
-Заказ № {{ $order->id }}
-	Время оформления: {{ $order->created_at->timezone('Asia/Tashkent')->format('H:i d/m/Y') }}
+Заказ № <b>{{$order->id}}</b>
 
-	Имя заказчика: {{ $order->user->name }}
-	Телефон заказчика: {{ $order->user->phone }}
+	Время оформления: <b>{{$order->createdAt()}}</b>
+
+	Имя заказчика: <b>{{$order->user->name}}</b>
+	Телефон заказчика: <code>{{$order->user->phone}}</code>
 
 	Заказано:
-	@foreach ($order->products as $product)
-		{{ $product->name }} ✖️ {{ $product->count }} 🟰 {{ $product->amount }} sum
-	@endforeach
-
-	Общая сумма: {{ $order->sum }}
+	{!! $orderProducts !!}
+	Общая сумма: <b>{{$order->formattedSum()}}</b> sum

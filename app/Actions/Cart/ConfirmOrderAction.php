@@ -2,14 +2,16 @@
 
 namespace App\Actions\Cart;
 
+use App\Models\Order;
+
 use function now;
 use function session;
 
 class ConfirmOrderAction
 {
-    public function __invoke($order, $user_id)
+    public function __invoke($order)
     {
-        $order->user_id = $user_id;
+        $order->user_id = auth()->id();
         $order->status = 1;
         $order->created_at = now();
         $order->sum = $order->totalSum();
