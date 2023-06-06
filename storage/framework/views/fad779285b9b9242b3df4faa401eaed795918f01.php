@@ -96,19 +96,19 @@
                            </a>
                         <?php endif; ?>
                      </div>
-                     
-                     
-                     
-                     
-                     
-                     
-                     
-                     
-                     
-                     
-                     
 
-                     
+
+
+
+
+
+
+
+
+
+
+
+
                      <?php if(auth()->guard()->check()): ?>
                         <?php if(auth()->user()->is_admin): ?>
                            <div class="header-action-style">

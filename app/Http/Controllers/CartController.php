@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class CartController extends
    Controller
 {
-   public function order()
+   private function order()
    {
       return session('order');
    }
@@ -28,10 +28,7 @@ class CartController extends
 
       return empty($order)
          ? view('catalog.cart')->with('no_items', true)
-         : view(
-            'catalog.cart',
-            compact('order')
-         );
+         : view('catalog.cart', compact('order'));
    }
 
    public function add(Product $product, AddProductToOrderGroupAction $addProductToOrderGroupAction)

@@ -46,7 +46,7 @@ class Product extends
 
     public static function scopeRelatedProducts($query, Product $product)
     {
-        return $query->withTranslation()->translatedIn(app()->getLocale())->where('id', '!=', $product->id)->where('category_id', $product->category->id)->take(10)->get();
+        return $query->with('category')->withTranslation()->translatedIn(app()->getLocale())->where('id', '!=', $product->id)->where('category_id', $product->category->id)->take(10)->get();
     }
 
 }

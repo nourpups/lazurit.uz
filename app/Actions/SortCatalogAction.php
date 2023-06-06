@@ -9,7 +9,7 @@ class SortCatalogAction
     public function __invoke($sort, $categoryId)
     {
         $perPage = 16;
-        $productsQuery = Product::withTranslation()->translatedIn(app()->getLocale())->where('category_id', $categoryId);
+        $productsQuery = Product::with('category')->withTranslation()->translatedIn(app()->getLocale())->where('category_id', $categoryId);
 
         return match ($sort) {
             'asc' => $productsQuery->oldest('art')->paginate($perPage),

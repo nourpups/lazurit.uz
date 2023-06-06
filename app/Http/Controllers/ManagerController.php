@@ -15,7 +15,7 @@ class ManagerController extends
     public function index()
     {
         $totalProductsCount = Product::count();
-        $categories = Category::withTranslation()->translatedIn(app()->getLocale())->get();
+        $categories = Category::with('products')->withTranslation()->withCount('products')->translatedIn(app()->getLocale())->get();
         $totalOrdersCount = Order::count();
         $totalUsersCount = User::count();
         $totalCustomersCount = User::where('is_admin', 0)->count();
@@ -33,8 +33,6 @@ class ManagerController extends
            $endOfWeek
         ])->count();
 
-//        dd(app()->getLocale());
-
         return view('manager.index', compact('totalProductsCount', 'categories', 'totalOrdersCount', 'totalUsersCount', 'totalCustomersCount', 'totalAdminsCount', 'todayOrdersCount', 'thisMonthOrdersCount', 'thisWeekOrdersCount'));
     }
 
@@ -49,7 +47,7 @@ class ManagerController extends
     {
         session()->put('previous_page', url()->full());
 
-        $products = Product::latest()->paginate('16');
+        $products = Product::withTranslation()->latest()->paginate('16');
         $categories = Category::withTranslation()->translatedIn(app()->getLocale())->get();
 
         return view('manager.products', compact('products', 'categories'));

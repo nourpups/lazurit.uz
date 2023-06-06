@@ -96,19 +96,19 @@
                            </a>
                         @endauth
                      </div>
-                     {{--                     @if (!\Route::is('cart'))--}}
-                     {{--                        <div class="header-action-style header-action-cart">--}}
-                     {{--                           <a class="cart-active" href="javascript:void(0)">--}}
-                     {{--                              <i class="pe-7s-shopbag"></i>--}}
-                     {{--                              @if (!empty($cart))--}}
-                     {{--                                 @if ($cart->products->isNotEmpty())--}}
-                     {{--                                    <span class="product-count bg-black">{{ $cart->quantity() }}</span>--}}
-                     {{--                                 @endif--}}
-                     {{--                              @endif--}}
-                     {{--                           </a>--}}
-                     {{--                        </div>--}}
+{{--                                          @if (!\Route::is('cart'))--}}
+{{--                                             <div class="header-action-style header-action-cart">--}}
+{{--                                                <a class="cart-active" href="javascript:void(0)">--}}
+{{--                                                   <i class="pe-7s-shopbag"></i>--}}
+{{--                                                   @if (!empty($cart))--}}
+{{--                                                      @if ($cart->products->isNotEmpty())--}}
+{{--                                                         <span class="product-count bg-black">{{ $cart->quantity() }}</span>--}}
+{{--                                                      @endif--}}
+{{--                                                   @endif--}}
+{{--                                                </a>--}}
+{{--                                             </div>--}}
 
-                     {{--                     @endif--}}
+{{--                                          @endif--}}
                      @auth
                         @if (auth()->user()->is_admin)
                            <div class="header-action-style">

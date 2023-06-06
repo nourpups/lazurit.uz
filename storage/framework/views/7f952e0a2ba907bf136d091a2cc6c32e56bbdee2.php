@@ -1,23 +1,23 @@
 <!doctype html>
-<html lang="{{app()->getLocale()}}">
+<html lang="<?php echo e(app()->getLocale()); ?>">
 
 <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-   <title>@yield('title')</title>
+   <title><?php echo $__env->yieldContent('title'); ?></title>
 
 
    <!-- Icons -->
    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-   <link rel="shortcut icon" href="{{ asset('assets/images/logo/logo-icon.webp') }}">\
+   <link rel="shortcut icon" href="<?php echo e(asset('assets/images/logo/logo-icon.webp')); ?>">\
    <link rel="apple-touch-icon" sizes="180x180"
-         href="{{ asset('assets/images/logo/logo-icon.webp') }}">
+         href="<?php echo e(asset('assets/images/logo/logo-icon.webp')); ?>">
    <!-- END Icons -->
 
    <!-- Fonts and Codebase framework -->
    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap">
-   <link rel="stylesheet" id="css-main" href="{{ asset('manager_assets/css/codebase.min.css') }}">
+   <link rel="stylesheet" id="css-main" href="<?php echo e(asset('manager_assets/css/codebase.min.css')); ?>">
    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
            integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
@@ -100,15 +100,15 @@
 
                <!-- Visible only in normal mode -->
                <div class="smini-hidden mx-auto text-center">
-                  <a class="img-link" href="{{ route('home') }}" target="_blank">
+                  <a class="img-link" href="<?php echo e(route('home')); ?>" target="_blank">
                      <img class="img-avatar"
-                          src="{{ asset('manager_assets/media/avatars/nourpack_legend.png') }}"
+                          src="<?php echo e(asset('manager_assets/media/avatars/nourpack_legend.png')); ?>"
                           alt="">
                   </a>
                   <ul class="list-inline mt-3 mb-0">
                      <li class="list-inline-item">
                         <a class="text-dual fs-sm"
-                           href="{{ route('home') }}">
+                           href="<?php echo e(route('home')); ?>">
                            Go to <span class="text-primary-light">Lazurit</span><span class="small"> <i class="fa fa-arrow-right"></i></span>
                         </a>
                      </li>
@@ -123,23 +123,23 @@
                <ul class="nav-main">
                   <li class="nav-main-heading">Pages</li>
                   <li class="nav-main-item">
-                     <a class="nav-main-link" href="{{ route('manager') }}">
+                     <a class="nav-main-link" href="<?php echo e(route('manager')); ?>">
                         <i class="nav-main-link-icon fa-solid fa-chart-pie"></i>
                         <span class="nav-main-link-name">Dashboard</span>
                      </a>
-                     <a class="nav-main-link" href="{{ route('users') }}">
+                     <a class="nav-main-link" href="<?php echo e(route('users')); ?>">
                         <i class="nav-main-link-icon fa fa-user"></i>
                         <span class="nav-main-link-name">Users</span>
                      </a>
-                     <a class="nav-main-link" href="{{ route('products') }}">
+                     <a class="nav-main-link" href="<?php echo e(route('products')); ?>">
                         <i class="nav-main-link-icon fa fa-diamond"></i>
                         <span class="nav-main-link-name">Products</span>
                      </a>
-                     <a class="nav-main-link" href="{{ route('categories') }}">
+                     <a class="nav-main-link" href="<?php echo e(route('categories')); ?>">
                         <i class="nav-main-link-icon fa fa-list-alt"></i>
                         <span class="nav-main-link-name">Categories</span>
                      </a>
-                     <a class="nav-main-link" href="{{ route('orders') }}">
+                     <a class="nav-main-link" href="<?php echo e(route('orders')); ?>">
                         <i class="nav-main-link-icon fa fa-pencil-square"></i>
                         <span class="nav-main-link-name">Orders</span>
                      </a>
@@ -170,11 +170,11 @@
             <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="layout"
                     data-action="dark_mode_toggle"><i class="fa fa-moon"></i> <i class="fa fa-sun"></i></button>
             <div style="border-radius: 5px"
-                 class="bg-gray-light p-1 d-inline-block"> @include('partials.locales') </div>
+                 class="bg-gray-light p-1 d-inline-block"> <?php echo $__env->make('partials.locales', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?> </div>
          </div>
          <!-- END Left Section -->
       </div>
-      @include('partials.flashs')
+      <?php echo $__env->make('partials.flashs', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
       <div class="flashs"></div>
       <script>
 
@@ -190,7 +190,7 @@
    <!-- END Header -->
    <!-- Main Container -->
    <div style="margin: 68px 0 0">
-      @yield('content')
+      <?php echo $__env->yieldContent('content'); ?>
    </div>
    <!-- END Main Container -->
 
@@ -213,17 +213,18 @@
         Codebase JS
 
         Core libraries and functionality
-        webpack is putting everything together at {{ asset('manager_assets/_js/main/app.js') }}
-   -->
-@yield('modals')
+        webpack is putting everything together at <?php echo e(asset('manager_assets/_js/main/app.js')); ?>
 
-<script src="{{ asset('manager_assets/js/codebase.app.min.js') }}"></script>
+   -->
+<?php echo $__env->yieldContent('modals'); ?>
+
+<script src="<?php echo e(asset('manager_assets/js/codebase.app.min.js')); ?>"></script>
 
 <!-- Page JS Plugins -->
-<script src="{{ asset('manager_assets/js/plugins/chart.js/chart.min.js') }}"></script>
+<script src="<?php echo e(asset('manager_assets/js/plugins/chart.js/chart.min.js')); ?>"></script>
 
 <!-- Page JS Code -->
-<script src="{{ asset('manager_assets/js/pages/be_pages_dashboard.min.js') }}"></script>
+<script src="<?php echo e(asset('manager_assets/js/pages/be_pages_dashboard.min.js')); ?>"></script>
 
 <script>
    $(document).on("submit", "#store", function () {
@@ -231,7 +232,7 @@
       var e = this;
       let submit_button_default_name = $(this).find("[type='submit']").html();
       let current_location = '' + location
-      let previous_url = "{{ session('previous_page') }}";
+      let previous_url = "<?php echo e(session('previous_page')); ?>";
 
       $(this).find("[type='submit']").html('Creating...');
       $(this).find(".text-danger").remove();
@@ -269,7 +270,8 @@
    });
 </script>
 
-@yield('js')
+<?php echo $__env->yieldContent('js'); ?>
 </body>
 
 </html>
+<?php /**PATH C:\OSPanel\domains\lazurit\resources\views/manager/layouts/manager.blade.php ENDPATH**/ ?>

@@ -52,14 +52,14 @@
             </div>
             <div class="col-lg-6">
                <div class="product-details-content" data-aos="fade-up" data-aos-delay="400">
-
-
-
-
-
-
-
-
+                  <div class="product-details-price mb-3">
+                     <span class="new-price fs-3"><?php echo e($product->formattedPrice()); ?> sum</span>
+                  </div>
+                  <div class="product-details-action-wrap">
+                     <div class="single-product-cart btn-hover">
+                        <a href="<?php echo e(route('add_to_cart', $product)); ?>"><?php echo e(__('Add to Cart')); ?></a>
+                     </div>
+                  </div>
                   <div class="product-details-meta">
                      <ul>
                         <li><span class="title">Art:</span><?php echo e($product->art); ?></li>
@@ -110,9 +110,9 @@
                            </a>
                         </div>
                         <div class="product-content">
-                           <h3><a href="<?php echo e(route('product', [$relatedProduct->category, $relatedProduct])); ?>"><?php echo e($relatedProduct->name); ?></a></h3>
+                           <h3><a href="<?php echo e(route('product', [$relatedProduct->category, $relatedProduct])); ?>"><?php echo e($relatedProduct->name); ?> <?php echo e($relatedProduct->art); ?></a></h3>
                            <div class="product-price">
-                              <span class="new-price"><?php echo e($relatedProduct->formattedPrice()); ?> sum</span>
+                                
                            </div>
                         </div>
                      </div>

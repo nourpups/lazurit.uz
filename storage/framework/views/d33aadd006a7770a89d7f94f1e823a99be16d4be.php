@@ -1,6 +1,6 @@
-@extends('manager.layouts.manager')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 
    <div class="container py-3">
       <div class="block-rounded bg-gd-default block text-white">
@@ -21,11 +21,11 @@
       <div class="row">
          <!-- Row #1 -->
          <div class="col-6 col-xl-3">
-            <a class="block-rounded bg-gd-emerald block shadow-none" href="{{ route('products') }}">
+            <a class="block-rounded bg-gd-emerald block shadow-none" href="<?php echo e(route('products')); ?>">
                <div class="block-content block-content-full d-flex align-items-center justify-content-between">
                   <div class="me-1">
                      <p class="fs-lg fw-semibold mb-0 text-white">
-                        {{ $totalProductsCount }} Products
+                        <?php echo e($totalProductsCount); ?> Products
                      </p>
                      <p class="fs-sm text-uppercase fw-semibold text-white-75 mb-0">
                         Total Products
@@ -38,11 +38,11 @@
             </a>
          </div>
          <div class="col-6 col-xl-3">
-            <a class="block-rounded bg-gd-cherry block shadow-none" href="{{ route('categories') }}">
+            <a class="block-rounded bg-gd-cherry block shadow-none" href="<?php echo e(route('categories')); ?>">
                <div class="block-content block-content-full d-flex align-items-center justify-content-between">
                   <div class="me-1">
                      <p class="fs-lg fw-semibold mb-0 text-white">
-                        {{ $categories->count() }} Categories
+                        <?php echo e($categories->count()); ?> Categories
                      </p>
                      <p class="fs-sm text-uppercase fw-semibold text-white-75 mb-0">
                         Total Categories
@@ -55,11 +55,11 @@
             </a>
          </div>
          <div class="col-6 col-xl-3">
-            <a class="block-rounded bg-black-90 block shadow-none" href="{{ route('orders') }}">
+            <a class="block-rounded bg-black-90 block shadow-none" href="<?php echo e(route('orders')); ?>">
                <div class="block-content block-content-full d-flex align-items-center justify-content-between">
                   <div class="me-1">
                      <p class="fs-lg fw-semibold mb-0 text-white">
-                        {{ $totalOrdersCount }} Orders
+                        <?php echo e($totalOrdersCount); ?> Orders
                      </p>
                      <p class="fs-sm text-uppercase fw-semibold text-white-75 mb-0">
                         Total Orders
@@ -72,11 +72,11 @@
             </a>
          </div>
          <div class="col-6 col-xl-3">
-            <a class="block-rounded bg-gd-dusk block shadow-none" href="{{ route('users') }}">
+            <a class="block-rounded bg-gd-dusk block shadow-none" href="<?php echo e(route('users')); ?>">
                <div class="block-content block-content-full d-flex align-items-center justify-content-between">
                   <div class="me-1">
                      <p class="fs-lg fw-semibold mb-0 text-white">
-                        {{ $totalUsersCount }} Users
+                        <?php echo e($totalUsersCount); ?> Users
                      </p>
                      <p class="fs-sm text-uppercase fw-semibold text-white-75 mb-0">
                         Total Users
@@ -96,28 +96,29 @@
                <div class="block-content">
                   <div class="py-3 text-center">
                      <h1 class="h2 fw-bold mb-2">Products</h1>
-                     <h2 class="h5 fw-medium">Total Products: {{ $totalProductsCount }}</h2>
+                     <h2 class="h5 fw-medium">Total Products: <?php echo e($totalProductsCount); ?></h2>
                   </div>
                </div>
             </div>
             <div class="row justify-content-center">
-               @foreach ($categories as $category)
+               <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <div class="col-6 col-md-4 col-xl-3">
                      <a class="block-rounded bg-image block text-center"
-                        style="background-image: url({{ asset("storage/$category->image") }}); "
+                        style="background-image: url(<?php echo e(asset("storage/$category->image")); ?>); "
                         href="javascript:void(0)">
                         <div class="block-content text-white"
                              style="backdrop-filter: blur(2px); background-color: rgb(0 0 0 / 30%)">
 
                   <span class="fs-2">
-                    {{ $category->products_count }}
+                    <?php echo e($category->products_count); ?>
+
                   </span>
-                           <p>{{ $category->name }}</p>
+                           <p><?php echo e($category->name); ?></p>
 
                         </div>
                      </a>
                   </div>
-               @endforeach
+               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
          </div>
          <div class="col-12 col-sm-6">
@@ -125,7 +126,7 @@
                <div class="block-content">
                   <div class="py-3 text-center">
                      <h1 class="h2 fw-bold mb-2">Users</h1>
-                     <h2 class="h5 fw-medium">Total Users: {{ $totalUsersCount }}</h2>
+                     <h2 class="h5 fw-medium">Total Users: <?php echo e($totalUsersCount); ?></h2>
                   </div>
                </div>
             </div>
@@ -136,7 +137,8 @@
                           style="background-color: #0284c7">
                         <div class="me-1">
                            <p class="fs-lg fw-semibold mb-0 text-white">
-                              {{ $totalCustomersCount }}
+                              <?php echo e($totalCustomersCount); ?>
+
                            </p>
                            <p class="fs-sm text-uppercase fw-semibold text-white mb-0">
                               Total Customers
@@ -154,7 +156,8 @@
                           style="background-color: #8f55f2">
                         <div class="me-1">
                            <p class="fs-lg fw-semibold mb-0 text-white">
-                              {{ $totalAdminsCount }}
+                              <?php echo e($totalAdminsCount); ?>
+
                            </p>
                            <p class="fs-sm text-uppercase fw-semibold text-white mb-0">
                               Total Admins
@@ -173,7 +176,7 @@
          <div class="block-content">
             <div class="py-3 text-center">
                <h1 class="h2 fw-bold mb-2">Orders</h1>
-               <h2 class="h5 fw-medium">Total Orders: {{ $totalOrdersCount }}</h2>
+               <h2 class="h5 fw-medium">Total Orders: <?php echo e($totalOrdersCount); ?></h2>
             </div>
          </div>
       </div>
@@ -184,7 +187,7 @@
                <div class="block-content block-content-full d-flex align-items-center justify-content-between">
                   <div class="me-1">
                      <p class="fs-lg fw-semibold mb-0 text-white">
-                        {{ $todayOrdersCount }} Orders
+                        <?php echo e($todayOrdersCount); ?> Orders
                      </p>
                      <p class="fs-sm text-uppercase fw-semibold text-white-75 mb-0">
                         Today Orders
@@ -201,7 +204,7 @@
                <div class="block-content block-content-full d-flex align-items-center justify-content-between">
                   <div class="me-1">
                      <p class="fs-lg fw-semibold mb-0 text-white">
-                        {{ $thisWeekOrdersCount }} Orders
+                        <?php echo e($thisWeekOrdersCount); ?> Orders
                      </p>
                      <p class="fs-sm text-uppercase fw-semibold text-white-75 mb-0">
                         This Week Orders
@@ -218,7 +221,7 @@
                <div class="block-content block-content-full d-flex align-items-center justify-content-between">
                   <div class="me-1">
                      <p class="fs-lg fw-semibold mb-0 text-white">
-                        {{ $thisMonthOrdersCount }} Orders
+                        <?php echo e($thisMonthOrdersCount); ?> Orders
                      </p>
                      <p class="fs-sm text-uppercase fw-semibold text-white-75 mb-0">
                         This Month Orders
@@ -234,4 +237,6 @@
 
 
    </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('manager.layouts.manager', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OSPanel\domains\lazurit\resources\views/manager/index.blade.php ENDPATH**/ ?>

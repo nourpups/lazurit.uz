@@ -44,12 +44,12 @@
                <h2 data-aos="fade-up" data-aos-delay="200">{{ __('Jewelry') }}</h2>
                <h1 data-aos="fade-up" data-aos-delay="300">{{ __('The best jewelry') }}</h1>
                <p data-aos="fade-up" data-aos-delay="400">
-                  {{ __('In the world of jewelry art, there are brands that simply continue to exist, and there are those that are an inspiration for many. One of these brands is our jewelry brand, which has been a major player in the market for many years and has a huge base of satisfied customers') }}
-                  .
+                  {{ __('In the world of jewelry art, there are brands that simply continue to exist, and there are those that are an inspiration for many. One of these brands is our jewelry brand, which has been a major player in the market for many years and has a huge base of satisfied customers.') }}
+
                </p>
                <p data-aos="fade-up" data-aos-delay="400">
-                  {{ __('Our brand loves what it does and is always striving for improvement. Each product created by our craftsmen is a real masterpiece that combines beauty, elegance and the highest quality') }}
-                  .
+                  {{ __('Our brand loves what it does and is always striving for improvement. Each product created by our craftsmen is a real masterpiece that combines beauty, elegance and the highest quality.') }}
+
                </p>
 
             </div>
@@ -65,7 +65,6 @@
                   <h1 data-aos="fade-up" data-aos-delay="400">{{ __('What is the peculiarity of Lazurit?') }}</h1>
                   <p class="about-p" data-aos="fade-up" data-aos-delay="300">
                      {{ __('We constantly monitor new trends in the world of jewelry art and introduce them into our production process. But at the same time, we do not forget about our uniqueness and individuality, which make our brand truly unique') }}
-                     .
                   </p>
                </div>
             </div>
@@ -80,14 +79,14 @@
                   <h2 data-aos="fade-up" data-aos-delay="200">{{ __('Goal') }}</h2>
                   <h1 data-aos="fade-up" data-aos-delay="300">{{ __('Our Goal') }}</h1>
                   <p data-aos="fade-up" data-aos-delay="400">
-                     {{ __('Our goal is not just to sell jewelry, but to create real works of art that will accompany our customers throughout their lives. We are proud that our brand has become a symbol of beauty and elegance for many people, and we strive to maintain this status for many years') }}
+                     {{ __('Our goal is not just to sell jewelry, but to create real works of art that will accompany our customers throughout their lives. We are proud that our brand has become a symbol of beauty and elegance for many people, and we strive to maintain this status for many years.') }}
                   </p>
                   <p data-aos="fade-up" data-aos-delay="400">
-                     {{ __('We are grateful to our customers for the trust they place in us, and we are always happy to help them choose the perfect decoration for any occasion. Our team of professionals is always ready to answer any questions and help with the selection of jewelry that will emphasize the individuality and beauty of each of our clients') }}
+                     {{ __('We are grateful to our customers for the trust they place in us, and we are always happy to help them choose the perfect decoration for any occasion. Our team of professionals is always ready to answer any questions and help with the selection of jewelry that will emphasize the individuality and beauty of each of our clients.') }}
                   </p>
                   <p data-aos="fade-up" data-aos-delay="400">
-                     {{ __('All this makes our brand truly unique and inimitable, and we will continue to delight our customers for many years') }}
-                     .
+                     {{ __('All this makes our brand truly unique and inimitable, and we will continue to delight our customers for many years.') }}
+
                   </p>
                   <p class="fw-bold" data-aos="fade-up" data-aos-delay="400">
                      {{ __('Jewelry brand «Lazurit» — a feel of luxury!') }}

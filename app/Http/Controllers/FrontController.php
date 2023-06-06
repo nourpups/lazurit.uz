@@ -27,14 +27,14 @@ class FrontController extends
 
         $products = $request['sort']
            ? $sortCatalogAction($request['sort'], $category->id)
-           : Product::withTranslation()->translatedIn(app()->getLocale())->where('category_id', $category->id)->paginate('16');
+           : Product::with('category')->withTranslation()->translatedIn(app()->getLocale())->where('category_id', $category->id)->paginate('16');
 
         return view('catalog.catalog', compact('category', 'products'));
     }
 
     public function product(Category $category, Product $product)
     {
-
+        $product->load('category', 'translations'); // when a product is added, the N+1 query detector swears and asks to do "eager loading". Take it away and try to add a product, you'll see for yourself
         $relatedProducts = Product::relatedProducts($product);
 
         return view('catalog.product-details', compact('product', 'relatedProducts'));
@@ -42,7 +42,6 @@ class FrontController extends
 
     public function change_lang($lang)
     {
-//        dd($lang);
         app()->setLocale($lang);
         session()->put('locale', $lang);
 
