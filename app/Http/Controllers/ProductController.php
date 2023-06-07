@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\CreateProductArt;
-use App\Actions\CreateImageAction;
-use App\Actions\SaveSlugAction;
-use App\Actions\StoreProductGroupAction;
-use App\Actions\UpdateProductGroupAction;
+use App\Actions\Product\StoreProductGroupAction;
+use App\Actions\Product\UpdateProductGroupAction;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;

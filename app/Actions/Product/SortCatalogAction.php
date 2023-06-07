@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Product;
 
 use App\Models\Product;
+
+use function app;
 
 class SortCatalogAction
 {

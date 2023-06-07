@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\CreateImageAction;
-use App\Actions\StoreCategoryGroupAction;
-use App\Actions\UpdateCategoryGroupAction;
-use App\Actions\UpdateImageAction;
+use App\Actions\Category\StoreCategoryGroupAction;
+use App\Actions\Category\UpdateCategoryGroupAction;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use App\Services\Images;
-use Illuminate\Http\Request;
 
 class CategoryController extends
    Controller

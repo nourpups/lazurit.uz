@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\SortCatalogAction;
+use App\Actions\Product\SortCatalogAction;
 use App\Models\Category;
-use App\Models\Order;
 use App\Models\Product;
-use App\Services\Telegram;
 use Illuminate\Http\Request;
 
 class FrontController extends

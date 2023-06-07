@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Product;
 
-use App\Models\Category;
+use App\Actions\Image\CreateImageAction;
 use App\Models\Product;
 
 class StoreProductGroupAction

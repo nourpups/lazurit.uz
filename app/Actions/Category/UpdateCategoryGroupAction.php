@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Category;
+
+use App\Actions\Image\UpdateImageAction;
+use App\Actions\Product\SaveSlugAction;
 
 class UpdateCategoryGroupAction
 {

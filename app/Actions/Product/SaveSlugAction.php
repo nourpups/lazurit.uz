@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Product;
 
-use App\Models\Product;
+use function str;
 
 class SaveSlugAction
 {

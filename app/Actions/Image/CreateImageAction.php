@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Image;
+
+use function str;
 
 class CreateImageAction
 {

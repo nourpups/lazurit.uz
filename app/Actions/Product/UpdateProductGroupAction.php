@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Product;
+
+use App\Actions\Image\UpdateImageAction;
 
 class UpdateProductGroupAction
 {
