@@ -30,6 +30,7 @@ class Order extends
     {
         $sum = 0;
         foreach ($this->products as $product) {
+
             $sum += $product->amount;
         }
         return $sum;

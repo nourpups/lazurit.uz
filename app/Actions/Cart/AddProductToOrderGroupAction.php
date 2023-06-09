@@ -15,6 +15,7 @@ class AddProductToOrderGroupAction
 
    public function __invoke(Product $product, $order)
    {
+
       $order = ($this->createOrderAction)($order);
 
       ($this->addProductToOrderAction)($product, $order);

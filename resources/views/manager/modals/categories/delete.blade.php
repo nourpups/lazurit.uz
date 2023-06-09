@@ -2,7 +2,7 @@
 <div class="modal fade" id="modal-popout-delete{{$cat->id}}" tabindex="-1" aria-labelledby="modal-popout"
      style="display: none;"
      aria-hidden="true">
-    <form action="{{ route('category.delete', $cat->id) }}" method="post">
+    <form action="{{ route('categories.destroy', $cat->id) }}" method="post">
         @csrf
         @method('DELETE')
         <div class="modal-dialog modal-dialog-popout" role="document">

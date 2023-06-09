@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Categories || glossy.uz'); ?>
+<?php $__env->startSection('title', 'Categories'); ?>
 
 <?php $__env->startSection('content'); ?>
    <!-- Dynamic Table Full -->
@@ -18,7 +18,6 @@
             <tr>
                <th class="text-center">ID</th>
                <th>NAME</th>
-               <th>SLUG</th>
                <th style="width: 25%;">IMAGE</th>
                <th class="text-center" style="width: 15%;">ACTIONS</th>
             </tr>
@@ -29,13 +28,12 @@
                <tr>
                   <td class="text-center"><?php echo e($cat->id); ?></td>
                   <td class="fw-semibold"><?php echo e($cat->name); ?></td>
-                  <td class="fw-semibold"><?php echo e($cat->slug); ?></td>
                   <td class="text-center">
                      <img class="img-fluid options-item" src="<?php echo e(asset('storage/'.$cat->image)); ?>" alt="">
                   </td>
                   <td>
 
-                     <a class="btn btn-alt-primary mb-2 w-100" href="<?php echo e(route('category.edit', $cat)); ?>">
+                     <a class="btn btn-alt-primary mb-2 w-100" href="<?php echo e(route('categories.edit', $cat)); ?>">
                         <i class="fa fa-pen"></i> Edit
                      </a>
 

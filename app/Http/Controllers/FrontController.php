@@ -34,13 +34,14 @@ class FrontController extends
 
     public function product(Category $category, Product $product)
     {
+//        dd(1);
         $product->load('category', 'translations'); // when a product is added, the N+1 query detector swears and asks to do "eager loading". Take it away and try to add a product, you'll see for yourself
         $relatedProducts = Product::relatedProducts($product);
 
         return view('catalog.product-details', compact('product', 'relatedProducts'));
     }
 
-    public function change_lang($lang)
+    public function changeLang($lang)
     {
         app()->setLocale($lang);
         session()->put('locale', $lang);

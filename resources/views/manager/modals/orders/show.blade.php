@@ -37,7 +37,7 @@
                      <tr>
                         <td class="text-center">{{ $product->id }}
                            <hr> {{ $product->name }} <code> {{$product->art}}</code></td>
-                        <td>{{ $product->formattedPrice() }} sum</td>
+                        <td>{{ $product->price }} sum</td>
                         <td>{{ $product->pivot->count }}</td>
                         <td>{{$order->formattedSum()}} sum</td>
                         <td class="text-center">

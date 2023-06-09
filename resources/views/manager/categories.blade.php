@@ -1,6 +1,6 @@
 @extends('manager.layouts.manager')
 
-@section('title', 'Categories || glossy.uz')
+@section('title', 'Categories')
 
 @section('content')
    <!-- Dynamic Table Full -->
@@ -20,7 +20,6 @@
             <tr>
                <th class="text-center">ID</th>
                <th>NAME</th>
-               <th>SLUG</th>
                <th style="width: 25%;">IMAGE</th>
                <th class="text-center" style="width: 15%;">ACTIONS</th>
             </tr>
@@ -31,13 +30,12 @@
                <tr>
                   <td class="text-center">{{ $cat->id }}</td>
                   <td class="fw-semibold">{{ $cat->name }}</td>
-                  <td class="fw-semibold">{{ $cat->slug }}</td>
                   <td class="text-center">
                      <img class="img-fluid options-item" src="{{ asset('storage/'.$cat->image) }}" alt="">
                   </td>
                   <td>
 
-                     <a class="btn btn-alt-primary mb-2 w-100" href="{{ route('category.edit', $cat) }}">
+                     <a class="btn btn-alt-primary mb-2 w-100" href="{{ route('categories.edit', $cat) }}">
                         <i class="fa fa-pen"></i> Edit
                      </a>
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -37,11 +38,6 @@ class Product extends
     public function priceForCount()
     {
         return $this->amount;
-    }
-
-    public function formattedPrice()
-    {
-        return number_format($this->price, 0, '', ' ');
     }
 
     public static function scopeRelatedProducts($query, Product $product)

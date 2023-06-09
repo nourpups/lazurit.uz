@@ -13,7 +13,8 @@ class UpdateCategoryGroupAction
 
     public function __invoke($newImage, $oldImage, $imageName, $slug)
     {
-        $image = ($this->updateImageAction)($newImage, $oldImage, $imageName, 'categories/image');
+
+        $image = ($this->updateImageAction)($newImage, $oldImage, $imageName.'_'.time(), 'categories/image');
         $slug = ($this->saveSlugAction)($slug);
         
         return [

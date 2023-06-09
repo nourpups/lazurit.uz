@@ -10,7 +10,7 @@
          <h3><a href={{ route('product', [$product->category, $product]) }}>{{ $product->name }} {{$product->art}}</a></h3>
          <div class="product-price">
             {{-- <span class="old-price">$ {{ ceil($product['price'] * 1.25) }}</span> --}}
-{{--            <span class="new-price">{{ $product->formattedPrice()}} sum</span>--}}
+{{--            <span class="new-price price-format">{{ $product->price}} sum</span>--}}
          </div>
       </div>
    </div>

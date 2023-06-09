@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="block-content fs-sm mb-3 p-2">
-                    <form action="{{ route('category.store') }}" enctype="multipart/form-data" method="POST" id="store">
+                    <form action="{{ route('categories.store') }}" enctype="multipart/form-data" method="POST" id="store">
                         @csrf
                         @foreach (config('translatable.locales') as $locale)
                             <div class="form-floating mb-2">

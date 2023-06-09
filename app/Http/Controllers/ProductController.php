@@ -15,7 +15,14 @@ class ProductController extends
    Controller
 {
 
+public function index() {
+    session()->put('previous_page', url()->full());
 
+    $products = Product::withTranslation()->latest()->paginate('16');
+    $categories = Category::withTranslation()->get();
+
+    return view('manager.products', compact('products', 'categories'));
+}
     public function store(ProductRequest $request, StoreProductGroupAction $storeProductGroupAction)
     {
         $product_name = $request[app()->getLocale()]['name'];
@@ -57,7 +64,7 @@ class ProductController extends
         return redirect(session('previous_page'))->with('danger', "Can't update product $product->name");
     }
 
-    public function delete(Product $product)
+    public function destroy(Product $product)
     {
         $name = $product->name;
 

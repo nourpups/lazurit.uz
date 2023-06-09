@@ -2,7 +2,7 @@
 <div class="modal fade" id="modal-popout-delete<?php echo e($product->id); ?>" tabindex="-1" aria-labelledby="modal-popout"
      style="display: none;"
      aria-hidden="true">
-   <form action="<?php echo e(route('product.delete', $product->id)); ?>" method="post">
+   <form action="<?php echo e(route('products.destroy', $product->id)); ?>" method="post">
       <?php echo csrf_field(); ?>
       <?php echo method_field('DELETE'); ?>
       <div class="modal-dialog modal-dialog-popout" role="document">

@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Products || glossy.uz'); ?>
+<?php $__env->startSection('title', 'Products'); ?>
 
 <?php $__env->startSection('content'); ?>
 
@@ -36,11 +36,11 @@
                   </td>
                   <td class="text-center">
                      <img class="img-fluid options-item" src="<?php echo e(asset('storage/' . $product->image)); ?>" alt="">
-                     <b><?php echo e($product->formattedPrice()); ?> sum</b>
+                     <b><?php echo e($product->price); ?> sum</b>
                   </td>
                   <td>
 
-                     <a class="btn btn-alt-primary w-100 mb-2" href="<?php echo e(route('product.edit', $product)); ?>">
+                     <a class="btn btn-alt-primary w-100 mb-2" href="<?php echo e(route('products.edit', $product)); ?>">
                         <i class="fa fa-pen"></i> Edit
                      </a>
 

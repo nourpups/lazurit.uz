@@ -36,36 +36,4 @@ class ManagerController extends
         return view('manager.index', compact('totalProductsCount', 'categories', 'totalOrdersCount', 'totalUsersCount', 'totalCustomersCount', 'totalAdminsCount', 'todayOrdersCount', 'thisMonthOrdersCount', 'thisWeekOrdersCount'));
     }
 
-    public function users()
-    {
-        $users = User::latest()->paginate('16');
-
-        return view('manager.users', compact('users'));
-    }
-
-    public function products()
-    {
-        session()->put('previous_page', url()->full());
-
-        $products = Product::withTranslation()->latest()->paginate('16');
-        $categories = Category::withTranslation()->translatedIn(app()->getLocale())->get();
-
-        return view('manager.products', compact('products', 'categories'));
-    }
-
-    public function categories()
-    {
-        session()->put('previous_page', url()->full());
-        $categories = Category::withTranslation()->translatedIn(app()->getLocale())->latest()->paginate('16');
-
-        return view('manager.categories', compact('categories'));
-    }
-
-    public function orders()
-    {
-        $orders = Order::latest()->paginate('16');
-
-        return view('manager.orders', compact('orders'));
-    }
-
 }

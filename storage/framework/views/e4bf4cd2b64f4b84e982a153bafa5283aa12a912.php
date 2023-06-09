@@ -1,6 +1,6 @@
 
 
-<?php $__env->startSection('title', 'Orders || glossy.uz'); ?>
+<?php $__env->startSection('title', 'Orders'); ?>
 
 <?php $__env->startSection('content'); ?>
    <!-- Dynamic Table Full -->

@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="block-content fs-sm mb-3 p-2">
-                    <form action="<?php echo e(route('category.store')); ?>" enctype="multipart/form-data" method="POST" id="store">
+                    <form action="<?php echo e(route('categories.store')); ?>" enctype="multipart/form-data" method="POST" id="store">
                         <?php echo csrf_field(); ?>
                         <?php $__currentLoopData = config('translatable.locales'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $locale): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="form-floating mb-2">

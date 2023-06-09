@@ -13,7 +13,7 @@ class StoreCategoryGroupAction
 
     public function __invoke($image, $imageName, $slug)
     {
-        $image = ($this->createImageAction)($image, $imageName, 'categories/image');
+        $image = ($this->createImageAction)($image, $imageName.'_'.time(), 'categories/image');
         $slug = ($this->saveSlugAction)($slug);
 
         return [

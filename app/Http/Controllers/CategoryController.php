@@ -7,18 +7,25 @@ use App\Actions\Category\UpdateCategoryGroupAction;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use App\Services\Images;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends
    Controller
 {
+    public function index()
+    {
+        session()->put('previous_page', url()->full());
+        $categories = Category::withTranslation()->latest()->paginate('16');
+
+        return view('manager.categories', compact('categories'));
+    }
     public function store(CategoryRequest $request, StoreCategoryGroupAction $storeCategoryGroupAction)
     {
         $data = $request->validated();
 
         $name = $data[app()->getLocale()]['name'];
 
-        $imageName = $request['en']['name'].'_'.time();
-        $imageAndSlug = $storeCategoryGroupAction($request['image'], $imageName, $request['ru']['name']);
+        $imageAndSlug = $storeCategoryGroupAction($data['image'], $data['en']['name'], $data['ru']['name']);
 
         $data = array_merge($data, $imageAndSlug);
 
@@ -32,9 +39,9 @@ class CategoryController extends
         }
         session()->flash('danger', "Can\'t create Category $name");
 
-        unlink(storage_path('app/public/').$data['image']);
+        Storage::delete($data['image']);
         return response()->json([
-           'status' => true,
+           'status' => false,
            'flash' => view('partials.flashs')->render()
         ]);
     }
@@ -48,8 +55,7 @@ class CategoryController extends
     {
         $data = $request->validated();
 
-        $imageName = $data['en']['name'].'_'.time();
-        $imageAndSlug = $updateCategoryGroupAction($request['image'], $category->image, $imageName, $data['ru']['name']);
+        $imageAndSlug = $updateCategoryGroupAction($request['image'], $category->image, $data['en']['name'], $data['ru']['name']);
 
         $data = array_merge($data, $imageAndSlug);
 
@@ -60,11 +66,12 @@ class CategoryController extends
         return redirect(session('previous_page'))->with('danger', "Can't update category $category->name");
     }
 
-    public function delete(Category $category)
+    public function destroy(Category $category)
     {
         $name = $category->name;
 
-        unlink(storage_path('app/public/').$category->image);
+        Storage::delete($category->image);
+
         if ($category->delete()) {
             return redirect(session('previous_page'))->with('danger', "Category $name succesfully deleted");
         }

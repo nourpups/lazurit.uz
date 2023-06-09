@@ -64,7 +64,7 @@
                                     class="text-muted"><?php echo e($product->category->name); ?></a>
                               </td>
                               <td class="product-cart-price">
-                          <span class="amount"><?php echo e($product->formattedPrice()); ?> sum
+                          <span class="amount price-format"><?php echo e($product->price); ?> sum
                           </span>
                               </td>
                               <td class="cart-quality">
@@ -84,7 +84,7 @@
                               </td>
                               <td class="product-total">
                           <span
-                             class="amount_<?php echo e($product->id); ?>"><?php echo e(number_format($product->priceForCount(), 0, '', ' ')); ?>
+                             class="amount_<?php echo e($product->id); ?> price-format"><?php echo e($product->amount); ?>
 
                             sum
                           </span>
@@ -113,14 +113,14 @@
                      <div class="grand-total-wrap">
                         <div class="grand-total-content">
                            <h3>
-                              <?php echo e(__('Subtotal')); ?> <span class="subtotal"><?php echo e(number_format($order->totalSum(), 0, '', ' ')); ?>
+                              <?php echo e(__('Subtotal')); ?> <span class="subtotal price-format"><?php echo e($order->totalSum()); ?>
 
                         sum</span>
                            </h3>
                            <div class="grand-shipping">
                            </div>
                            <div class="grand-total">
-                              <h4><?php echo e(__('Total')); ?> <span class="total"><?php echo e(number_format($order->totalSum(), 0, '', ' ')); ?>
+                              <h4><?php echo e(__('Total')); ?> <span class="total price-format"><?php echo e($order->totalSum()); ?>
 
                           sum </span>
                               </h4>
@@ -132,8 +132,11 @@
                                  data-bs-target="#confirm_order"><?php echo e(__('Proceed to checkout')); ?></a>
                            <?php endif; ?>
                            <?php if(auth()->guard()->check()): ?>
-                              <a href="<?php echo e(route('cart.confirm', $order)); ?>"
-                                 class="btn btn-outline-dark"><?php echo e(__('Proceed to checkout')); ?></a>
+                                 <form id="confirm" action="<?php echo e(route('cart.confirm')); ?>" method="POST"> <?php echo csrf_field(); ?> </form>
+                              <a onclick="document.getElementById('confirm').submit()" class="btn btn-outline-dark">
+                                 <?php echo e(__('Proceed to checkout')); ?>
+
+                              </a>
                            <?php endif; ?>
                         </div>
                      </div>
@@ -243,15 +246,9 @@
                method: method
             },
             success: function (res) {
-               // toLocaleString('fr) for displaying numbers in with spaces: "x xxx xxx".
-               let flash = res.flash
-               let id = res.id
-               let deleted = res.deleted
-               let total = res.total
-               let count = res.count
-               let amount = res.amount
+               // toLocaleString('fr) for displaying numbers with spaces (formatting): "x xxx xxx".
 
-               if (total == 0) {
+               if (res.total == 0) {
                   $('.cart-area').remove()
                   empty_cart = `<div class="w-100 d-flex justify-content-center align-items-end"
                           style="background: url(<?php echo e(asset('assets/images/cart/empty-cart.png')); ?>) center no-repeat; height:75vh">
@@ -260,21 +257,21 @@
                         `
                   $('.breadcrumb-area').after(empty_cart)
                }
-               if (deleted) {
-                  $('.product_' + id).remove()
+               if (res.deleted) {
+                  $('.product_' + res.id).remove()
                } else {
-                  $('.count_' + id).val(count)
-                  $('.amount_' + id).html(amount.toLocaleString('fr') + ' sum')
+                  $('.count_' + res.id).val(res.count)
+                  $('.amount_' + res.id).html(res.amount.toLocaleString('fr') + ' sum')
                }
-               $('.flashs').html(flash)
+               $('.flashs').html(res.flash)
 
                setTimeout(() => {
                   $(".alert").alert('close');
                }, 4000);
 
-               $('.product-count').html(count)
-               $('.total').html(total.toLocaleString('fr') + ' sum')
-               $('.subtotal').html(total.toLocaleString('fr') + ' sum')
+               $('.product-count').html(res.count)
+               $('.subtotal').html(res.total.toLocaleString('fr') + ' sum')
+               $('.total').html(res.total.toLocaleString('fr') + ' sum')
             }
          })
       }

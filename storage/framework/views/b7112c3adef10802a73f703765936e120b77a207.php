@@ -3,7 +3,7 @@
 <?php $__env->startSection('title', "Edit Category $category->name"); ?>
 
 <?php $__env->startSection('content'); ?>
-   <form class="p-4" action="<?php echo e(route('category.update', $category)); ?>"
+   <form class="p-4" action="<?php echo e(route('categories.update', $category)); ?>"
          enctype="multipart/form-data"
          method="POST">
       <?php echo csrf_field(); ?>

@@ -25,6 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
+
         Schema::table('order_product', function (Blueprint $table) {
             $table->dropColumn('count');
         });

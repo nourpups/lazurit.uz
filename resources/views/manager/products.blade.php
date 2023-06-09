@@ -1,6 +1,6 @@
 @extends('manager.layouts.manager')
 
-@section('title', 'Products || glossy.uz')
+@section('title', 'Products')
 
 @section('content')
 
@@ -38,11 +38,11 @@
                   </td>
                   <td class="text-center">
                      <img class="img-fluid options-item" src="{{ asset('storage/' . $product->image) }}" alt="">
-                     <b>{{ $product->formattedPrice() }} sum</b>
+                     <b>{{ $product->price }} sum</b>
                   </td>
                   <td>
 
-                     <a class="btn btn-alt-primary w-100 mb-2" href="{{ route('product.edit', $product) }}">
+                     <a class="btn btn-alt-primary w-100 mb-2" href="{{ route('products.edit', $product) }}">
                         <i class="fa fa-pen"></i> Edit
                      </a>
 

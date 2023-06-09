@@ -39,9 +39,9 @@
                <div class="flashs"></div>
                <div class="col-lg-3 col-md-6 col-6">
                   <div class="logo">
-                     <a href="<?php echo e(route('home')); ?>"><img width="130"
-                                                        src="<?php echo e(asset('assets/images/logo/lazurit.png')); ?>"
-                                                        alt="Lazurit logo"></a>
+                     <a href="<?php echo e(route('home')); ?>">
+                        <img width="130" src="<?php echo e(asset('assets/images/logo/lazurit.png')); ?>" alt="Lazurit logo">
+                     </a>
                   </div>
                </div>
                <div class="col-lg-6 d-none d-lg-block d-flex justify-content-center">
@@ -96,23 +96,23 @@
                            </a>
                         <?php endif; ?>
                      </div>
+                                          <?php if(!\Route::is('cart')): ?>
+                                             <div class="header-action-style header-action-cart">
+                                                <a class="cart-active" href="javascript:void(0)">
+                                                   <i class="pe-7s-shopbag"></i>
+                                                   <?php if(!empty($cart)): ?>
+                                                      <?php if($cart->products->isNotEmpty()): ?>
+                                                         <span class="product-count bg-black"><?php echo e($cart->quantity()); ?></span>
+                                                      <?php endif; ?>
+                                                   <?php endif; ?>
+                                                </a>
+                                             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
+                                          <?php endif; ?>
                      <?php if(auth()->guard()->check()): ?>
                         <?php if(auth()->user()->is_admin): ?>
                            <div class="header-action-style">
-                              <a title="Admin Panel" href="<?php echo e(route('manager')); ?>">
+                              <a title="Admin Panel" href="<?php echo e(route('manager.index')); ?>">
                                  <i class="pe-7s-plugin"></i>
                               </a>
                            </div>
@@ -171,7 +171,7 @@
                                     href="<?php echo e(route('product', [$product->category, $product])); ?>"><?php echo e($product->name); ?> <?php echo e($product->art); ?></a>
                               </h4>
 
-                              <span> <?php echo e($product->count); ?> × <?php echo e($product->formattedPrice()); ?> sum</span>
+                              <span> <?php echo e($product->count); ?> × <span class="price-format"><?php echo e($product->price); ?> sum</span> </span>
                            </div>
                            <div class="cart-delete">
                               <button onclick="delete_product(<?php echo e($product->id); ?>)"
@@ -265,91 +265,6 @@
          </div>
       </div>
    </footer>
-
-   <div class="modal fade quickview-modal-style" id="confirm_order" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-         <div class="modal-content">
-            <div class="modal-header">
-               <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close"><i
-                     class="ti-close"></i></a>
-            </div>
-            <div class="modal-body">
-               <div class="login-register-area">
-                  <div class="container">
-                     <div class="row">
-                        <div class="col-lg-8 col-md-12 offset-lg-2">
-                           <div class="login-register-wrapper">
-                              <div class="login-register-tab-list nav">
-                                 <a class="active" data-bs-toggle="tab" href="#lg1">
-                                    <h4 class="h6"> <?php echo e(__('Login')); ?> </h4>
-                                 </a>
-                                 <a data-bs-toggle="tab" href="#lg2">
-                                    <h4 class="h6"> <?php echo e(__('Register')); ?> </h4>
-                                 </a>
-                              </div>
-                              <p class="h-5 mb-3">
-                                 <?php echo e(__('Please login or register first, to confirm your order')); ?></p>
-                              <div class="tab-content">
-                                 <div id="lg1" class="tab-pane active">
-                                    <div class="login-form-container">
-                                       <div class="login-register-form">
-
-                                          <form method="POST" class="login" action="<?php echo e(route('login')); ?>"
-                                                id="auth_form">
-                                             <?php echo csrf_field(); ?>
-                                             <label for=""><?php echo e(__('Name')); ?> <?php echo e(__('or')); ?>
-
-                                                <?php echo e(__('Phone')); ?></label>
-                                             <input type="text" name="name" value="<?php echo e(old('name')); ?>"
-                                                    placeholder="<?php echo e(__('Jhon Wick')); ?> <?php echo e(__('or')); ?> +998 99 123 45 67"
-                                                    autofocus>
-                                             <label for=""><?php echo e(__('Password')); ?></label>
-                                             <input type="text" name="password"
-                                                    value="<?php echo e(old('password')); ?>"
-                                                    placeholder="<?php echo e(__('jhonny434')); ?>">
-                                             <div class="button-box btn-hover">
-                                                <button type="submit"><?php echo e(__('Login')); ?></button>
-                                             </div>
-                                          </form>
-
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div id="lg2" class="tab-pane">
-                                    <div class="login-form-container">
-                                       <div class="login-register-form">
-                                          <form method="POST" class="register"
-                                                action="<?php echo e(route('register')); ?>"
-                                                id="auth_form">
-                                             <?php echo csrf_field(); ?>
-                                             <label for=""><?php echo e(__('Name')); ?></label>
-                                             <input type="text" name="name" value="<?php echo e(old('name')); ?>"
-                                                    placeholder="<?php echo e(__('Jhon Wick')); ?>" autofocus>
-                                             <label for=""><?php echo e(__('Phone')); ?></label>
-                                             <input type="text" name="phone" value="<?php echo e(old('phone')); ?>"
-                                                    placeholder="+998 99 123 45 67">
-                                             <label for=""><?php echo e(__('Password')); ?></label>
-                                             <input type="text" value="<?php echo e(old('login')); ?>"
-                                                    name="password"
-                                                    placeholder="<?php echo e(__('jhonny434')); ?>">
-                                             <div class="button-box btn-hover">
-                                                <button><?php echo e(__('Register')); ?></button>
-                                             </div>
-                                          </form>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- Product Modal end -->
    <!-- Mobile Menu start -->
    <div class="off-canvas-active">
       <a class="off-canvas-close"><i class="ti-close"></i></a>
@@ -402,6 +317,11 @@
 <script src="<?php echo e(asset('assets/js/main.js')); ?>"></script>
 <?php echo $__env->yieldContent('js'); ?>
 <script>
+   $('.price-format').each(function() {
+      var price = $(this).text();
+      var formattedPrice = parseFloat(price).toLocaleString('fr');
+      $(this).text(formattedPrice + ' sum');
+   });
    $(document).ready(function () {
       setTimeout(() => {
          $(".alert").alert('close');

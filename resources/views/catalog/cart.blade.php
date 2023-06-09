@@ -66,7 +66,7 @@
                                     class="text-muted">{{ $product->category->name }}</a>
                               </td>
                               <td class="product-cart-price">
-                          <span class="amount">{{$product->formattedPrice() }} sum
+                          <span class="amount price-format">{{$product->price }} sum
                           </span>
                               </td>
                               <td class="cart-quality">
@@ -86,7 +86,7 @@
                               </td>
                               <td class="product-total">
                           <span
-                             class="amount_{{ $product->id }}">{{ number_format($product->priceForCount(), 0, '', ' ') }}
+                             class="amount_{{ $product->id }} price-format">{{ $product->amount }}
                             sum
                           </span>
                               </td>
@@ -114,13 +114,13 @@
                      <div class="grand-total-wrap">
                         <div class="grand-total-content">
                            <h3>
-                              {{ __('Subtotal') }} <span class="subtotal">{{ number_format($order->totalSum(), 0, '', ' ') }}
+                              {{ __('Subtotal') }} <span class="subtotal price-format">{{ $order->totalSum() }}
                         sum</span>
                            </h3>
                            <div class="grand-shipping">
                            </div>
                            <div class="grand-total">
-                              <h4>{{ __('Total') }} <span class="total">{{ number_format($order->totalSum(), 0, '', ' ') }}
+                              <h4>{{ __('Total') }} <span class="total price-format">{{ $order->totalSum() }}
                           sum </span>
                               </h4>
                            </div>
@@ -131,8 +131,10 @@
                                  data-bs-target="#confirm_order">{{ __('Proceed to checkout') }}</a>
                            @endguest
                            @auth
-                              <a href="{{ route('cart.confirm', $order) }}"
-                                 class="btn btn-outline-dark">{{ __('Proceed to checkout') }}</a>
+                                 <form id="confirm" action="{{route('cart.confirm')}}" method="POST"> @csrf </form>
+                              <a onclick="document.getElementById('confirm').submit()" class="btn btn-outline-dark">
+                                 {{ __('Proceed to checkout') }}
+                              </a>
                            @endauth
                         </div>
                      </div>
@@ -241,38 +243,33 @@
                method: method
             },
             success: function (res) {
-               // toLocaleString('fr) for displaying numbers in with spaces: "x xxx xxx".
-               let flash = res.flash
-               let id = res.id
-               let deleted = res.deleted
-               let total = res.total
-               let count = res.count
-               let amount = res.amount
+               // toLocaleString('fr) for displaying numbers with spaces (formatting): "x xxx xxx".
 
-               if (total == 0) {
+               if (res.total == 0) {
                   $('.cart-area').remove()
-                  empty_cart = `<div class="w-100 d-flex justify-content-center align-items-end"
+                  empty_cart = `
+                        <div class="w-100 d-flex justify-content-center align-items-end"
                           style="background: url({{ asset('assets/images/cart/empty-cart.png') }}) center no-repeat; height:75vh">
                           <a class="btn btn-dark mb-4" href="{{ route('home') }}">{{ __('Go to Home') }}</a>
                           </div>
                         `
                   $('.breadcrumb-area').after(empty_cart)
                }
-               if (deleted) {
-                  $('.product_' + id).remove()
+               if (res.deleted) {
+                  $('.product_' + res.id).remove()
                } else {
-                  $('.count_' + id).val(count)
-                  $('.amount_' + id).html(amount.toLocaleString('fr') + ' sum')
+                  $('.count_' + res.id).val(res.count)
+                  $('.amount_' + res.id).html(res.amount.toLocaleString('fr') + ' sum')
                }
-               $('.flashs').html(flash)
+               $('.flashs').html(res.flash)
 
                setTimeout(() => {
                   $(".alert").alert('close');
                }, 4000);
 
-               $('.product-count').html(count)
-               $('.total').html(total.toLocaleString('fr') + ' sum')
-               $('.subtotal').html(total.toLocaleString('fr') + ' sum')
+               $('.product-count').html(res.count)
+               $('.subtotal').html(res.total.toLocaleString('fr') + ' sum')
+               $('.total').html(res.total.toLocaleString('fr') + ' sum')
             }
          })
       }

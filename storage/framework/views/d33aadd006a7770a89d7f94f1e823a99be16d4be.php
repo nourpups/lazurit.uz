@@ -21,7 +21,7 @@
       <div class="row">
          <!-- Row #1 -->
          <div class="col-6 col-xl-3">
-            <a class="block-rounded bg-gd-emerald block shadow-none" href="<?php echo e(route('products')); ?>">
+            <a class="block-rounded bg-gd-emerald block shadow-none" href="<?php echo e(route('products.index')); ?>">
                <div class="block-content block-content-full d-flex align-items-center justify-content-between">
                   <div class="me-1">
                      <p class="fs-lg fw-semibold mb-0 text-white">
@@ -38,7 +38,7 @@
             </a>
          </div>
          <div class="col-6 col-xl-3">
-            <a class="block-rounded bg-gd-cherry block shadow-none" href="<?php echo e(route('categories')); ?>">
+            <a class="block-rounded bg-gd-cherry block shadow-none" href="<?php echo e(route('categories.index')); ?>">
                <div class="block-content block-content-full d-flex align-items-center justify-content-between">
                   <div class="me-1">
                      <p class="fs-lg fw-semibold mb-0 text-white">
@@ -72,7 +72,7 @@
             </a>
          </div>
          <div class="col-6 col-xl-3">
-            <a class="block-rounded bg-gd-dusk block shadow-none" href="<?php echo e(route('users')); ?>">
+            <a class="block-rounded bg-gd-dusk block shadow-none" href="<?php echo e(route('users.index')); ?>">
                <div class="block-content block-content-full d-flex align-items-center justify-content-between">
                   <div class="me-1">
                      <p class="fs-lg fw-semibold mb-0 text-white">

@@ -38,7 +38,7 @@
                         <td class="text-center"><?php echo e($product->id); ?>
 
                            <hr> <?php echo e($product->name); ?> <code> <?php echo e($product->art); ?></code></td>
-                        <td><?php echo e($product->formattedPrice()); ?> sum</td>
+                        <td><?php echo e($product->price); ?> sum</td>
                         <td><?php echo e($product->pivot->count); ?></td>
                         <td><?php echo e($order->formattedSum()); ?> sum</td>
                         <td class="text-center">

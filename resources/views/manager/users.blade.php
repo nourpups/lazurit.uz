@@ -1,6 +1,6 @@
 @extends('manager.layouts.manager')
 
-@section('title', 'Users || glossy.uz')
+@section('title', 'Users')
 
 @section('content')
    <!-- Dynamic Table Full -->

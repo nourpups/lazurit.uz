@@ -18,8 +18,8 @@
                   <div class="search-product-art">
                      <span class="text-muted small"> Art. {{$result->art}}</span>
                   </div>
-{{--                  <div class="search-product-price    new-price">--}}
-{{--                     {{$result->formattedPrice()}} sum--}}
+{{--                  <div class="search-product-price new-price price-format">--}}
+{{--                     {{$result->price}} sum--}}
 {{--                  </div>--}}
                </div>
             </div>

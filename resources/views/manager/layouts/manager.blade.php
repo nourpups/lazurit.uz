@@ -123,19 +123,19 @@
                <ul class="nav-main">
                   <li class="nav-main-heading">Pages</li>
                   <li class="nav-main-item">
-                     <a class="nav-main-link" href="{{ route('manager') }}">
+                     <a class="nav-main-link" href="{{ route('manager.index') }}">
                         <i class="nav-main-link-icon fa-solid fa-chart-pie"></i>
                         <span class="nav-main-link-name">Dashboard</span>
                      </a>
-                     <a class="nav-main-link" href="{{ route('users') }}">
+                     <a class="nav-main-link" href="{{ route('users.index') }}">
                         <i class="nav-main-link-icon fa fa-user"></i>
                         <span class="nav-main-link-name">Users</span>
                      </a>
-                     <a class="nav-main-link" href="{{ route('products') }}">
+                     <a class="nav-main-link" href="{{ route('products.index') }}">
                         <i class="nav-main-link-icon fa fa-diamond"></i>
                         <span class="nav-main-link-name">Products</span>
                      </a>
-                     <a class="nav-main-link" href="{{ route('categories') }}">
+                     <a class="nav-main-link" href="{{ route('categories.index') }}">
                         <i class="nav-main-link-icon fa fa-list-alt"></i>
                         <span class="nav-main-link-name">Categories</span>
                      </a>

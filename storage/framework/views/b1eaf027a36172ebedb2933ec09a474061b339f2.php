@@ -171,7 +171,7 @@
                                     href="<?php echo e(route('product', [$product->category, $product])); ?>"><?php echo e($product->name); ?> <?php echo e($product->art); ?></a>
                               </h4>
 
-                              <span> <?php echo e($product->count); ?> × <?php echo e($product->formattedPrice()); ?> sum</span>
+                              <span> <?php echo e($product->count); ?> × <?php echo e($product->price); ?> sum</span>
                            </div>
                            <div class="cart-delete">
                               <button onclick="delete_product(<?php echo e($product->id); ?>)"

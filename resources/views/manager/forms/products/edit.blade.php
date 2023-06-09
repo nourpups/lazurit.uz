@@ -4,7 +4,7 @@
 
 @section('content')
 
-   <form class="p-4" action="{{ route('product.update', $product) }}"
+   <form class="p-4" action="{{ route('products.update', $product) }}"
          enctype="multipart/form-data" method="POST">
       @csrf
       @method('PUT')
@@ -43,7 +43,7 @@
       </div>
       <div class="form-floating mb-4">
          <input type="text" class="form-control @error('price') is-invalid @enderror"
-                value="{{ old('price', $product->formattedPrice()) }}" name="price">
+                value="{{ old('price', $product->price) }}" name="price">
          <label class="form-label">Price</label>
          @error('price')
          <div id="val-password-error" class="invalid-feedback animated fadeIn">
