@@ -145,9 +145,9 @@
          </div>
       </div>
    </div>
-
 @endsection
 @section('modals')
+
 <div class="modal fade quickview-modal-style" id="confirm_order" tabindex="-1" role="dialog">
    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -188,6 +188,7 @@
                                           <input type="text" name="password"
                                                  value="{{ old('password') }}"
                                                  placeholder="{{ __('jhonny434') }}">
+                                          <input type="hidden" name="confirm_order" value="true">
                                           <div class="button-box btn-hover">
                                              <button type="submit">{{ __('Login') }}</button>
                                           </div>
@@ -213,6 +214,7 @@
                                           <input type="text" value="{{ old('login') }}"
                                                  name="password"
                                                  placeholder="{{ __('jhonny434') }}">
+                                          <input type="hidden" name="confirm_order" value="true">
                                           <div class="button-box btn-hover">
                                              <button>{{ __('Register') }}</button>
                                           </div>
@@ -267,7 +269,7 @@
                   $(".alert").alert('close');
                }, 4000);
 
-               $('.product-count').html(res.count)
+               // $('.product-count').html(res.count)
                $('.subtotal').html(res.total.toLocaleString('fr') + ' sum')
                $('.total').html(res.total.toLocaleString('fr') + ' sum')
             }

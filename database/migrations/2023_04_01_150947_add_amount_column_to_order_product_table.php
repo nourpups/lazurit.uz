@@ -27,6 +27,7 @@ return new class extends Migration
     {
 
       Schema::table('order_product', function (Blueprint $table) {
+//          if(Schema::hasColumn('order_product', 'amount'))
         $table->dropColumn('amount');
       });
     }

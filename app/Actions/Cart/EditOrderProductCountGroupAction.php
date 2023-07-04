@@ -18,15 +18,15 @@ class EditOrderProductCountGroupAction
             ($this->incrementOrderProductAction)($product);
         }
         if ($method == 'dec') {
-            $response_data = ($this->decrementOrderProductAction)($order, $product, $product_id);
+            $responseData = ($this->decrementOrderProductAction)($order, $product);
 
-            if (isset($response_data)) {
-                return $response_data;
+            if (isset($responseData)) {
+                return $responseData;
             }
         }
 
         return [
-           'id' => $product_id,
+           'id' => $product->id,
            'count' => $product->count,
            'amount' => $product->amount,
            'total' => $order->totalSum()

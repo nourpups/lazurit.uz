@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Str;
@@ -21,7 +22,7 @@ class LoginController extends Controller
    public function loginForm()
    {
       if (!Str::contains(url()->previous(), ["register", "login"])) {
-         session()->put('url_previous', url()->previous());
+         session(['url_previous' => url()->previous()]);
       }
 
       return view('auth.login');
@@ -32,13 +33,14 @@ class LoginController extends Controller
       $loginField = isset($request['phone']) ? 'phone' : 'name';
 
       if (auth()->attempt($request->only($loginField, 'password'))) {
-         session()->flash('login', __('You have logged in succesfully'));
-         return response()->json([
-            'status' => true,
-         ]);
+          session()->flash('login', __('You have logged in succesfully'));
+
+          return $request->confirm_order
+              ? response()->json(['redirectLink' => route('cart.confirm')])
+              : response()->json(['redirectLink' => session('url_previous')]);
       }
 
-      return response()->json([
+       return response()->json([
          'errors' => [
             'name' => [__('auth.failed')]
          ]

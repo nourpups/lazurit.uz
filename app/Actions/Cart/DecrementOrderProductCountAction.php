@@ -11,7 +11,7 @@ use function view;
 class DecrementOrderProductCountAction
 {
 
-    public function __invoke(Order $order, Product $product, $product_id)
+    public function __invoke(Order $order, Product $product)
     {
         $lastProduct = $product->count == 1;
         if (!$lastProduct) {
@@ -21,10 +21,11 @@ class DecrementOrderProductCountAction
         else {
 
             $products = $order->products;
+            $productId = $product->id;
 
-            $products->each(function ($product, $key) use ($products, $product_id)
+            $products->each(function ($product, $key) use ($products, $productId)
             {
-                if ($product['id'] == $product_id) {
+                if ($product['id'] == $productId) {
                     $products->forget($key);
                 }
             });
@@ -38,7 +39,7 @@ class DecrementOrderProductCountAction
           
 
             return [
-               'id' => $product_id,
+               'id' => $productId,
                'deleted' => true,
                'total' => $total,
                'flash' => view('partials.flashs')->render()

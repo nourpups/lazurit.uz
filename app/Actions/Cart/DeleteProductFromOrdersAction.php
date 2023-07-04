@@ -20,7 +20,6 @@ class DeleteProductFromOrdersAction
             }
         });
 
-        $count = $products->count();
         $total = $order->totalSum();
 
         if ($total == 0) {
@@ -30,7 +29,7 @@ class DeleteProductFromOrdersAction
         session()->now('danger', 'Product has been removed from cart');
 
         return [
-           'count' => $products->count(),
+           'count' => $order->quantity(),
            'total' => $total,
            'flash' => view('partials.flashs')->render()
         ];

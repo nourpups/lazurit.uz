@@ -23,7 +23,7 @@
             </thead>
             <tbody>
 
-            @foreach ($orders as $order)
+            @forelse ($orders as $order)
                <tr>
                   <td class="text-center">{{ $order->id }}</td>
                   <td class="fw-semibold text-center text-sm-start">{{ $order->user->name }}
@@ -31,7 +31,7 @@
                      <a href="tel:{{ $order->user->phone }}">{{ $order->user->phone }}</a></td>
                   <td class="">{{ $order->formattedSum() }} sum</td>
                   <td class="fw-semibold">
-                     {{$order->createdAt()}}
+                     {{$order->created_at}}
                   </td>
                   <td>
 
@@ -43,7 +43,9 @@
                   </td>
 
                </tr>
-            @endforeach
+            @empty
+               <tr> <td colspan="5" class="text-center">No orders yet...</td></tr>
+            @endforelse
 
             </tbody>
          </table>

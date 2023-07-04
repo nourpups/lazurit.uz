@@ -53,7 +53,7 @@
             <div class="col-lg-6">
                <div class="product-details-content" data-aos="fade-up" data-aos-delay="400">
                   <div class="product-details-price mb-3">
-                     <span class="new-price fs-3 price-format"><?php echo e($product->price); ?> sum</span>
+                     <span class="new-price fs-3 price-format"><?php echo e($product->price); ?></span>
                   </div>
                   <div class="product-details-action-wrap">
                      <div class="single-product-cart btn-hover">

@@ -147,9 +147,9 @@
          </div>
       </div>
    </div>
-
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('modals'); ?>
+
 <div class="modal fade quickview-modal-style" id="confirm_order" tabindex="-1" role="dialog">
    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -191,6 +191,7 @@
                                           <input type="text" name="password"
                                                  value="<?php echo e(old('password')); ?>"
                                                  placeholder="<?php echo e(__('jhonny434')); ?>">
+                                          <input type="hidden" name="confirm_order" value="true">
                                           <div class="button-box btn-hover">
                                              <button type="submit"><?php echo e(__('Login')); ?></button>
                                           </div>
@@ -216,6 +217,7 @@
                                           <input type="text" value="<?php echo e(old('login')); ?>"
                                                  name="password"
                                                  placeholder="<?php echo e(__('jhonny434')); ?>">
+                                          <input type="hidden" name="confirm_order" value="true">
                                           <div class="button-box btn-hover">
                                              <button><?php echo e(__('Register')); ?></button>
                                           </div>
@@ -250,7 +252,8 @@
 
                if (res.total == 0) {
                   $('.cart-area').remove()
-                  empty_cart = `<div class="w-100 d-flex justify-content-center align-items-end"
+                  empty_cart = `
+                        <div class="w-100 d-flex justify-content-center align-items-end"
                           style="background: url(<?php echo e(asset('assets/images/cart/empty-cart.png')); ?>) center no-repeat; height:75vh">
                           <a class="btn btn-dark mb-4" href="<?php echo e(route('home')); ?>"><?php echo e(__('Go to Home')); ?></a>
                           </div>
@@ -269,7 +272,7 @@
                   $(".alert").alert('close');
                }, 4000);
 
-               $('.product-count').html(res.count)
+               // $('.product-count').html(res.count)
                $('.subtotal').html(res.total.toLocaleString('fr') + ' sum')
                $('.total').html(res.total.toLocaleString('fr') + ' sum')
             }

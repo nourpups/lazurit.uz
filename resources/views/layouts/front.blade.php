@@ -315,6 +315,7 @@
 <!-- Main JS -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
 @yield('js')
+@yield('modals')
 <script>
    $('.price-format').each(function() {
       var price = $(this).text();
@@ -322,9 +323,7 @@
       $(this).text(formattedPrice + ' sum');
    });
    $(document).ready(function () {
-      setTimeout(() => {
-         $(".alert").alert('close');
-      }, 4000);
+      setTimeout(() => {$(".alert").alert('close')}, 4000);
    });
 
    $(document).ready(function () {
@@ -334,7 +333,6 @@
    });
 
    function delete_product(product_id) {
-      let current_page = window.location.href;
 
       $.ajax({
          url: "{{ route('cart.delete') }}",
@@ -413,11 +411,7 @@
       $(document).on("submit", "#auth_form", function () {
          let e = this;
          let default_name = $(this).find("[type='submit']").html();
-         let current_location = '' + location
-         let previous_url = "{{ session('url_previous') }}";
-         if (current_location.indexOf('cart') !== -1) {
-            previous_url = "{{ route('cart') }}"
-         }
+
          $(this).find("[type='submit']").html("{{ __('Logging in...') }}");
          $(this).find(".text-danger").remove();
          $(this).find("input").removeClass('is-invalid')
@@ -425,10 +419,8 @@
             url: $(this).attr('action'),
             data: $(this).serialize(),
             type: 'POST',
-            success: function (data) {
-
-               if (data.status) window.location = previous_url;
-
+            success: (response) => {
+               window.location = response.redirectLink;
             },
             error: (response) => {
 

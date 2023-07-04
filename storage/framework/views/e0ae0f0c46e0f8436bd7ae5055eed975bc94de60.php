@@ -1,6 +1,6 @@
 Заказ № <b><?php echo e($order->id); ?></b>
 
-	Время оформления: <b><?php echo e($order->createdAt()); ?></b>
+	Время оформления: <b><?php echo e($order->created_at); ?></b>
 
 	Имя заказчика: <b><?php echo e($order->user->name); ?></b>
 	Телефон заказчика: <code><?php echo e($order->user->phone); ?></code>

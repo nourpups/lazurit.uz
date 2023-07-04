@@ -68,7 +68,6 @@
                   <p class="about-p" data-aos="fade-up" data-aos-delay="300">
                      <?php echo e(__('We constantly monitor new trends in the world of jewelry art and introduce them into our production process. But at the same time, we do not forget about our uniqueness and individuality, which make our brand truly unique')); ?>
 
-
                   </p>
                </div>
             </div>

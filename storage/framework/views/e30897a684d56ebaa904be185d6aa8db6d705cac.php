@@ -29,7 +29,7 @@
                   <div class="mb-3 p-3">
                      Customer Name: <h3><?php echo e($order->user->name); ?></h3>
                      Customer Phone: <h3><a href="tel:<?php echo e($order->user->phone); ?>"><?php echo e($order->user->phone); ?></a></h3>
-                     Confirmed At: <h3><?php echo e($order->createdAt()); ?></h3>
+                     Confirmed At: <h3><?php echo e($order->created_at); ?></h3>
                      Total Sum: <h3><?php echo e($order->formattedSum()); ?> sum</h3>
                   </div>
                   <h4>Order Products:</h4>

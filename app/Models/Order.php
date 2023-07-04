@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -52,7 +53,7 @@ class Order extends
 
     public function createdAt()
     {
-        return $this->created_at->timezone('Asia/Tashkent')->format('H:i d/m/Y');
+        return Attribute::make(get: fn($value) => $value->timezone('Asia/Tashkent')->format('H:i d/m/Y'));
     }
 
 }

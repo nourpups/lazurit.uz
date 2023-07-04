@@ -11,7 +11,7 @@ class AddProductToOrderAction
    {
 
       if ($order->products->contains($product)) {
-          dd(1);
+
          $product = $order->products->where('id', $product->id)->first();
          $count = ++$product->count;
          $product->amount = $product->price * $count;

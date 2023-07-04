@@ -25,6 +25,7 @@ class LoginRequest extends
      */
     public function rules()
     {
+
         $loginType = 'name';
         $isNotName = !preg_match('/^[\pL\s]+$/u', request('name'));
 
@@ -39,7 +40,8 @@ class LoginRequest extends
 
         $rules = [
            $loginType => 'bail|required|min:3|max:30|regex:/^[\pL\s]+$/u',
-           'password' => 'required|min:6|max:20'
+           'password' => 'required|min:6|max:20',
+           'confirm_order' => 'nullable'
         ];
 
         if ($loginType == 'phone') {

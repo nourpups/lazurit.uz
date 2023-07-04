@@ -22,7 +22,7 @@ class FrontController extends
         return view('home', compact('categories', 'bracelets', 'earrings', 'sets'));
     }
 
-    public function catalog(Request $request, Category $category, SortCatalogAction $sortCatalogAction)
+    public function catalog(Request $request, Category $category, Product $product, SortCatalogAction $sortCatalogAction)
     {
 
         $products = $request['sort']
@@ -34,7 +34,8 @@ class FrontController extends
 
     public function product(Category $category, Product $product)
     {
-//        dd(1);
+
+
         $product->load('category', 'translations'); // when a product is added, the N+1 query detector swears and asks to do "eager loading". Take it away and try to add a product, you'll see for yourself
         $relatedProducts = Product::relatedProducts($product);
 

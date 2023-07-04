@@ -57,7 +57,7 @@ class CartController extends
 
    public function delete(Request $request, DeleteProductFromOrdersAction $deleteProductFromOrdersAction)
    {
-      $data = $deleteProductFromOrdersAction(request('product_id'), $this->order());
+      $data = $deleteProductFromOrdersAction($request->product_id, $this->order());
 
       return response()->json($data);
    }

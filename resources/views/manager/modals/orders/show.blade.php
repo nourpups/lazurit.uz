@@ -29,7 +29,7 @@
                   <div class="mb-3 p-3">
                      Customer Name: <h3>{{$order->user->name}}</h3>
                      Customer Phone: <h3><a href="tel:{{$order->user->phone}}">{{$order->user->phone}}</a></h3>
-                     Confirmed At: <h3>{{$order->createdAt()}}</h3>
+                     Confirmed At: <h3>{{$order->created_at}}</h3>
                      Total Sum: <h3>{{$order->formattedSum()}} sum</h3>
                   </div>
                   <h4>Order Products:</h4>

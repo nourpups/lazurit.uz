@@ -57,18 +57,18 @@ Route::controller(CartController::class)->group(function ()
     Route::get('/cart/add/{product}', 'add')->name('cart.add');
     Route::get('/cart/edit_count', 'edit_count')->name('cart.edit_count');
     Route::delete('cart/delete', 'delete')->name('cart.delete');
-    Route::post('/cart/confirm', 'confirm')->name('cart.confirm');
+    Route::get('/cart/confirm', 'confirm')->name('cart.confirm');
     Route::get('/cart/empty', 'empty')->name('cart.empty');
 });
 Route::view('/about', 'landing.about')->name('about');
 Route::view('/contact', 'landing.contact')->name('contact');
 
 //  FRONT END ROUTES ****************************************************************************
+
 Route::controller(FrontController::class)->group(function ()
 {
     Route::get('/', 'home')->name('home');
     Route::get('/catalog/{category:slug}', 'catalog')->name('catalog');
-    Route::get('/catalog/{category:slug}/product/{product:slug}', 'product')->name('product');
+    Route::get('/catalog/{category:slug}/product/{product:art}', 'product')->name('product');
     Route::get('language/{locale}', 'changeLang')->name('language');
 });
-

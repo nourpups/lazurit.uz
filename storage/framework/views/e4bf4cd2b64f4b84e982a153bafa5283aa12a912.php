@@ -23,7 +23,7 @@
             </thead>
             <tbody>
 
-            <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__empty_1 = true; $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                <tr>
                   <td class="text-center"><?php echo e($order->id); ?></td>
                   <td class="fw-semibold text-center text-sm-start"><?php echo e($order->user->name); ?>
@@ -32,7 +32,7 @@
                      <a href="tel:<?php echo e($order->user->phone); ?>"><?php echo e($order->user->phone); ?></a></td>
                   <td class=""><?php echo e($order->formattedSum()); ?> sum</td>
                   <td class="fw-semibold">
-                     <?php echo e($order->createdAt()); ?>
+                     <?php echo e($order->created_at); ?>
 
                   </td>
                   <td>
@@ -45,7 +45,9 @@
                   </td>
 
                </tr>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+               <tr> <td colspan="5" class="text-center">No orders yet...</td></tr>
+            <?php endif; ?>
 
             </tbody>
          </table>
