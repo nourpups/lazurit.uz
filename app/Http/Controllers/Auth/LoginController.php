@@ -30,9 +30,15 @@ class LoginController extends Controller
 
    public function login(LoginRequest $request)
    {
-      $loginField = isset($request['phone']) ? 'phone' : 'name';
+       $data = $request->validated();
 
-      if (auth()->attempt($request->only($loginField, 'password'))) {
+      $loginField = isset($data['phone']) ? 'phone' : 'name';
+       $credentials = [
+           $loginField => $data[$loginField],
+           'password' => $data['password']
+       ];
+
+      if (auth()->attempt($credentials)) {
           session()->flash('login', __('You have logged in succesfully'));
 
           return $request->confirm_order

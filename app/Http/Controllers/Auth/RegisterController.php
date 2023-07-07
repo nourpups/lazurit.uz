@@ -23,15 +23,16 @@ class RegisterController extends Controller
 
    public function register(RegisterRequest $request)
    {
-      $request->offsetSet('password', Hash::make(request('password')));
-      
-      $user = User::create($request->all());
+       $data = $request->validated();
+       $data['password'] = Hash::make(request('password'));
 
-      Auth::guard()->login($user);
+      $user = User::create($data);
+
+      Auth::login($user);
 
       session()->flash('login', __('You have registered and logged in succesfully'));
-      return response()->json([
-         'status' => true,
-      ]);
+      return $request->confirm_order
+       ? response()->json(['redirectLink' => route('cart.confirm')])
+       : response()->json(['redirectLink' => session('url_previous')]);
    }
 }
