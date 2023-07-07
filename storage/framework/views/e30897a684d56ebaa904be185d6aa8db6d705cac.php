@@ -34,13 +34,14 @@
                   </div>
                   <h4>Order Products:</h4>
                   <?php $__currentLoopData = $order->products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
                      <tr>
                         <td class="text-center"><?php echo e($product->id); ?>
 
                            <hr> <?php echo e($product->name); ?> <code> <?php echo e($product->art); ?></code></td>
                         <td><?php echo e($product->price); ?> sum</td>
                         <td><?php echo e($product->pivot->count); ?></td>
-                        <td><?php echo e($order->formattedSum()); ?> sum</td>
+                        <td><?php echo e($product->pivot->amount); ?> sum</td>
                         <td class="text-center">
                            <img class="img-fluid options-item" src="<?php echo e(asset('storage/'.$product->image)); ?>"
                                 alt="">

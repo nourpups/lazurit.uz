@@ -131,8 +131,7 @@
                                  data-bs-target="#confirm_order">{{ __('Proceed to checkout') }}</a>
                            @endguest
                            @auth
-                                 <form id="confirm" action="{{route('cart.confirm')}}" method="POST"> @csrf </form>
-                              <a onclick="document.getElementById('confirm').submit()" class="btn btn-outline-dark">
+                              <a href="{{route('cart.confirm')}}" class="btn btn-outline-dark">
                                  {{ __('Proceed to checkout') }}
                               </a>
                            @endauth

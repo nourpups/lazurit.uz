@@ -25,7 +25,7 @@
          <div class="breadcrumb-content text-center">
             <h2 data-aos="fade-up" data-aos-delay="200">{{__('Contact Us')}}</h2>
             <ul data-aos="fade-up" data-aos-delay="400">
-               <li><a href="index.html">{{__('Home')}}</a></li>
+               <li><a href="{{route('home')}}">{{__('Home')}}</a></li>
                <li><i class="ti-angle-right"></i></li>
                <li>{{__('Contact')}}</li>
             </ul>

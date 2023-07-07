@@ -132,8 +132,7 @@
                                  data-bs-target="#confirm_order"><?php echo e(__('Proceed to checkout')); ?></a>
                            <?php endif; ?>
                            <?php if(auth()->guard()->check()): ?>
-                                 <form id="confirm" action="<?php echo e(route('cart.confirm')); ?>" method="POST"> <?php echo csrf_field(); ?> </form>
-                              <a onclick="document.getElementById('confirm').submit()" class="btn btn-outline-dark">
+                              <a href="<?php echo e(route('cart.confirm')); ?>" class="btn btn-outline-dark">
                                  <?php echo e(__('Proceed to checkout')); ?>
 
                               </a>

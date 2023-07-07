@@ -34,12 +34,13 @@
                   </div>
                   <h4>Order Products:</h4>
                   @foreach ($order->products as $product)
+{{--                  {{dump($product)}}--}}
                      <tr>
                         <td class="text-center">{{ $product->id }}
                            <hr> {{ $product->name }} <code> {{$product->art}}</code></td>
                         <td>{{ $product->price }} sum</td>
                         <td>{{ $product->pivot->count }}</td>
-                        <td>{{$order->formattedSum()}} sum</td>
+                        <td>{{$product->pivot->amount}} sum</td>
                         <td class="text-center">
                            <img class="img-fluid options-item" src="{{ asset('storage/'.$product->image) }}"
                                 alt="">
