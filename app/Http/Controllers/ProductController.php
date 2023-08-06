@@ -7,6 +7,7 @@ use App\Actions\Product\UpdateProductGroupAction;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @var Product $product
@@ -33,16 +34,16 @@ public function index() {
 
             return response()->json([
                'status' => true,
-               'flash' => view('partials.flashs')->render()
+               'flash' => view('partials.flash')->render()
             ]);
         }
 
         session()->flash('danger', "Can't create Category $product_name");
 
-        unlink(storage_path('app/public/').$product['image']);
+        Storage::delete($product['image']);
         return response()->json([
            'status' => true,
-           'flash' => view('partials.flashs')->render()
+           'flash' => view('partials.flash')->render()
         ]);
     }
 
@@ -60,7 +61,7 @@ public function index() {
         if ($product->update($data)) {
             return redirect(session('previous_page'))->with('success', "Product $product->name succesfully updated");
         }
-        unlink(storage_path('app/public/').$data['image']);
+        Storage::delete($data['image']);
         return redirect(session('previous_page'))->with('danger', "Can't update product $product->name");
     }
 
@@ -68,7 +69,9 @@ public function index() {
     {
         $name = $product->name;
 
+
         if ($product->delete()) {
+            Storage::delete($product['image']);
             return redirect()->back()->with('danger', "Product $name succesfully deleted");
         }
         return redirect()->back()->with('danger', "Can't delete product $name");

@@ -174,7 +174,7 @@
          </div>
          <!-- END Left Section -->
       </div>
-      @include('partials.flashs')
+      @include('partials.flash')
       <div class="flashs"></div>
       <script>
 

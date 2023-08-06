@@ -35,7 +35,7 @@
       <div class="header-bottom sticky-bar">
          <div class="container-fluid">
             <div class="row align-items-center">
-               <?php echo $__env->make('partials.flashs', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+               <?php echo $__env->make('partials.flash', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                <div class="flashs"></div>
                <div class="col-lg-3 col-md-6 col-6">
                   <div class="logo">
@@ -428,11 +428,14 @@
                let errors = response.responseJSON.errors;
                let form = ($(e).attr('action') == "<?php echo e(route('login')); ?>") ? '.login' : '.register';
                $.each(errors, function (field, error) {
-                  (form == '.login' && field == 'phone') ? field = 'name' : ''
+                  (form == '.login' && field == 'phone')
+                    ? field = 'name'
+                    : ''
 
                   $(form).find(`[name=${field}]`).addClass(
                     'is-invalid').before(
-                    '<div class="text-strong text-danger">' + error +
+                    '<div class="text-strong text-danger">'
+                    + error +
                     '</div>')
                })
             }

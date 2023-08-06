@@ -34,15 +34,15 @@ class CategoryController extends
 
             return response()->json([
                'status' => true,
-               'flash' => view('partials.flashs')->render()
+               'flash' => view('partials.flash')->render()
             ]);
         }
-        session()->flash('danger', "Can\'t create Category $name");
+        session()->flash('danger', "Can't create Category $name");
 
         Storage::delete($data['image']);
         return response()->json([
            'status' => false,
-           'flash' => view('partials.flashs')->render()
+           'flash' => view('partials.flash')->render()
         ]);
     }
 
@@ -62,7 +62,8 @@ class CategoryController extends
         if ($category->update($data)) {
             return redirect(session('previous_page'))->with('success', "Category $category->name succesfully updated");
         }
-        unlink(storage_path('app/public/').$data['image']);
+
+        Storage::delete($data['image']);
         return redirect(session('previous_page'))->with('danger', "Can't update category $category->name");
     }
 

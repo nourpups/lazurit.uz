@@ -31,7 +31,7 @@ class DeleteProductFromOrdersAction
         return [
            'count' => $order->quantity(),
            'total' => $total,
-           'flash' => view('partials.flashs')->render()
+           'flash' => view('partials.flash')->render()
         ];
     }
 }

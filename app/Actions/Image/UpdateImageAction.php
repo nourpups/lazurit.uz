@@ -2,7 +2,7 @@
 
 namespace App\Actions\Image;
 
-use function str;
+use Illuminate\Support\Facades\Storage;
 
 class UpdateImageAction
 {
@@ -12,8 +12,9 @@ class UpdateImageAction
         if (is_null($newImage)) {
             return $oldImage;
         }
-        unlink(storage_path("app/public/$oldImage"));
-        $file_name = str($imageName)->replace(' ', '_').'.'.$newImage->extension();
+
+       Storage::delete($oldImage);
+       $file_name = str($imageName)->replace(' ', '_').'.'.$newImage->extension();
 
         return $newImage->storeAs($folder, $file_name, 'public');;
     }

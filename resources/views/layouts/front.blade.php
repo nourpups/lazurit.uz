@@ -35,7 +35,7 @@
       <div class="header-bottom sticky-bar">
          <div class="container-fluid">
             <div class="row align-items-center">
-               @include('partials.flashs')
+               @include('partials.flash')
                <div class="flashs"></div>
                <div class="col-lg-3 col-md-6 col-6">
                   <div class="logo">
@@ -427,11 +427,14 @@
                let errors = response.responseJSON.errors;
                let form = ($(e).attr('action') == "{{ route('login') }}") ? '.login' : '.register';
                $.each(errors, function (field, error) {
-                  (form == '.login' && field == 'phone') ? field = 'name' : ''
+                  (form == '.login' && field == 'phone')
+                    ? field = 'name'
+                    : ''
 
                   $(form).find(`[name=${field}]`).addClass(
                     'is-invalid').before(
-                    '<div class="text-strong text-danger">' + error +
+                    '<div class="text-strong text-danger">'
+                    + error +
                     '</div>')
                })
             }

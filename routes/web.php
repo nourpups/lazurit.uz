@@ -41,7 +41,6 @@ Route::group(['middleware' => ['auth', 'authorize'], 'prefix' => 'manager'],
        Route::resources([
            'categories' => CategoryController::class,
            'products'=> ProductController::class,
-
        ]);
 
     });
@@ -69,6 +68,6 @@ Route::controller(FrontController::class)->group(function ()
 {
     Route::get('/', 'home')->name('home');
     Route::get('/catalog/{category:slug}', 'catalog')->name('catalog');
-    Route::get('/catalog/{category:slug}/product/{product:art}', 'product')->name('product');
+    Route::get('/catalog/{category:slug}/product/{product:slug}', 'product')->name('product');
     Route::get('language/{locale}', 'changeLang')->name('language');
 });

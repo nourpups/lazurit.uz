@@ -24,4 +24,4 @@
 
   </div>
 <?php endif; ?>
-<?php /**PATH /home/nour751/lazurit/resources/views/partials/flashs.blade.php ENDPATH**/ ?>
+<?php /**PATH /home/nour751/lazurit/resources/views/partials/flash.blade.php ENDPATH**/ ?>

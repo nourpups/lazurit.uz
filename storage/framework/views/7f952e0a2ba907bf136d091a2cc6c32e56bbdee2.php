@@ -174,7 +174,7 @@
          </div>
          <!-- END Left Section -->
       </div>
-      <?php echo $__env->make('partials.flashs', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+      <?php echo $__env->make('partials.flash', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
       <div class="flashs"></div>
       <script>
 

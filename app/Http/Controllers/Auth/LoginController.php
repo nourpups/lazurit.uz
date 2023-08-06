@@ -18,7 +18,6 @@ use function view;
 class LoginController extends Controller
 {
 
-
    public function loginForm()
    {
       if (!Str::contains(url()->previous(), ["register", "login"])) {
@@ -30,33 +29,36 @@ class LoginController extends Controller
 
    public function login(LoginRequest $request)
    {
-       $data = $request->validated();
+      $data = $request->validated();
 
-      $loginField = isset($data['phone']) ? 'phone' : 'name';
-       $credentials = [
-           $loginField => $data[$loginField],
-           'password' => $data['password']
-       ];
+      $loginField = $data['name'] ? 'name' : 'phone';
+      $credentials = [
+            $loginField => $data[$loginField],
+            'password'  => $data['password'],
+      ];
 
       if (auth()->attempt($credentials)) {
-          session()->flash('login', __('You have logged in succesfully'));
+         session()->flash('login', __('You have logged in succesfully'));
 
-          return $request->confirm_order
-              ? response()->json(['redirectLink' => route('cart.confirm')])
-              : response()->json(['redirectLink' => session('url_previous')]);
+         if ($request->get('confirm_order')) {
+            response()->json(['redirectLink' => route('cart.confirm')]);
+         }
+
+         return response()->json(['redirectLink' => session('url_previous')]);
       }
 
-       return response()->json([
-         'errors' => [
-            'name' => [__('auth.failed')]
-         ]
+      return response()->json([
+            'errors' => [
+                  'name' => [__('auth.failed')],
+            ],
       ], 422);
    }
-
 
    public function logout()
    {
       auth()->logout();
+
       return redirect()->back()->with('warning', __('You have logged out'));
    }
+
 }
