@@ -11,7 +11,6 @@ public function __construct( public SendOrderNotificationAction $sendOrderNotifi
 {
 }
 public function __invoke($order) {
-
     $renderedOrderProducts = ($this->getOrderProductsAction)($order->products);
 
     ($this->sendOrderNotificationAction)($order, $renderedOrderProducts);

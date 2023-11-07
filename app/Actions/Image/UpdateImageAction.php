@@ -13,10 +13,13 @@ class UpdateImageAction
             return $oldImage;
         }
 
-       Storage::delete($oldImage);
+       if (!is_null($oldImage)) {
+           Storage::delete($oldImage);
+       }
+
        $file_name = str($imageName)->replace(' ', '_').'.'.$newImage->extension();
 
-        return $newImage->storeAs($folder, $file_name, 'public');;
+        return $newImage->storeAs($folder, $file_name, 'public');
     }
 
 }

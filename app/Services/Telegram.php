@@ -13,6 +13,9 @@ class Telegram
 
     public static function sendMessageInlineLinkButton($message, $buttonText, $url)
     {
+        if(str($url)->contains('localhost')) {
+            $url = 'http://test.com/ctobi/soobsheniye/otpravilos';
+        }
         $button = [
             'inline_keyboard' => [
                 [
@@ -23,7 +26,7 @@ class Telegram
                 ]
             ]
         ];
-        $test = Http::post(self::URL.self::TOKEN.'/sendMessage', [
+        Http::post(self::URL . self::TOKEN . '/sendMessage', [
             'chat_id' => self::GROUP_CHAT_ID,
             'text' => $message,
             'reply_markup' => json_encode($button),

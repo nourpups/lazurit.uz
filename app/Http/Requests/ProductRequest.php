@@ -36,7 +36,6 @@ class ProductRequest extends
          'price' => 'required|numeric',
       ];
 
-      $excepted_col = 'product_id';
       foreach (config('translatable.locales') as $locale) {
          $rules[$locale . '.name'] = 'required|min:3';
       }

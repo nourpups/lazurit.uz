@@ -12,7 +12,6 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-
 // AUTH ROUTES *************************************************************************
 Route::controller(LoginController::class)->group(function ()
 {
@@ -46,7 +45,7 @@ Route::group(['middleware' => ['auth', 'authorize'], 'prefix' => 'manager'],
     });
 
 // SEARCH ROUTES *************************************************************************
-Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::post('/search', [SearchController::class, 'search'])->name('search');
 
 // CART ROUTES *************************************************************************
 Route::controller(CartController::class)->group(function ()
@@ -54,7 +53,7 @@ Route::controller(CartController::class)->group(function ()
     // all Route::post to Route::get i vse zarabotaet
     Route::get('/cart', 'cart')->name('cart')->middleware('cart.empty');
     Route::get('/cart/add/{product}', 'add')->name('cart.add');
-    Route::get('/cart/edit_count', 'edit_count')->name('cart.edit_count');
+    Route::post('/cart/edit_count', 'edit_count')->name('cart.edit_count');
     Route::delete('cart/delete', 'delete')->name('cart.delete');
     Route::get('/cart/confirm', 'confirm')->name('cart.confirm');
     Route::get('/cart/empty', 'empty')->name('cart.empty');

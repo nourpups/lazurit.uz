@@ -318,8 +318,8 @@
 @yield('modals')
 <script>
    $('.price-format').each(function() {
-      var price = $(this).text();
-      var formattedPrice = parseFloat(price).toLocaleString('fr');
+      let price = $(this).text();
+      let formattedPrice = parseFloat(price).toLocaleString('fr');
       $(this).text(formattedPrice + ' sum');
    });
    $(document).ready(function () {
@@ -352,7 +352,7 @@
             setTimeout(() => {
                $(".alert").alert('close')
             }, 4000)
-            if (res.count == 0) {
+            if (res.count === 0) {
 
                $('.cart-content').html('<i>Your cart is empty.</i>')
 
@@ -372,11 +372,13 @@
    $(function () {
       $('#search_box').on('keyup', '#search', function () {
          let search_query = $(this).val();
+
          if (search_query.length >= 1) {
             $.ajax({
-               type: 'GET',
+               type: 'POST',
                url: "{{ route('search') }}",
                data: {
+                  _token: "{{csrf_token()}}",
                   search: search_query,
                },
                success: function (res) {
@@ -393,7 +395,7 @@
 
          //get url and make final url for ajax
          let url = $(this).attr("href");
-         let append = url.indexOf("?") == -1 ? "?" : "&";
+         let append = url.indexOf("?") === -1 ? "?" : "&";
          let finalURL = url + append + $("#search").serialize();
 
          $.get(finalURL, {
@@ -415,6 +417,7 @@
          $(this).find("[type='submit']").html("{{ __('Logging in...') }}");
          $(this).find(".text-danger").remove();
          $(this).find("input").removeClass('is-invalid')
+
          $.ajax({
             url: $(this).attr('action'),
             data: $(this).serialize(),
@@ -425,14 +428,13 @@
             error: (response) => {
 
                let errors = response.responseJSON.errors;
-               let form = ($(e).attr('action') == "{{ route('login') }}") ? '.login' : '.register';
+               let form = ($(e).attr('action') === "{{ route('login') }}") ? '.login' : '.register';
                $.each(errors, function (field, error) {
-                  (form == '.login' && field == 'phone')
+                  (form === '.login' && field === 'phone')
                     ? field = 'name'
                     : ''
 
-                  $(form).find(`[name=${field}]`).addClass(
-                    'is-invalid').before(
+                  $(form).find(`[name=${field}]`).addClass('is-invalid').before(
                     '<div class="text-strong text-danger">'
                     + error +
                     '</div>')

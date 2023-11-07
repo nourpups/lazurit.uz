@@ -16,8 +16,13 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
+        $name = fake()->word();
+        $slug = str($name)->slug();
+
         return [
-            'name' => fake()->name(),
+            'en' => ['name' => $name],
+            'ru' => ['name' => $name],
+            'slug' => $slug
         ];
     }
 }

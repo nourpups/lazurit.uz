@@ -40,6 +40,7 @@ class CartController extends
 
    public function edit_count(Request $request, EditOrderProductCountGroupAction $editOrderProductCountGroupAction)
    {
+//       dd($request->all());
       $data = $editOrderProductCountGroupAction(request('product_id'), request('method'), $this->order());
 
       return response()->json($data);

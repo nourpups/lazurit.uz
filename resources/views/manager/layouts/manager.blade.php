@@ -200,7 +200,7 @@
          <div class="row fs-sm">
             <div class="col-sm-6 offset-sm-6 order-sm-2 text-sm-end py-1 text-center">
                Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold"
-                                                                          href="https://t.me/nouracea" target="_blank">nour</a>
+                                                                          href="https://t.me/nourizzW" target="_blank">nour</a>
             </div>
          </div>
       </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 use function __;
@@ -36,7 +37,6 @@ class LoginController extends Controller
             $loginField => $data[$loginField],
             'password'  => $data['password'],
       ];
-
       if (auth()->attempt($credentials)) {
          session()->flash('login', __('You have logged in succesfully'));
 
@@ -44,7 +44,7 @@ class LoginController extends Controller
             response()->json(['redirectLink' => route('cart.confirm')]);
          }
 
-         return response()->json(['redirectLink' => session('url_previous')]);
+         return response()->json(['redirectLink' => session('url_previous', route('cart.confirm'))]);
       }
 
       return response()->json([

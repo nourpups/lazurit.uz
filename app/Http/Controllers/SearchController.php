@@ -14,7 +14,7 @@ class SearchController extends
       $results = Product::with('category')->withTranslation()->whereTranslationLike('name', '%' . request('search') . '%')
          ->orWhere('art', 'like', '%' . request('search') . '%')
          ->paginate(8);
-
+//dump($request->all());
       return view('partials.search_results', compact('results'))->render();
    }
 }

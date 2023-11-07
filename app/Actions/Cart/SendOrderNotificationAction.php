@@ -17,5 +17,6 @@ class SendOrderNotificationAction
           ->render();
 
       Telegram::sendMessageInlineLinkButton($message, 'Смотреть заказ ↩️', route('orders'));
+
    }
 }

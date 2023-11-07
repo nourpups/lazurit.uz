@@ -26,11 +26,19 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <div class="mb-3 p-3">
-                     Customer Name: <h3>{{$order->user->name}}</h3>
-                     Customer Phone: <h3><a href="tel:{{$order->user->phone}}">{{$order->user->phone}}</a></h3>
-                     Confirmed At: <h3>{{$order->created_at}}</h3>
-                     Total Sum: <h3>{{$order->formattedSum()}} sum</h3>
+                  <div class="row p-3">
+                     <div class="col-6">
+                        Customer Name: <h5>{{$order->user->name}}</h5>
+                     </div>
+                     <div class="col-6">
+                        Customer Phone: <h5><a href="tel:{{$order->user->phone}}">{{$order->user->phone}}</a></h5>
+                     </div>
+                     <div class="col-6">
+                        Confirmed At: <h5>{{$order->created_at}}</h5>
+                     </div>
+                     <div class="col-6">
+                        Total Sum: <h3>{{$order->formattedSum()}} sum</h3>
+                     </div>
                   </div>
                   <h4>Order Products:</h4>
                   @foreach ($order->products as $product)

@@ -17,6 +17,7 @@ class StoreProductGroupAction
         $product = Product::create($data);
 
         $art = ($this->createProductArt)($product->category->translate('en')->name, $product->id);
+        $product->art = $art;
 
         $slug = $data['ru']['name'].'_'.$product->art;
         $slug = ($this->saveSlugAction)($slug);
@@ -24,8 +25,6 @@ class StoreProductGroupAction
 
         $imageName = $data['en']['name'].'_'.$art;
         $image = ($this->createImageAction)($data['image'], $imageName, 'products/image');
-
-        $product->art = $art;
         $product->image = $image;
 
         return $product->save();
