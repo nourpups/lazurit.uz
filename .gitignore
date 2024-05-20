@@ -4,7 +4,7 @@
 /public_html/storage
 /storage/*.key
 /storage/framework/
-/database/mysql/
+/database/mysql
 /vendor
 .env
 .env.backup
