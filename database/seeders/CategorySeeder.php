@@ -17,34 +17,55 @@ class CategorySeeder extends Seeder
     public function run(CreateProductArt $createProductArt, SaveSlugAction $saveSlugAction)
     {
         Category::factory()
-            ->hasProducts(4)
             ->create([
                 'en' => ['name' => 'Bracelets'],
                 'ru' => ['name' => 'Браслеты']
             ]);
 
         Category::factory()
-            ->hasProducts(4)
             ->create([
                 'en' => ['name' => 'Sets'],
                 'ru' => ['name' => 'Комплекты']
             ]);
 
         Category::factory()
-            ->hasProducts(4)
             ->create([
                 'en' => ['name' => 'Earrings'],
                 'ru' => ['name' => 'Серьги']
+            ]);
+
+        Category::factory()
+            ->create([
+                'en' => ['name' => 'Chain Pendants'],
+                'ru' => ['name' => 'Цепи с кулоном']
+            ]);
+
+        Category::factory()
+            ->create([
+                'en' => ['name' => 'Chains'],
+                'ru' => ['name' => 'Цепи']
+            ]);
+
+        Category::factory()
+            ->create([
+                'en' => ['name' => 'Pendants'],
+                'ru' => ['name' => 'Кулоны']
+            ]);
+
+        Category::factory()
+            ->create([
+                'en' => ['name' => 'Rings'],
+                'ru' => ['name' => 'Кольца']
             ]);
 
         $categories = Category::all();
         foreach ($categories as $category) {
             $category->slug = $saveSlugAction($category->translate('ru')->name);
             $category->save();
-            foreach ($category->products as $product) {
-                $product->art = $createProductArt($category->name, $product->id);
-                $product->save();
-            }
+//            foreach ($category->products as $product) {
+//                $product->art = $createProductArt($category->name, $product->id);
+//                $product->save();
+//            }
         }
     }
 }

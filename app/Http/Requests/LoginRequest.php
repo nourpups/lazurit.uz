@@ -27,7 +27,7 @@ class LoginRequest extends
     {
         $loginType = 'name';
 
-        $nameRegex = '/^[\pL\s]+$/u'; // string and space only
+        $nameRegex = '/^[\pL\s]+$/'; // string and space only
         $isNotName = !preg_match($nameRegex, request('name'));
 
         if ($isNotName) {
@@ -42,10 +42,10 @@ class LoginRequest extends
            'confirm_order' => 'nullable'
         ];
 
-       $phoneRegex = '/^[+](998)(90|91|93|94|95|97|98|99|88|33)[0-9]{7}$/';
-       // format like: +998[mobile operator code][phone number], e.g: +998 97 123 45 67 (spaces for readability)
+       $phoneRegex = '/^[+](?:998)?(?:90|91|93|94|95|97|98|99|88|33)[0-9]{7}$/u';
+       // format like: +998[mobile operator code][phone number], e.g: +998971234567
         if ($loginType == 'phone') {
-            $rules['phone'] = 'required|regex:'.$phoneRegex;
+            $rules['phone'] = ['required', 'regex:'.$phoneRegex];
         }
 
         return $rules;

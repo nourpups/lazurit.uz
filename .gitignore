@@ -3,6 +3,8 @@
 /public/hot
 /public_html/storage
 /storage/*.key
+/storage/framework/
+/database/mysql/
 /vendor
 .env
 .env.backup
