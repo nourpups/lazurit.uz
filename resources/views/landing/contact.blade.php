@@ -49,10 +49,9 @@
                      <span>{{__('Telephone Enquiry')}} : <a href="tel:+998900977020">+998900977020</a></span>
                   </div>
                   <div class="open-time">
-                     <p>{{__('Assistance hours')}} : <span>8:00</span> - <span>20:00</span></p>
-
                      <p>{{__('Open')}} : {{__('Monday')}} – {{__('Saturday')}}</p>
-                     <p> {{__('Sunday')}} : {{__('Close')}}</p>
+                     <p>{{__('Close')}} : {{__('Sunday')}}</p>
+                     <p>{{__('Assistance hours')}} : <span>8:00</span> - <span>20:00</span></p>
                   </div>
                </div>
             </div>

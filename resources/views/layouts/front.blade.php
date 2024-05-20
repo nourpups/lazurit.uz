@@ -6,7 +6,7 @@
    <meta http-equiv="x-ua-compatible" content="ie=edge">
    <title>@yield('title')</title>
    <meta name="robots" content="index, follow"/>
-
+   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    @yield('meta_tags')
 
@@ -27,6 +27,8 @@
    <link rel="stylesheet" href="{{ asset('assets/css/plugins/slinky.css') }}"/>
 
    <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}"/>
+   <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
+   <script src="{{ asset('assets/js/plugins/jquery-ui.js') }}"></script>
 </head>
 
 <body>
@@ -298,7 +300,6 @@
 </div>
 <!-- All JS is here -->
 <script src="{{ asset('assets/js/vendor/modernizr-3.11.2.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/bootstrap.min.js') }}"></script>
 
@@ -307,7 +308,6 @@
 <script src="{{ asset('assets/js/plugins/aos.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/magnific-popup.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/swiper.min.js') }}"></script>
-<script src="{{ asset('assets/js/plugins/jquery-ui.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/waypoints.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/counterup.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/slinky.min.js') }}"></script>

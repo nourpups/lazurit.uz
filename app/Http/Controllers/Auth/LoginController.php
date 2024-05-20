@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
-use App\Models\User;
 use Illuminate\Support\Str;
 
 use function __;
@@ -32,7 +30,7 @@ class LoginController extends Controller
    {
       $data = $request->validated();
 
-      $loginField = $data['name'] ? 'name' : 'phone';
+      $loginField = isset($data['name']) ? 'name' : 'phone';
       $credentials = [
             $loginField => $data[$loginField],
             'password'  => $data['password'],
