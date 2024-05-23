@@ -17,17 +17,17 @@ services:
         container_name: crm_nginx
         networks:
             - lazurit
-    certbot:
-        image: certbot/certbot
-        container_name: certbot
-        volumes:
-            - ./certbot/conf:/etc/letsencrypt
-            - ./certbot/www:/var/www/certbot
-        command: certonly --webroot --webroot-path /var/www/certbot/ --email najmiddinov2006@gmail.com --agree-tos --no-eff-email     -d lazurit.uz  -d www.lazurit.uz --dry-run
-        depends_on:
-            - nginx
-        networks:
-            - lazurit
+#    certbot:
+#        image: certbot/certbot
+#        container_name: certbot
+#        volumes:
+#            - ./certbot/conf:/etc/letsencrypt
+#            - ./certbot/www:/var/www/certbot
+#        command: certonly --webroot --webroot-path /var/www/certbot/ --email najmiddinov2006@gmail.com --agree-tos --no-eff-email     -d lazurit.uz  -d www.lazurit.uz --dry-run
+#        depends_on:
+#            - nginx
+#        networks:
+#            - lazurit
     app:
         build:
             context: .
