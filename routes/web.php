@@ -64,8 +64,8 @@ Route::post('/search', [SearchController::class, 'search'])->name('search');
 //    Route::get('/cart/confirm', 'confirm')->name('cart.confirm');
 //    Route::get('/cart/empty', 'empty')->name('cart.empty');
 //});
-//Route::view('/about', 'landing.about')->name('about');
-//Route::view('/contact', 'landing.contact')->name('contact');
+Route::view('/about', 'landing.about')->name('about');
+Route::view('/contact', 'landing.contact')->name('contact');
 
 //  FRONT END ROUTES ****************************************************************************
 

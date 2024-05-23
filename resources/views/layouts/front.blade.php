@@ -190,7 +190,7 @@
                     sum</span></h4>
                   </div>
                   <div class="cart-btn btn-hover">
-                     <a class="theme-color" href="{{ route('cart') }}">{{ __('View Cart') }}</a>
+{{--                     <a class="theme-color" href="{{ route('cart') }}">{{ __('View Cart') }}</a>--}}
                   </div>
                </div>
             @else
@@ -335,7 +335,7 @@
    function delete_product(product_id) {
 
       $.ajax({
-         url: "{{ route('cart.delete') }}",
+         url: "", // route('cart.delete')
          type: 'DELETE',
          data: {
             _token: "{{ csrf_token() }}",
