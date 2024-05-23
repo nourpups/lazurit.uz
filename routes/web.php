@@ -10,79 +10,13 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
-use App\Models\Product;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/set-items', function (\App\Actions\Product\StoreProductGroupAction $storeProductGroupAction) {
-
-    $basePath = storage_path('app/lazurit/products'); // Путь к папке с изображениями
-    $categories = \App\Models\Category::get();
-    $names = [
-        'Sets' => [
-            'en' => 'Set',
-            'ru' => 'Комплект',
-        ],
-        'Rings' => [
-            'en' => 'Ring',
-            'ru' => 'Кольцо',
-        ],
-        'Chain Pendants' => [
-            'en' => 'Chain Pendants',
-            'ru' => 'Цепь с кулоном',
-        ],
-        'Chains' => [
-            'en' => 'Chain',
-            'ru' => 'Цепь',
-        ],
-        'Pendants' => [
-            'en' => 'Pendant',
-            'ru' => 'Кулон',
-        ],
-        'Bracelets' => [
-            'en' => 'Bracelet',
-            'ru' => 'Браслет',
-        ],
-        'Earrings' => [
-            'en' => 'Earrings',
-            'ru' => 'Серьги',
-        ],
-    ];
-    foreach ($categories as $category) {
-        $path = $basePath . '/' . strtolower($category->name);
-
-        if (File::exists($path) && File::isDirectory($path)) {
-            $files = File::files($path);
-
-            foreach ($files as $file) {
-
-                $object = new UploadedFile(
-                    $file->getPath().'/'.$file->getFilename(),
-                    $file->getFilename(),
-                    $file->getExtension(),
-                    null,
-                    false
-                );
-
-                if ($file->isFile() && in_array($file->getExtension(), ['jpg', 'jpeg', 'png', 'webp'])) {
-                    $data = [
-                        'category_id' => $category->id,
-                        'image' => $object,
-                        'price' => '106',
-                        'en' => [
-                            'name' => $names[$category->name]['en']
-                        ],
-                        'ru' => [
-                            'name' => $names[$category->name]['ru']
-                        ],
-                    ];
-                    $storeProductGroupAction($data);
-                }
-            }
-        }
-    }
-});
+//Route::get('/set-items', function (
+//    \App\Actions\Product\CreateProductsFromImagesAction $createProductsFromImagesAction
+//) {
+//    $createProductsFromImagesAction();
+//});
 
 // AUTH ROUTES *************************************************************************
 Route::controller(LoginController::class)->group(function ()
@@ -120,18 +54,18 @@ Route::group(['middleware' => ['auth', 'authorize'], 'prefix' => 'manager'],
 Route::post('/search', [SearchController::class, 'search'])->name('search');
 
 // CART ROUTES *************************************************************************
-Route::controller(CartController::class)->group(function ()
-{
-    // all Route::post to Route::get i vse zarabotaet
-    Route::get('/cart', 'cart')->name('cart')->middleware('cart.empty');
-    Route::get('/cart/add/{product}', 'add')->name('cart.add');
-    Route::post('/cart/edit_count', 'edit_count')->name('cart.edit_count');
-    Route::delete('cart/delete', 'delete')->name('cart.delete');
-    Route::get('/cart/confirm', 'confirm')->name('cart.confirm');
-    Route::get('/cart/empty', 'empty')->name('cart.empty');
-});
-Route::view('/about', 'landing.about')->name('about');
-Route::view('/contact', 'landing.contact')->name('contact');
+//Route::controller(CartController::class)->group(function ()
+//{
+//    // all Route::post to Route::get i vse zarabotaet
+//    Route::get('/cart', 'cart')->name('cart')->middleware('cart.empty');
+//    Route::get('/cart/add/{product}', 'add')->name('cart.add');
+//    Route::post('/cart/edit_count', 'edit_count')->name('cart.edit_count');
+//    Route::delete('cart/delete', 'delete')->name('cart.delete');
+//    Route::get('/cart/confirm', 'confirm')->name('cart.confirm');
+//    Route::get('/cart/empty', 'empty')->name('cart.empty');
+//});
+//Route::view('/about', 'landing.about')->name('about');
+//Route::view('/contact', 'landing.contact')->name('contact');
 
 //  FRONT END ROUTES ****************************************************************************
 

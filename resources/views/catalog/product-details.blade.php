@@ -54,14 +54,14 @@
             </div>
             <div class="col-lg-6">
                <div class="product-details-content" data-aos="fade-up" data-aos-delay="400">
-                  <div class="product-details-price mb-3">
-                     <span class="new-price fs-3 price-format">{{ $product->price }}</span>
-                  </div>
-                  <div class="product-details-action-wrap">
-                     <div class="single-product-cart btn-hover">
-                        <a href="{{ route('cart.add', $product) }}">{{ __('Add to Cart') }}</a>
-                     </div>
-                  </div>
+{{--                  <div class="product-details-price mb-3">--}}
+{{--                     <span class="new-price fs-3 price-format">{{ $product->price }}</span>--}}
+{{--                  </div>--}}
+{{--                  <div class="product-details-action-wrap">--}}
+{{--                     <div class="single-product-cart btn-hover">--}}
+{{--                        <a href="{{ route('cart.add', $product) }}">{{ __('Add to Cart') }}</a>--}}
+{{--                     </div>--}}
+{{--                  </div>--}}
                   <div class="product-details-meta">
                      <ul>
                         <li><span class="title">Art:</span>{{ $product->art }}</li>
